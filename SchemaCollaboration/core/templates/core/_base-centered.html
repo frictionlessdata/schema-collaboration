@@ -1,0 +1,10 @@
+{% extends 'core/_base.html' %}
+
+{% block body_class %}class="d-flex flex-column h-100"{% endblock %}
+{% block body_contents %}
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            {% block main %}{% endblock %}
+        </div>
+    </main>
+{% endblock %}
