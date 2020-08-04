@@ -1,8 +1,12 @@
 {% extends 'core/_base-centered.html' %}
+{% load includestatic %}
+
 {% block title %}Schema collaboration{% endblock %}
 {% block main %}
     <h1>Welcome to schema-collaboration</h1>
-
-    This is a <strong>test server</strong> for the project
-    <a href="https://github.com/frictionlessdata/schema-collaboration/">schema-collaboration</a>.
+    <p>
+        This is a <strong>test server</strong> for the project
+        <a href="https://github.com/frictionlessdata/schema-collaboration/">schema-collaboration</a>.
+    </p>
+    Current version: {% includestatic 'git_version.txt' %}
 {% endblock %}
