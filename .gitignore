@@ -4,10 +4,6 @@ __pycache__/
 .env
 .idea/
 
-# It's build as part of building. Done here and not in SchemaCollaboration
-# so it's the same for production and dev at the moment
-SchemaCollaboration/core/static/datapackage-ui/
-
 # For runtime and where Django collects the static files
 # (see settings.STATIC_ROOT). For saving the static files use
 # the app/static
