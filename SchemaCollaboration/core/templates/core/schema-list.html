@@ -1,0 +1,25 @@
+{% extends 'core/_base-centered.html' %}
+{% load static %}
+
+{% block title %}List of schemas{% endblock %}
+{% block main %}
+    <h1>List of schemas</h1>
+    <table class="table table-striped table-sm table-hover display">
+        <thead>
+        <tr>
+            <th>Created on</th>
+            <th>Modified on</th>
+            <th>UUID</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for schema in schemas %}
+            <tr>
+                <th>?</th>
+                <th>?</th>
+                <th><{{ schema.uuid }}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
