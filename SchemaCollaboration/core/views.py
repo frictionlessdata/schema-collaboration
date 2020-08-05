@@ -17,3 +17,7 @@ class FileUploadView(views.APIView):
         f.write(file_obj.file.read())
         f.close()
         return Response(status=204)
+
+
+class Ping(TemplateView):
+    template_name = 'core/homepage.html'
