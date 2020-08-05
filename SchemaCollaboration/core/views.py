@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.templatetags.static import static
 from django.views.generic import TemplateView, ListView, DetailView, RedirectView
 from rest_framework import views
@@ -22,7 +23,7 @@ class SchemaDetail(DetailView):
     model = Schema
     context_object_name = 'schema'
 
-    def get_object(self):
+    def get_object(self, queryset=None):
         return Schema.objects.get(uuid=self.kwargs['uuid'])
 
 
@@ -37,8 +38,18 @@ class FileUploadView(views.APIView):
         return Response(status=204)
 
 
-class Ping(TemplateView):
-    template_name = 'core/homepage.html'
+class FileGetView(DetailView):
+    model = Schema
+
+    def get_object(self, queryset=None):
+        return Schema.objects.get(uuid=self.kwargs['uuid'])
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        data = self.object.schema
+        response = HttpResponse(status=200, content=data)
+        response['Content-Type'] = 'application/json'
+        return response
 
 
 class DatapackageUi(RedirectView):
