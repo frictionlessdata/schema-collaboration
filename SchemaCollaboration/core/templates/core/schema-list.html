@@ -15,9 +15,9 @@
         <tbody>
         {% for schema in schemas %}
             <tr>
-                <th>?</th>
-                <th>?</th>
-                <th><a href="{% url 'schema-detail'  uuid=schema.uuid %}">{{ schema.uuid }}</a></th>
+                <td>?</td>
+                <td>?</td>
+                <td><a href="{% url 'schema-detail'  uuid=schema.uuid %}">{{ schema.uuid }}</a></td>
             </tr>
         {% endfor %}
         </tbody>
