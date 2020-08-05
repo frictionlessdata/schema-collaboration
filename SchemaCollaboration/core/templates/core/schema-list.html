@@ -17,7 +17,7 @@
             <tr>
                 <th>?</th>
                 <th>?</th>
-                <th><{{ schema.uuid }}</th>
+                <th><a href="{% url 'schema-detail'  uuid=schema.uuid %}">{{ schema.uuid }}</a></th>
             </tr>
         {% endfor %}
         </tbody>

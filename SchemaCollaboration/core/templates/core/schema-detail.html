@@ -1,0 +1,12 @@
+{% extends 'core/_base-centered.html' %}
+{% load static %}
+
+{% block title %}List of schemas{% endblock %}
+{% block main %}
+    <h1>Schema detail</h1>
+
+    <div class="border p-1 bg-white rounded">
+        <pre>{{ schema.schema_text }}</pre>
+    </div>
+    <a href="{% url 'schema-list' %}">List</a>
+{% endblock %}

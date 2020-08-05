@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 from rest_framework import views
 from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
@@ -14,6 +14,15 @@ class SchemaList(ListView):
     template_name = 'core/schema-list.html'
     model = Schema
     context_object_name = 'schemas'
+
+
+class SchemaDetail(DetailView):
+    template_name = 'core/schema-detail.html'
+    model = Schema
+    context_object_name = 'schema'
+
+    def get_object(self):
+        return Schema.objects.get(uuid=self.kwargs['uuid'])
 
 
 class FileUploadView(views.APIView):
