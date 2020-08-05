@@ -15,8 +15,8 @@
         <tbody>
         {% for schema in schemas %}
             <tr>
-                <td>?</td>
-                <td>?</td>
+                <td>{{ schema.created_on }}</td>
+                <td>{{ schema.modified_on }}</td>
                 <td><a href="{% url 'schema-detail'  uuid=schema.uuid %}">{{ schema.uuid }}</a></td>
             </tr>
         {% endfor %}
@@ -27,6 +27,7 @@
         $(document).ready(function () {
             $('#schema-table').DataTable({
                 searchHighlight: true,
+                order: [[0, "desc"]],
                 language: {
                     zeroRecords: "No schemas have been created. <a href=\"{% url 'datapackage-ui' %}\">Create a schema</a>"
                 },
@@ -34,5 +35,5 @@
             });
         });
     </script>
-
+    <a href="{% url 'datapackage-ui' %}">Create a new schema</a>
 {% endblock %}
