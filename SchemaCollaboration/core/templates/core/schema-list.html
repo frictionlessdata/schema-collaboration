@@ -26,7 +26,11 @@
     <script type="text/javascript" class="init">
         $(document).ready(function () {
             $('#schema-table').DataTable({
-                searchHighlight: true
+                searchHighlight: true,
+                language: {
+                    zeroRecords: "No schemas have been created. <a href=\"{% url 'datapackage-ui' %}\">Create a schema</a>"
+                },
+
             });
         });
     </script>

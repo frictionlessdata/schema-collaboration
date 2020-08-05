@@ -1,4 +1,5 @@
-from django.views.generic import TemplateView, ListView, DetailView
+from django.templatetags.static import static
+from django.views.generic import TemplateView, ListView, DetailView, RedirectView
 from rest_framework import views
 from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
@@ -38,3 +39,11 @@ class FileUploadView(views.APIView):
 
 class Ping(TemplateView):
     template_name = 'core/homepage.html'
+
+
+class DatapackageUi(RedirectView):
+    permanent = False
+    query_string = True
+
+    def get_redirect_url(self, *args, **kwargs):
+        return static('datapackage-ui/index.html')

@@ -7,5 +7,6 @@ urlpatterns = [
     path('schema/list/', views.SchemaList.as_view(), name='schema-list'),
     path('schema/<uuid:uuid>/', views.SchemaDetail.as_view(), name='schema-detail'),
     path('api/upload/', views.FileUploadView.as_view(), name='schema-upload'),
-    path('api/ping/', views.Ping.as_view(), name='ping')
+    path('api/ping/', views.Ping.as_view(), name='ping'),
+    path('datapackage-ui/', views.DatapackageUi.as_view(), name='datapackage-ui'),
 ]
