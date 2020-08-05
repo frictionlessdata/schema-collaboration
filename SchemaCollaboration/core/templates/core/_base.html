@@ -4,10 +4,33 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Datatables -->
+    {#    Selected Bootstarp4, jQuery3, DataTables, no concatenate#}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.css"/>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.js"></script>
+
+    <!-- Datatables highlight -->
+    {#    https://datatables.net/blog/2014-10-22#Released-code#}
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/plug-ins/1.10.21/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/plug-ins/1.10.21/features/searchHighlight/dataTables.searchHighlight.css">
+    <script type="text/javascript" src="https://bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
+
+    <!-- Highlight plugins for sorting table -->
+    {#    <script type="text/javascript" src="{% static 'external/datatables/dataTables.searchHighlight.min.js' %}"></script>#}
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'external/datatables/dataTables.searchHighlight.css' %}">#}
+    {#    <script type="text/javascript" src="{% static 'external/jquery/jquery.highlight.js' %}"></script>#}
+
 
     <link rel="stylesheet" type="text/css" href="{% static '/css/css.css' %}">
 
@@ -19,9 +42,6 @@
         {% block body_contents %}{% endblock %}
     </div>
 </main>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>

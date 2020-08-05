@@ -4,7 +4,7 @@
 {% block title %}List of schemas{% endblock %}
 {% block main %}
     <h1>List of schemas</h1>
-    <table class="table table-striped table-sm table-hover display">
+    <table id="schema-table" class="table table-striped table-sm table-hover display">
         <thead>
         <tr>
             <th>Created on</th>
@@ -22,4 +22,13 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <script type="text/javascript" class="init">
+        $(document).ready(function () {
+            $('#schema-table').DataTable({
+                searchHighlight: true
+            });
+        });
+    </script>
+
 {% endblock %}
