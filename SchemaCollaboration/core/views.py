@@ -27,7 +27,7 @@ class SchemaDetail(DetailView):
 
 class FileUploadView(View):
     def post(self, request, *args, **kwargs):
-        body = request.body
+        body = request.body.decode('utf-8')
         schema = Schema.objects.create(schema=body)
 
         data = {'uuid': str(schema.uuid)}
@@ -43,7 +43,7 @@ class FileGetView(View):
 
     def put(self, request, *args, **kwargs):
         uuid = kwargs['uuid']
-        body = request.body
+        body = request.body.decode('utf-8')
 
         schema = Schema.objects.get(uuid=uuid)
         schema.schema = body

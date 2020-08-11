@@ -4,8 +4,10 @@ from .models import Schema
 
 
 class SchemaAdmin(admin.ModelAdmin):
-    list_display = ('uuid',)
+    search_fields = ('uuid', 'schema',)
+    list_display = ('uuid', 'created_on', 'modified_on', 'schema',)
     ordering = ('uuid',)
+    readonly_fields = ('uuid', 'created_on', 'modified_on',)
 
 
 admin.site.register(Schema, SchemaAdmin)

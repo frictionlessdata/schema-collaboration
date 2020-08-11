@@ -1,6 +1,7 @@
 import uuid as uuid_lib
 
 from django.db import models
+from django.urls import reverse
 
 
 class CreateModifyOn(models.Model):
@@ -18,7 +19,7 @@ class CreateModifyOn(models.Model):
 
 class Schema(CreateModifyOn):
     uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, editable=False, unique=True)
-    schema = models.BinaryField()  # TODO: move it to a file
+    schema = models.TextField(editable=True)
 
-    def schema_text(self):
-        return self.schema.decode('utf-8')
+    def get_absolute_url(self):
+        return reverse('schema-detail', kwargs={'uuid': str(self.uuid)})
