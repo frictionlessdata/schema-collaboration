@@ -35,15 +35,9 @@ class FileUploadView(View):
 
 
 class FileGetView(View):
-    model = Schema
-
-    def get_object(self, queryset=None):
-        return Schema.objects.get(uuid=self.kwargs['uuid'])
-
     def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        data = self.object.schema
-        response = HttpResponse(status=200, content=data)
+        schema = Schema.objects.get(uuid=self.kwargs['uuid'])
+        response = HttpResponse(status=200, content=schema.schema)
         response['Content-Type'] = 'application/json'
         return response
 
