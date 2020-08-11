@@ -15,8 +15,8 @@
         <tbody>
         {% for schema in schemas %}
             <tr>
-                <td>{{ schema.created_on }}</td>
-                <td>{{ schema.modified_on }}</td>
+                <td data-sort="{{ schema.created_on|date:"Y-m-d H:i:s" }}">{{ schema.created_on }}</td>
+                <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{{ schema.modified_on }}</td>
                 <td>
                     <a href="{% url 'schema-detail'  uuid=schema.uuid %}" class="btn btn-primary btn-sm active">View</a>
                     <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}" class="btn btn-primary btn-sm active">Edit</a>
@@ -30,7 +30,7 @@
         $(document).ready(function () {
             $('#schema-table').DataTable({
                 searchHighlight: true,
-                order: [[0, "desc"]],
+                order: [[1, "desc"]],
                 language: {
                     zeroRecords: "No schemas have been created. <a href=\"{% url 'datapackage-ui' %}\">Create a schema</a>"
                 },
