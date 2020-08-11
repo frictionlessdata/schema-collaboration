@@ -9,7 +9,7 @@
         <tr>
             <th>Created on</th>
             <th>Modified on</th>
-            <th>UUID</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -17,7 +17,10 @@
             <tr>
                 <td>{{ schema.created_on }}</td>
                 <td>{{ schema.modified_on }}</td>
-                <td><a href="{% url 'schema-detail'  uuid=schema.uuid %}">{{ schema.uuid }}</a></td>
+                <td>
+                    <a href="{% url 'schema-detail'  uuid=schema.uuid %}">View</a>
+                    <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}">Edit</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

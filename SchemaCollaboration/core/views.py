@@ -57,4 +57,6 @@ class DatapackageUi(RedirectView):
     query_string = True
 
     def get_redirect_url(self, *args, **kwargs):
-        return static('datapackage-ui/index.html')
+        # TODO: Generalise this? to allow any number of parameters and not only uuid
+        uuid = self.request.GET.get('load')
+        return static('datapackage-ui/index.html') + f'?load={uuid}'
