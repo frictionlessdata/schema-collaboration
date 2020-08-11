@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.templatetags.static import static
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, RedirectView
@@ -28,8 +28,10 @@ class SchemaDetail(DetailView):
 class FileUploadView(View):
     def post(self, request, *args, **kwargs):
         body = request.body
-        Schema.objects.create(schema=body)
-        return HttpResponse(status=204)
+        schema = Schema.objects.create(schema=body)
+
+        data = {'uuid': str(schema.uuid)}
+        return JsonResponse(data, status=200)
 
 
 class FileGetView(View):
@@ -53,8 +55,8 @@ class FileGetView(View):
         schema.schema = body
         schema.save()
 
-        response = HttpResponse(status=201)
-        return response
+        data = {'uuid': str(schema.uuid)}
+        return JsonResponse(data, status=200)
 
 
 class DatapackageUi(RedirectView):
