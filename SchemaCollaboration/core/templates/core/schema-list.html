@@ -18,8 +18,8 @@
                 <td>{{ schema.created_on }}</td>
                 <td>{{ schema.modified_on }}</td>
                 <td>
-                    <a href="{% url 'schema-detail'  uuid=schema.uuid %}">View</a>
-                    <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}">Edit</a>
+                    <a href="{% url 'schema-detail'  uuid=schema.uuid %}" class="btn btn-primary btn-sm active">View</a>
+                    <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}" class="btn btn-primary btn-sm active">Edit</a>
                 </td>
             </tr>
         {% endfor %}
@@ -39,5 +39,5 @@
         });
     </script>
     <hr>
-    <a href="{% url 'datapackage-ui' %}">Create a new schema</a>
+    <a href="{% url 'datapackage-ui' %}" class="btn btn-primary btn-sm active">Create a new schema</a>
 {% endblock %}
