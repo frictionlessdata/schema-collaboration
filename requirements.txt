@@ -1,6 +1,5 @@
 asgiref==3.2.10
 Django==3.1
-djangorestframework==3.11.0
 mysqlclient==2.0.1
 python-dotenv==0.14.0
 pytz==2020.1

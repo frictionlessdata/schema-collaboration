@@ -1,9 +1,7 @@
 from django.http import HttpResponse
 from django.templatetags.static import static
+from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, RedirectView
-from rest_framework import views
-from rest_framework.parsers import FileUploadParser
-from rest_framework.response import Response
 
 from .models import Schema
 
@@ -27,18 +25,14 @@ class SchemaDetail(DetailView):
         return Schema.objects.get(uuid=self.kwargs['uuid'])
 
 
-class FileUploadView(views.APIView):
-    parser_classes = [FileUploadParser]
-
-    def post(self, request, format=None):
-        file_obj = request.data['file']
-
-        schema = Schema.objects.create(schema=file_obj.file.read())
-
-        return Response(status=204)
+class FileUploadView(View):
+    def post(self, request, *args, **kwargs):
+        body = request.body
+        Schema.objects.create(schema=body)
+        return HttpResponse(status=204)
 
 
-class FileGetView(DetailView):
+class FileGetView(View):
     model = Schema
 
     def get_object(self, queryset=None):
@@ -49,6 +43,17 @@ class FileGetView(DetailView):
         data = self.object.schema
         response = HttpResponse(status=200, content=data)
         response['Content-Type'] = 'application/json'
+        return response
+
+    def put(self, request, *args, **kwargs):
+        uuid = kwargs['uuid']
+        body = request.body
+
+        schema = Schema.objects.get(uuid=uuid)
+        schema.schema = body
+        schema.save()
+
+        response = HttpResponse(status=201)
         return response
 
 
