@@ -8,6 +8,8 @@ More information: https://frictionlessdata.io/blog/2020/07/16/tool-fund-polar-in
 
 See progress on https://github.com/frictionlessdata/schema-collaboration/wiki
 
+An installation to play with: https://carles.eu.pythonanywhere.com
+
 # Installation for development
 This application is not ready to be used yet.
 
