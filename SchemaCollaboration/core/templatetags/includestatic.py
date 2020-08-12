@@ -33,4 +33,4 @@ def includestatic(path):
 def includestaticextrajs():
     file_content = read_file(settings.EXTRA_JS_FILE)
 
-    return mark_safe(file_content) if file_content else f'Cannot read: {settings.EXTRA_JS_FILE}'
+    return mark_safe(file_content) if file_content else ''
