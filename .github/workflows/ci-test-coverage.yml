@@ -26,10 +26,7 @@ jobs:
         coverage erase
         coverage run manage.py test
         coverage xml
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
+    - name: Upload coverage to Coveralls
+      uses: coverallsapp/github-action@master
       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        flags: unittests
-        name: codecov-project
-        fail_ci_if_error: false
+        github-token: ${{ secrets.GITHUB_TOKEN }}
