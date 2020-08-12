@@ -1,0 +1,3 @@
+coverage:
+  precision: 3
+  range: 50..100

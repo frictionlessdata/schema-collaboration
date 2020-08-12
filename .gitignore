@@ -8,3 +8,6 @@ __pycache__/
 # (see settings.STATIC_ROOT). For saving the static files use
 # the app/static
 SchemaCollaboration/static
+
+SchemaCollaboration/.coverage
+SchemaCollaboration/coverage.xml
