@@ -25,16 +25,7 @@ class SchemaDetail(DetailView):
         return Schema.objects.get(uuid=self.kwargs['uuid'])
 
 
-class FileUploadView(View):
-    def post(self, request, *args, **kwargs):
-        body = request.body.decode('utf-8')
-        schema = Schema.objects.create(schema=body)
-
-        data = {'uuid': str(schema.uuid)}
-        return JsonResponse(data, status=200)
-
-
-class FileGetView(View):
+class ApiSchemaView(View):
     def get(self, request, *args, **kwargs):
         schema = Schema.objects.get(uuid=self.kwargs['uuid'])
         response = HttpResponse(status=200, content=schema.schema)
@@ -48,6 +39,13 @@ class FileGetView(View):
         schema = Schema.objects.get(uuid=uuid)
         schema.schema = body
         schema.save()
+
+        data = {'uuid': str(schema.uuid)}
+        return JsonResponse(data, status=200)
+
+    def post(self, request, *args, **kwargs):
+        body = request.body.decode('utf-8')
+        schema = Schema.objects.create(schema=body)
 
         data = {'uuid': str(schema.uuid)}
         return JsonResponse(data, status=200)

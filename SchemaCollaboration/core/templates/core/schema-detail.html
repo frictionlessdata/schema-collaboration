@@ -9,7 +9,7 @@
         <pre>{{ schema.schema }}</pre>
     </div>
     <hr>
-    <a href="{% url 'schema-download' uuid=schema.uuid %}">Raw</a> ·
-    <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}">Edit</a>
-    <a href="{% url 'schema-list' %}">List</a> ·
+    <a href="{% url 'api-schema' uuid=schema.uuid %}">Raw</a> ·
+    <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}">Edit</a> ·
+    <a href="{% url 'schema-list' %}">List</a>
 {% endblock %}
