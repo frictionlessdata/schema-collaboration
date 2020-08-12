@@ -10,6 +10,9 @@ register = template.Library()
 
 
 def read_file(file_path):
+    if file_path is None:
+        return None
+
     if os.path.isfile(file_path):
         with open(file_path, "r", encoding='utf-8') as f:
             string = f.read()
@@ -28,4 +31,6 @@ def includestatic(path):
 
 @register.simple_tag
 def includestaticextrajs():
-    return mark_safe(read_file(settings.EXTRA_JS_FILE)) or ''
+    file_content = read_file(settings.EXTRA_JS_FILE)
+
+    return mark_safe(file_content) if file_content else ''
