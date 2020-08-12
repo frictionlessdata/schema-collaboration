@@ -25,8 +25,9 @@ jobs:
         cd SchemaCollaboration
         coverage erase
         coverage run manage.py test
-        coverage xml
     - name: Upload coverage to Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cd SchemaCollaboration
+        coveralls
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
