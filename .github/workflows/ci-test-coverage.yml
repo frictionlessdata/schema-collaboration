@@ -31,7 +31,7 @@ jobs:
     - name: Test with pytest
       run: |
         source tools/environment-variables-for-test.sh
-        cd ProjectApplication
+        cd SchemaCollaboration
         coverage erase
         coverage run manage.py test
         coverage xml
