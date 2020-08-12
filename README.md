@@ -1,3 +1,5 @@
+![C/I testing with coverage](https://github.com/frictionlessdata/schema-collaboration/workflows/C/I%20testing%20with%20coverage/badge.svg)
+
 # schema-collaboration
 Carles Pina Estany's 2020 Tool Fund: data managers and researchers collaborate to write the Frictionless Data packages, tabular schemas, etc. 
 
