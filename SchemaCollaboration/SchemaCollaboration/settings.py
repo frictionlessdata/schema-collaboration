@@ -75,7 +75,7 @@ if os.getenv('FORCE_SQLITE3_DATABASE', False):
     # sqlite3 is used for the unit tests on Github Actions - but it can be used for manual testing if needed
     DATABASES = {
         'default': {
-            'ENGINE': 'django.contrib.gis.db.backends.spatialite',
+            'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }

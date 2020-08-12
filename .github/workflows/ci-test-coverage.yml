@@ -19,15 +19,6 @@ jobs:
       run: |
         python3 -m pip install --upgrade pip
         pip3 install -r requirements.txt
-    - name: Install minio
-      run: |
-        wget --no-verbose https://dl.min.io/server/minio/release/linux-amd64/minio
-        chmod +x minio
-        source tools/environment-variables-for-test.sh
-        export MINIO_ACCESS_KEY="$OBJECT_STORAGE_ACCESS_KEY_ID"
-        export MINIO_SECRET_KEY="$OBJECT_STORAGE_SECRET_ACCESS_KEY"
-        mkdir -p minio_data/projects
-        ./minio server minio_data &
     - name: Test with pytest
       run: |
         source tools/environment-variables-for-test.sh
