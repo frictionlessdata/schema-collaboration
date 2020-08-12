@@ -29,5 +29,5 @@ jobs:
     - name: Upload coverage to Coveralls
       run: |
         coveralls --finish
-      with:
+      env:
         github-token: ${{ secrets.GITHUB_TOKEN }}
