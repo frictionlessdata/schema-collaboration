@@ -27,6 +27,7 @@ jobs:
         coverage run manage.py test
     - name: Upload coverage to Coveralls
       run: |
+        cd SchemaCollaboration
         coveralls
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
