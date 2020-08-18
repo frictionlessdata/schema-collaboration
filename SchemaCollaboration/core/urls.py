@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
@@ -9,4 +9,6 @@ urlpatterns = [
     path('api/schema/', views.ApiSchemaView.as_view(), name='api-schema'),
     path('api/schema/<uuid:uuid>/', views.ApiSchemaView.as_view(), name='api-schema'),
     path('datapackage-ui/', views.DatapackageUi.as_view(), name='datapackage-ui'),
+
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

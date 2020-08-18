@@ -1,0 +1,51 @@
+{% extends 'core/_base-centered.html' %}
+{% load static %}
+
+{% block title %}List of schemas{% endblock %}
+{% block main %}
+    <h1>List of schemas</h1>
+    <div class="alert alert-warning" role="alert">
+        For now: after clicking on an <span class="btn btn-primary btn-sm active">Edit</span> button click on "Load from
+        the server" in the Data Package creator
+    </div>
+    <table id="schema-table" class="table table-striped table-sm table-hover display">
+        <thead>
+        <tr>
+            <th>Created on</th>
+            <th>Modified on</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for schema in schemas %}
+            <tr>
+                <td data-sort="{{ schema.created_on|date:"Y-m-d H:i:s" }}">{{ schema.created_on }}</td>
+                <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{{ schema.modified_on }}</td>
+                <td>
+                    <a href="{% url 'schema-detail'  uuid=schema.uuid %}" class="btn btn-primary btn-sm active">View</a>
+                    <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}" class="btn btn-primary btn-sm active">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <script type="text/javascript" class="init">
+        $(document).ready(function () {
+            $('#schema-table').DataTable({
+                searchHighlight: true,
+                order: [[1, "desc"]],
+                language: {
+                    zeroRecords: "No schemas have been created. <a href=\"{% url 'datapackage-ui' %}\">Create a schema</a>"
+                },
+
+            });
+        });
+    </script>
+    <hr>
+    <a href="{% url 'datapackage-ui' %}" class="btn btn-primary btn-sm active">Create a new schema</a>
+    <br>
+    You are logged in as: {{ user }}
+    <br>
+    <a href="{% url 'logout' %}?next={% url 'login' %}">Logout</a>
+{% endblock %}

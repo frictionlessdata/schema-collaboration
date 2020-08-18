@@ -31,6 +31,7 @@ ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(',')
 
 INSTALLED_APPS = [
     'core',
+    'management',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,3 +132,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # If set the content of this file will be added just before </body> in the _base.html
 # (all the pages but the datapackage-ui)
 EXTRA_JS_FILE = os.environ.get('EXTRA_JS_FILE', None)
+
+LOGIN_REDIRECT_URL = '/management/'
