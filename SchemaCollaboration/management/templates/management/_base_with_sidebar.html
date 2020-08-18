@@ -1,0 +1,24 @@
+{% extends 'core/_base.html' %}
+
+{% block body_class %}{% endblock %}
+{% block body_contents %}
+    <div class="row">
+        <nav class="col-1 bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" style="padding-left: 0" href="#">Datapackages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="padding-left: 0" href="#">People</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <main role="main" class="col-11">
+            {% block main_contents %}{% endblock %}
+        </main>
+    </div>
+{% endblock %}
