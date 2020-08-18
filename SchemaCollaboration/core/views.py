@@ -1,6 +1,8 @@
 from django.http import HttpResponse, JsonResponse
 from django.templatetags.static import static
+from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView, RedirectView
 
 from .models import Schema
@@ -25,6 +27,7 @@ class SchemaDetail(DetailView):
         return Schema.objects.get(uuid=self.kwargs['uuid'])
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class ApiSchemaView(View):
     def get(self, request, *args, **kwargs):
         schema = Schema.objects.get(uuid=self.kwargs['uuid'])
