@@ -15,6 +15,12 @@
                         <a class="nav-link {% if sidebar_active == 'people' %}active{% endif %}" style="padding-left: 0"
                            href="{% url 'management:list-people' %}">People</a>
                     </li>
+                    <li>
+                        <hr>
+                    </li>
+                    <li>{{ user }}<br>
+                        <a href="{% url 'logout' %}?next={% url 'login' %}">Logout</a>
+                    </li>
                 </ul>
             </div>
         </nav>

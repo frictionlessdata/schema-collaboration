@@ -1,6 +1,6 @@
-{% extends 'core/_base.html' %}
+{% extends 'core/_base-centered.html' %}
 
-{% block body_contents %}
+{% block main %}
     <h1>Login</h1>
     {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
@@ -11,7 +11,7 @@
             <p>Your account doesn't have access to this page. To proceed,
                 please login with an account that has access.</p>
         {% else %}
-            <p>Please login to see this page.</p>
+
         {% endif %}
     {% endif %}
 
@@ -27,8 +27,11 @@
                 <td>{{ form.password }}</td>
             </tr>
         </table>
-        <input type="submit" value="login"/>
+        <p></p>
+        <input type="submit" value="Login"/>
         <input type="hidden" name="next" value="{{ next }}"/>
+        <p></p>
+        <a href="{% url 'homepage' %}">Homepage</a>
     </form>
     {#    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>#}
 {% endblock %}

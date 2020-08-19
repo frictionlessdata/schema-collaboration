@@ -43,9 +43,5 @@
         });
     </script>
     <hr>
-    <a href="{% url 'datapackage-ui' %}" class="btn btn-primary btn-sm active">Create a new schema</a>
-    <br>
-    You are logged in as: {{ user }}
-    <br>
-    <a href="{% url 'logout' %}?next={% url 'login' %}">Logout</a>
+    <a href="{% url 'datapackage-ui' %}" class="btn btn-primary btn-sm active">Create a Datapackage</a>
 {% endblock %}
