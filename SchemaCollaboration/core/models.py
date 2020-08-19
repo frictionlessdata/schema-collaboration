@@ -30,4 +30,4 @@ class Person(CreateModifyOn):
     name = models.CharField(max_length=128)
 
     def get_absolute_url(self):
-        return reverse('management-person-detail', kwargs={'pk': self.pk})
+        return reverse('management:person-detail', kwargs={'pk': self.pk})

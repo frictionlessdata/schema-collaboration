@@ -2,13 +2,15 @@ from django.urls import path
 
 from . import views
 
+app_name = 'management'
+
 urlpatterns = [
-    path('management/', views.SchemaList.as_view(), name='management-list-schemas'),
-    path('management/person/', views.PersonList.as_view(), name='management-list-people'),
+    path('', views.SchemaList.as_view(), name='list-schemas'),
+    path('person/list/', views.PersonList.as_view(), name='list-people'),
 
-    path('management/person/add/', views.PersonCreate.as_view(), name='management-person-add'),
-    path('management/person/<int:pk>/', views.PersonUpdate.as_view(), name='management-person-update'),
-    path('management/<int:pk>/delete/', views.PersonDelete.as_view(), name='management-person-delete'),
+    path('person/add/', views.PersonCreate.as_view(), name='person-add'),
+    path('person/<int:pk>/edit/', views.PersonUpdate.as_view(), name='person-update'),
+    path('person/<int:pk>/delete/', views.PersonDelete.as_view(), name='person-delete'),
 
-    path('management/person/<int:pk>/detail/', views.PersonDetail.as_view(), name='management-person-detail'),
+    path('person/<int:pk>/', views.PersonDetail.as_view(), name='person-detail'),
 ]

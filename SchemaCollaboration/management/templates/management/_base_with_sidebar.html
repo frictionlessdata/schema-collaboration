@@ -8,11 +8,11 @@
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link {% if sidebar_active == 'datapackages' %}active{% endif %}"
-                           style="padding-left: 0" href="{% url 'management-list-schemas' %}">Datapackages</a>
+                           style="padding-left: 0" href="{% url 'management:list-schemas' %}">Datapackages</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if sidebar_active == 'people' %}active{% endif %}" style="padding-left: 0"
-                           href="{% url 'management-list-people' %}">People</a>
+                           href="{% url 'management:list-people' %}">People</a>
                     </li>
                 </ul>
             </div>
