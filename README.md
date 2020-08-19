@@ -1,4 +1,4 @@
-![C/I testing with coverage](https://github.com/frictionlessdata/schema-collaboration/workflows/C/I%20testing%20with%20coverage/badge.svg?branch=master)
+[![C/I testing with coverage](https://github.com/frictionlessdata/schema-collaboration/workflows/C/I%20testing%20with%20coverage/badge.svg?branch=master)](https://github.com/frictionlessdata/schema-collaboration/actions)
 [![Coverage Status](https://coveralls.io/repos/github/frictionlessdata/schema-collaboration/badge.svg?branch=master&service=github)](https://coveralls.io/github/frictionlessdata/schema-collaboration?branch=master)
 
 # schema-collaboration
