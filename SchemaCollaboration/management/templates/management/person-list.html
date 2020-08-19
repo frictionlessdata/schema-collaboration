@@ -28,7 +28,7 @@
         $(document).ready(function () {
             $('#person-table').DataTable({
                 searchHighlight: true,
-                order: [[1, "desc"]],
+                order: [[0, "asc"]],
                 language: {
                     zeroRecords: "No people have been created. <a href=\"{% url 'management:person-add' %}\">Create a Person</a>"
                 },
