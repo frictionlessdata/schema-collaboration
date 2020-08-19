@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Schema, Person
+from .models import Datapackage, Person
 
 
 class SchemaAdmin(admin.ModelAdmin):
@@ -21,5 +21,5 @@ class PersonAdmin(admin.ModelAdmin):
     readonly_fields = ('uuid', 'created_on', 'modified_on',)
 
 
-admin.site.register(Schema, SchemaAdmin)
+admin.site.register(Datapackage, SchemaAdmin)
 admin.site.register(Person, PersonAdmin)

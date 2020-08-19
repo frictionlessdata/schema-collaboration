@@ -31,7 +31,7 @@ class Person(CreateModifyOn):
         verbose_name_plural = 'People'
 
 
-class Schema(CreateModifyOn):
+class Datapackage(CreateModifyOn):
     uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, editable=False, unique=True)
     schema = models.TextField(editable=True)
     name = models.CharField(max_length=500, null=True, blank=True)

@@ -3,7 +3,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit
 from django import forms
 
-from core.models import Person, Schema
+from core.models import Person, Datapackage
 
 
 class PersonModelForm(forms.ModelForm):
@@ -48,5 +48,5 @@ class DatapackageModelForm(forms.ModelForm):
         )
 
     class Meta:
-        model = Schema
+        model = Datapackage
         fields = ['name', 'collaborators']

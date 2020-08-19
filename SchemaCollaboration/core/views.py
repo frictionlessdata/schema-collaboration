@@ -5,32 +5,32 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView, RedirectView
 
-from .models import Schema
+from .models import Datapackage
 
 
 class Homepage(TemplateView):
     template_name = 'core/homepage.html'
 
 
-class SchemaList(ListView):
+class DatapackageList(ListView):
     template_name = 'core/schema-list.html'
-    model = Schema
+    model = Datapackage
     context_object_name = 'schemas'
 
 
-class SchemaDetail(DetailView):
+class DatapackageDetail(DetailView):
     template_name = 'core/schema-detail.html'
-    model = Schema
+    model = Datapackage
     context_object_name = 'schema'
 
     def get_object(self, queryset=None):
-        return Schema.objects.get(uuid=self.kwargs['uuid'])
+        return Datapackage.objects.get(uuid=self.kwargs['uuid'])
 
 
 @method_decorator(csrf_exempt, name='dispatch')
 class ApiSchemaView(View):
     def get(self, request, *args, **kwargs):
-        schema = Schema.objects.get(uuid=self.kwargs['uuid'])
+        schema = Datapackage.objects.get(uuid=self.kwargs['uuid'])
         response = HttpResponse(status=200, content=schema.schema)
         response['Content-Type'] = 'application/json'
         return response
@@ -39,7 +39,7 @@ class ApiSchemaView(View):
         uuid = kwargs['uuid']
         body = request.body.decode('utf-8')
 
-        schema = Schema.objects.get(uuid=uuid)
+        schema = Datapackage.objects.get(uuid=uuid)
         schema.schema = body
         schema.save()
 
@@ -48,7 +48,7 @@ class ApiSchemaView(View):
 
     def post(self, request, *args, **kwargs):
         body = request.body.decode('utf-8')
-        schema = Schema.objects.create(schema=body)
+        schema = Datapackage.objects.create(schema=body)
 
         data = {'uuid': str(schema.uuid)}
         return JsonResponse(data, status=200)

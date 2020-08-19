@@ -3,13 +3,13 @@ from django.views import View
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from core.models import Schema, Person
+from core.models import Datapackage, Person
 from management.forms import PersonModelForm, DatapackageModelForm
 
 
 class SchemaList(ListView):
     template_name = 'management/schema-list.html'
-    model = Schema
+    model = Datapackage
     context_object_name = 'schemas'
 
     def get_context_data(self, **kwargs):
@@ -91,7 +91,7 @@ class SchemaMixin():
 
 
 class DatapackageDetail(SchemaMixin, DetailView):
-    model = Schema
+    model = Datapackage
     template_name = 'management/datapackage-detail.tmpl'
 
     def get_context_data(self, **kwargs):
@@ -104,7 +104,7 @@ class DatapackageDetail(SchemaMixin, DetailView):
 
 
 class DatapackageUpdate(SchemaMixin, UpdateView):
-    model = Schema
+    model = Datapackage
     form_class = DatapackageModelForm
     template_name = 'management/datapackage-form.html'
 
