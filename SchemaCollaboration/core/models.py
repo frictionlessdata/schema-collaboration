@@ -41,4 +41,4 @@ class Datapackage(CreateModifyOn):
         return ', '.join([collaborator.full_name for collaborator in self.collaborators.all().order_by('full_name')])
 
     def get_absolute_url(self):
-        return reverse('schema-detail', kwargs={'uuid': str(self.uuid)})
+        return reverse('datapackage-detail', kwargs={'uuid': str(self.uuid)})

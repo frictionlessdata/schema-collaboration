@@ -11,5 +11,5 @@
     <hr>
     <a href="{% url 'api-datapackage' uuid=schema.uuid %}">Raw</a> ·
     <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}">Edit</a> ·
-    <a href="{% url 'schema-list' %}">List</a>
+    <a href="{% url 'datapackage-list' %}">List</a>
 {% endblock %}

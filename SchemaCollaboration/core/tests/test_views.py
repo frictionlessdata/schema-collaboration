@@ -70,7 +70,7 @@ class ViewsTest(TestCase):
         schema_text = b'This is a very special schema'
         schema = Datapackage.objects.create(schema=schema_text)
 
-        response = c.get(reverse('schema-detail', kwargs={'uuid': schema.uuid}))
+        response = c.get(reverse('datapackage-detail', kwargs={'uuid': schema.uuid}))
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, schema_text)

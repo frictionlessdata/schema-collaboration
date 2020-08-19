@@ -13,13 +13,13 @@ class Homepage(TemplateView):
 
 
 class DatapackageList(ListView):
-    template_name = 'core/schema-list.html'
+    template_name = 'core/datapackage-list.html'
     model = Datapackage
     context_object_name = 'schemas'
 
 
 class DatapackageDetail(DetailView):
-    template_name = 'core/schema-detail.html'
+    template_name = 'core/datapackage-detail.html'
     model = Datapackage
     context_object_name = 'schema'
 
