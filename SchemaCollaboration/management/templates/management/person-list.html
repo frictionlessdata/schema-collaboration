@@ -1,0 +1,40 @@
+{% extends 'management/_base_with_sidebar.html' %}
+{% load static %}
+
+{% block title %}List of schemas{% endblock %}
+{% block main_contents %}
+    <h1>List of schemas</h1>
+    <table id="person-table" class="table table-striped table-sm table-hover display">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for person in people %}
+            <tr>
+                <td>{{ person.name }}</td>
+                <td>
+                    <a href="{% url 'management-person-detail' pk=person.id %}" class="btn btn-primary btn-sm active">View</a>
+                    <a href="{% url 'management-person-update' pk=person.id %}" class="btn btn-primary btn-sm active">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <script type="text/javascript" class="init">
+        $(document).ready(function () {
+            $('#person-table').DataTable({
+                searchHighlight: true,
+                order: [[1, "desc"]],
+                language: {
+                    zeroRecords: "No people have been created. <a href=\"{% url 'management-person-add' %}\">Create a Person</a>"
+                },
+            });
+        });
+    </script>
+    <hr>
+    <a href="{% url 'management-person-add' %}" class="btn btn-primary btn-sm active">Create a Person</a>
+{% endblock %}

@@ -7,15 +7,16 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" style="padding-left: 0" href="#">Datapackages</a>
+                        <a class="nav-link {% if sidebar_active == 'datapackages' %}active{% endif %}"
+                           style="padding-left: 0" href="{% url 'management-list-schemas' %}">Datapackages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="padding-left: 0" href="#">People</a>
+                        <a class="nav-link {% if sidebar_active == 'people' %}active{% endif %}" style="padding-left: 0"
+                           href="{% url 'management-list-people' %}">People</a>
                     </li>
                 </ul>
             </div>
         </nav>
-
 
         <main role="main" class="col-11">
             {% block main_contents %}{% endblock %}

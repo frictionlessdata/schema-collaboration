@@ -1,1 +1,4 @@
 /** Place for the generic CSS */
+.sidebar .nav-link.active {
+    color: #333;
+}
