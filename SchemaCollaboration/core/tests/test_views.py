@@ -2,6 +2,7 @@ from django.test import Client
 from django.test import TestCase
 from django.urls import reverse
 
+from . import database_population
 from ..models import Datapackage
 
 
@@ -64,13 +65,25 @@ class ViewsTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/static/datapackage-ui/index.html?load=this_is_a_potential_uuid')
 
-    def test_schema_detail(self):
+    def test_datapackage_detail(self):
         c = Client()
 
-        schema_text = b'This is a very special schema'
+        schema_text = b'This is a very special datapackage'
         schema = Datapackage.objects.create(schema=schema_text)
 
         response = c.get(reverse('datapackage-detail', kwargs={'uuid': schema.uuid}))
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, schema_text)
+
+    def test_datapackage_list(self):
+        datapackage = database_population.create_datapackage()
+        collaborator = database_population.create_person()
+
+        datapackage.collaborators.add(collaborator)
+
+        c = Client()
+        response = c.get(reverse('datapackage-list', kwargs={'collaborator_uuid': collaborator.uuid}))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, collaborator.full_name)

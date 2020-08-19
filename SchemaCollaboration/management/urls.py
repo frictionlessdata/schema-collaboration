@@ -5,7 +5,7 @@ from . import views
 app_name = 'management'
 
 urlpatterns = [
-    path('', views.SchemaList.as_view(), name='list-schemas'),
+    path('', views.DatapackageList.as_view(), name='list-schemas'),
     path('person/list/', views.PersonList.as_view(), name='list-people'),
 
     path('person/add/', views.PersonCreate.as_view(), name='person-add'),

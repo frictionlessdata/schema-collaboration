@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import Client
 
-from core.models import Person
+from core.models import Person, Datapackage
 
 
 def create_management_user():
@@ -24,6 +24,14 @@ def create_management_logged_client():
     client.login(username='datamanager', password='frictionless')
     return client
 
+
 def create_person():
     person, created = Person.objects.get_or_create(full_name='Sheldon Cooper')
     return person
+
+
+def create_datapackage():
+    datapackage, created = Datapackage.objects.get_or_create(name='For the unit test',
+                                                             schema='''This should contain a datapackage''')
+
+    return datapackage

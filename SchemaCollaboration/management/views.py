@@ -1,5 +1,4 @@
 from django.urls import reverse_lazy, reverse
-from django.views import View
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
@@ -7,7 +6,7 @@ from core.models import Datapackage, Person
 from management.forms import PersonModelForm, DatapackageModelForm
 
 
-class SchemaList(ListView):
+class DatapackageList(ListView):
     template_name = 'management/schema-list.html'
     model = Datapackage
     context_object_name = 'schemas'
@@ -77,20 +76,14 @@ class PersonDetail(PersonMixin, DetailView):
         return context
 
 
-class DatapackageManage(View):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
-
-class SchemaMixin():
+class DatapackageMixin():
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['sidebar_active'] = 'people'
         return context
 
 
-class DatapackageDetail(SchemaMixin, DetailView):
+class DatapackageDetail(DatapackageMixin, DetailView):
     model = Datapackage
     template_name = 'management/datapackage-detail.tmpl'
 
@@ -103,7 +96,7 @@ class DatapackageDetail(SchemaMixin, DetailView):
         return context
 
 
-class DatapackageUpdate(SchemaMixin, UpdateView):
+class DatapackageUpdate(DatapackageMixin, UpdateView):
     model = Datapackage
     form_class = DatapackageModelForm
     template_name = 'management/datapackage-form.html'
