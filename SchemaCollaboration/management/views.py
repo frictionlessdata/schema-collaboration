@@ -81,3 +81,27 @@ class DatapackageManage(View):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+
+class SchemaMixin():
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sidebar_active'] = 'people'
+        return context
+
+
+class DatapackageDetail(SchemaMixin, DetailView):
+    model = Schema
+    template_name = 'management/datapackage-detail.tmpl'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['breadcrumb'] = [{'name': 'Datapackage', 'url': reverse('management:list-schemas')},
+                                 {'name': 'Detail'}]
+
+        return context
+
+
+class DatapackageUpdate(SchemaMixin, DetailView):
+    pass

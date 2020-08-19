@@ -1,0 +1,7 @@
+{% extends 'management/_base_with_sidebar.html' %}
+
+{% block title %}Datapackage detail{% endblock %}
+{% block main_contents %}
+    <h1>Datapackage detail</h1>
+    <strong>Name:</strong> {% include 'core/_value-or-dash.tmpl' with value=schema.name %}
+{% endblock %}

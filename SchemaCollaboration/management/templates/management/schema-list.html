@@ -24,8 +24,8 @@
                 <td>
                     <a href="{% url 'schema-detail' uuid=schema.uuid %}" class="btn btn-primary btn-sm active">View</a>
                     <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}" class="btn btn-primary btn-sm active">Edit</a>
-                    <a href="{% url 'management:datapackage-manage' uuid=schema.uuid %}"
-                       class="btn btn-primary btn-sm active">Manage</a>
+                    <a href="{% url 'management:datapackage-detail' pk=schema.pk %}"
+                       class="btn btn-primary btn-sm active">View Manage</a>
                 </td>
             </tr>
         {% endfor %}
