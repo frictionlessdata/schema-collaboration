@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import Client
 
+from core.models import Person
+
 
 def create_management_user():
     try:
@@ -21,3 +23,7 @@ def create_management_logged_client():
     client = Client()
     client.login(username='datamanager', password='frictionless')
     return client
+
+def create_person():
+    person, created = Person.objects.get_or_create(full_name='Sheldon Cooper')
+    return person
