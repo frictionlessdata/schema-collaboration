@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy, reverse
+from django.views import View
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
@@ -73,4 +74,10 @@ class PersonDetail(PersonMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['breadcrumb'] = [{'name': 'People', 'url': reverse('management:list-people')},
                                  {'name': 'Detail'}]
+        return context
+
+
+class DatapackageManage(View):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         return context

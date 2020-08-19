@@ -17,17 +17,19 @@ class CreateModifyOn(models.Model):
         abstract = True
 
 
-class Schema(CreateModifyOn):
-    uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, editable=False, unique=True)
-    schema = models.TextField(editable=True)
-
-    def get_absolute_url(self):
-        return reverse('schema-detail', kwargs={'uuid': str(self.uuid)})
-
-
 class Person(CreateModifyOn):
     uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=128, unique=True)
 
     def get_absolute_url(self):
         return reverse('management:person-detail', kwargs={'pk': self.pk})
+
+
+class Schema(CreateModifyOn):
+    uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, editable=False, unique=True)
+    schema = models.TextField(editable=True)
+    full_name = models.CharField(max_length=500, null=True, blank=True)
+    collaborator = models.ManyToManyField(Person)
+
+    def get_absolute_url(self):
+        return reverse('schema-detail', kwargs={'uuid': str(self.uuid)})

@@ -13,4 +13,6 @@ urlpatterns = [
     path('person/<int:pk>/delete/', views.PersonDelete.as_view(), name='person-delete'),
 
     path('person/<int:pk>/', views.PersonDetail.as_view(), name='person-detail'),
+
+    path('datapackage/manage/<uuid:uuid>', views.DatapackageManage.as_view(), name='datapackage-manage'),
 ]
