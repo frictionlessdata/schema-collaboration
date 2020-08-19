@@ -1,4 +1,4 @@
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
@@ -14,6 +14,7 @@ class SchemaList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['sidebar_active'] = 'datapackages'
+        context['breadcrumb'] = [{'name': 'Datapackages'}]
         return context
 
 
@@ -29,17 +30,34 @@ class PersonList(PersonMixin, ListView):
     model = Person
     context_object_name = 'people'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['breadcrumb'] = [{'name': 'People'}]
+        return context
 
-class PersonCreate(CreateView):
+
+class PersonCreate(PersonMixin, CreateView):
     model = Person
     form_class = PersonModelForm
     template_name = 'management/person-create.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['breadcrumb'] = [{'name': 'People', 'url': reverse('management:list-people')},
+                                 {'name': 'Create'}]
+        return context
 
-class PersonUpdate(UpdateView):
+
+class PersonUpdate(PersonMixin, UpdateView):
     model = Person
     form_class = PersonModelForm
     template_name = 'management/person-create.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['breadcrumb'] = [{'name': 'People', 'url': reverse('management:list-people')},
+                                 {'name': 'Edit'}]
+        return context
 
 
 class PersonDelete(DeleteView):
@@ -50,3 +68,9 @@ class PersonDelete(DeleteView):
 class PersonDetail(PersonMixin, DetailView):
     model = Person
     template_name = 'management/person-detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['breadcrumb'] = [{'name': 'People', 'url': reverse('management:list-people')},
+                                 {'name': 'Detail'}]
+        return context

@@ -27,7 +27,7 @@ class Schema(CreateModifyOn):
 
 class Person(CreateModifyOn):
     uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, editable=False, unique=True)
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, unique=True)
 
     def get_absolute_url(self):
         return reverse('management:person-detail', kwargs={'pk': self.pk})

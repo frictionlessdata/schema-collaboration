@@ -1,4 +1,5 @@
 {% extends 'core/_base.html' %}
+{% load static %}
 
 {% block body_class %}{% endblock %}
 {% block body_contents %}
@@ -19,6 +20,8 @@
         </nav>
 
         <main role="main" class="col-11">
+            <br>
+            {% include 'core/_breadcrumb.tmpl' %}
             {% block main_contents %}{% endblock %}
         </main>
     </div>
