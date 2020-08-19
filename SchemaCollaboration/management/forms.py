@@ -14,7 +14,7 @@ class PersonModelForm(forms.ModelForm):
 
         self.helper.layout = Layout(
             Div(
-                Div('name', css_class='col-6'),
+                Div('full_name', css_class='col-6'),
                 css_class='row'
             ),
             FormActions(
@@ -25,4 +25,4 @@ class PersonModelForm(forms.ModelForm):
 
     class Meta:
         model = Person
-        fields = ['name']
+        fields = ['full_name']

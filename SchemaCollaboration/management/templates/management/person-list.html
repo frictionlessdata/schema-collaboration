@@ -14,7 +14,7 @@
         <tbody>
         {% for person in people %}
             <tr>
-                <td>{{ person.name }}</td>
+                <td>{{ person.full_name }}</td>
                 <td>
                     <a href="{% url 'management:person-detail' pk=person.id %}" class="btn btn-primary btn-sm active">View</a>
                     <a href="{% url 'management:person-update' pk=person.id %}" class="btn btn-primary btn-sm active">Edit</a>
