@@ -1,15 +1,29 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404
 from django.templatetags.static import static
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView, RedirectView
 
-from .models import Datapackage
+from .models import Datapackage, Person
 
 
 class Homepage(TemplateView):
     template_name = 'core/homepage.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        try:
+            sheldon_cooper = Person.objects.get(full_name='Sheldon Cooper')
+            uuid = sheldon_cooper.uuid
+        except ObjectDoesNotExist:
+            uuid = None
+
+        context['example_collaborator_uuid'] = uuid
+        return context
 
 
 class DatapackageList(ListView):
@@ -17,11 +31,23 @@ class DatapackageList(ListView):
     model = Datapackage
     context_object_name = 'schemas'
 
+    def _get_collaborator(self):
+        return get_object_or_404(Person, uuid=self.kwargs['collaborator_uuid'])
+
+    def get_queryset(self):
+        collaborator = get_object_or_404(Person, uuid=self.kwargs['collaborator_uuid'])
+        return Datapackage.objects.filter(collaborators=self._get_collaborator())
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['collaborator'] = self._get_collaborator()
+        return context
+
 
 class DatapackageDetail(DetailView):
     template_name = 'core/datapackage-detail.html'
     model = Datapackage
-    context_object_name = 'schema'
+    context_object_name = 'datapackage'
 
     def get_object(self, queryset=None):
         return Datapackage.objects.get(uuid=self.kwargs['uuid'])

@@ -1,9 +1,9 @@
 {% extends 'management/_base_with_sidebar.html' %}
 {% load static %}
 
-{% block title %}List of schemas{% endblock %}
+{% block title %}List of datapackages{% endblock %}
 {% block main_contents %}
-    <h1>List of schemas</h1>
+    <h1>List of datapackages</h1>
     <div class="alert alert-warning" role="alert">
         For now: after clicking on an <span class="btn btn-primary btn-sm active">Edit</span> button click on "Load from
         the server" in the Data Package creator
@@ -52,4 +52,5 @@
     </script>
     <hr>
     <a href="{% url 'datapackage-ui' %}" class="btn btn-primary btn-sm active">Create a Datapackage</a>
+    <p></p>
 {% endblock %}

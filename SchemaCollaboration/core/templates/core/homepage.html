@@ -16,8 +16,16 @@
     </p>
     <h1>What can you do?</h1>
     <ul>
-        <li><a href="{% url 'login' %}">Data manager login</a></li>
-        <li>See the datapackages for the user</li>
+        <li>The datamanager can create people, dataspackages and assign people to datapackages using the <a
+                href="{% url 'login' %}">management area</a> (login required available on the next page).
+        </li>
+        {% if example_collaborator_uuid %}
+            <li>Researchers can list their datapackages and edit them. For example see <a
+                    href="{% url 'datapackage-list' collaborator_uuid=example_collaborator_uuid %}">Sheldon Cooper's</a>
+                list of datapackages.
+            </li>
+        {% endif %}
+        <li>Feature to be added: datamanager and researchers should be able to add comments and TODOs to eachother.</li>
     </ul>
     <hr>
     <p>

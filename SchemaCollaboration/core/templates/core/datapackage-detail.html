@@ -1,15 +1,16 @@
 {% extends 'core/_base-centered.html' %}
 {% load static %}
 
-{% block title %}List of schemas{% endblock %}
+{% block title %}List of datapackages{% endblock %}
 {% block main %}
-    <h1>Schema detail</h1>
-
+    <h1>Datapackage detail</h1>
+    <strong>Name:</strong> {{ datapackage.name }}<br>
+    <strong>Created on:</strong> {{ datapackage.created_on }}<br>
+    <strong>Modified on:</strong> {{ datapackage.modified_on }}<br>
+    <p></p>
     <div class="border p-1 bg-white rounded">
-        <pre>{{ schema.schema }}</pre>
+        <pre>{{ datapackage.schema }}</pre>
     </div>
     <hr>
-    <a href="{% url 'api-datapackage' uuid=schema.uuid %}">Raw</a> ·
-    <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}">Edit</a> ·
-    <a href="{% url 'datapackage-list' %}">List</a>
+    <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}">Edit</a>
 {% endblock %}
