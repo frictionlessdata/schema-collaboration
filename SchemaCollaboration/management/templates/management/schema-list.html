@@ -11,6 +11,8 @@
     <table id="schema-table" class="table table-striped table-sm table-hover display">
         <thead>
         <tr>
+            <th>Name</th>
+            <th>Collaborators</th>
             <th>Created on</th>
             <th>Modified on</th>
             <th>Actions</th>
@@ -19,6 +21,8 @@
         <tbody>
         {% for schema in schemas %}
             <tr>
+                <td>{% include 'core/_value-or-dash.tmpl' with value=schema.name %}</td>
+                <td>{% include 'core/_value-or-dash.tmpl' with value=schema.collaborators_str %}</td>
                 <td data-sort="{{ schema.created_on|date:"Y-m-d H:i:s" }}">{{ schema.created_on }}</td>
                 <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{{ schema.modified_on }}</td>
                 <td>
@@ -26,6 +30,8 @@
                     <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}" class="btn btn-primary btn-sm active">Edit</a>
                     <a href="{% url 'management:datapackage-detail' pk=schema.pk %}"
                        class="btn btn-primary btn-sm active">View Manage</a>
+                    <a href="{% url 'management:datapackage-update' pk=schema.pk %}"
+                       class="btn btn-primary btn-sm active">Edit Manage</a>
                 </td>
             </tr>
         {% endfor %}
@@ -36,7 +42,7 @@
         $(document).ready(function () {
             $('#schema-table').DataTable({
                 searchHighlight: true,
-                order: [[1, "desc"]],
+                order: [[2, "desc"]],
                 language: {
                     zeroRecords: "No schemas have been created. <a href=\"{% url 'datapackage-ui' %}\">Create a schema</a>"
                 },

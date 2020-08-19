@@ -25,8 +25,8 @@ class Person(CreateModifyOn):
         return reverse('management:person-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
-        return self.name
-    
+        return self.full_name
+
     class Meta:
         verbose_name_plural = 'People'
 
@@ -35,7 +35,10 @@ class Schema(CreateModifyOn):
     uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, editable=False, unique=True)
     schema = models.TextField(editable=True)
     name = models.CharField(max_length=500, null=True, blank=True)
-    collaborators = models.ManyToManyField(Person)
+    collaborators = models.ManyToManyField(Person, blank=True)
+
+    def collaborators_str(self):
+        return ', '.join([collaborator.full_name for collaborator in self.collaborators.all().order_by('full_name')])
 
     def get_absolute_url(self):
         return reverse('schema-detail', kwargs={'uuid': str(self.uuid)})

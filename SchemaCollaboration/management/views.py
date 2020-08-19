@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from core.models import Schema, Person
-from management.forms import PersonModelForm
+from management.forms import PersonModelForm, DatapackageModelForm
 
 
 class SchemaList(ListView):
@@ -40,7 +40,7 @@ class PersonList(PersonMixin, ListView):
 class PersonCreate(PersonMixin, CreateView):
     model = Person
     form_class = PersonModelForm
-    template_name = 'management/person-create.html'
+    template_name = 'management/person-form.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -52,7 +52,7 @@ class PersonCreate(PersonMixin, CreateView):
 class PersonUpdate(PersonMixin, UpdateView):
     model = Person
     form_class = PersonModelForm
-    template_name = 'management/person-create.html'
+    template_name = 'management/person-form.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -103,5 +103,16 @@ class DatapackageDetail(SchemaMixin, DetailView):
         return context
 
 
-class DatapackageUpdate(SchemaMixin, DetailView):
-    pass
+class DatapackageUpdate(SchemaMixin, UpdateView):
+    model = Schema
+    form_class = DatapackageModelForm
+    template_name = 'management/datapackage-form.html'
+
+    def get_success_url(self):
+        return reverse('management:datapackage-detail', kwargs={'pk': self.object.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['breadcrumb'] = [{'name': 'Datapackage', 'url': reverse('management:list-people')},
+                                 {'name': 'Edit'}]
+        return context

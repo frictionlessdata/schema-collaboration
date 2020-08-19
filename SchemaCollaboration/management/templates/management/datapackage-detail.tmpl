@@ -3,5 +3,7 @@
 {% block title %}Datapackage detail{% endblock %}
 {% block main_contents %}
     <h1>Datapackage detail</h1>
-    <strong>Name:</strong> {% include 'core/_value-or-dash.tmpl' with value=schema.name %}
+    <strong>Name:</strong> {% include 'core/_value-or-dash.tmpl' with value=schema.name %}<br>
+    <strong>Created on:</strong> {% include 'core/_value-or-dash.tmpl' with value=schema.created_on %}<br>
+    <strong>Modified on:</strong> {% include 'core/_value-or-dash.tmpl' with value=schema.modified_on %}<br>
 {% endblock %}
