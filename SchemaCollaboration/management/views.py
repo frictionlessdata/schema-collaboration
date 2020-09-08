@@ -89,7 +89,7 @@ class DatapackageMixin():
 
 class DatapackageDetail(DatapackageMixin, DetailView):
     model = Datapackage
-    template_name = 'management/datapackage-detail.tmpl'
+    template_name = 'management/datapackage-detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

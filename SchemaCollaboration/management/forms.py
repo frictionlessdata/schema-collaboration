@@ -39,6 +39,10 @@ class DatapackageModelForm(forms.ModelForm):
                 css_class='row'
             ),
             Div(
+                Div('status', css_class='col-6'),
+                css_class='row'
+            ),
+            Div(
                 Div('collaborators', css_class='col-6'),
                 css_class='row'
             ),
@@ -49,4 +53,4 @@ class DatapackageModelForm(forms.ModelForm):
 
     class Meta:
         model = Datapackage
-        fields = ['name', 'collaborators']
+        fields = ['name', 'status', 'collaborators']
