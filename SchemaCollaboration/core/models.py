@@ -69,4 +69,7 @@ class Datapackage(CreateModifyOn):
         return reverse('datapackage-detail', kwargs={'uuid': str(self.uuid)})
 
     def __str__(self):
-        return self.name
+        if self.name:
+            return self.name
+        else:
+            return '-'
