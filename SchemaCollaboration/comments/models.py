@@ -19,7 +19,7 @@ class Comment(AbstractComment):
 
 class ToDo(AbstractComment):
     done = models.BooleanField()
-    done_by = models.ForeignKey(Person, related_name='done_by_author', null=False, blank=False,
+    done_by = models.ForeignKey(Person, related_name='done_by_author', null=True, blank=True,
                                 on_delete=models.PROTECT)
     done_on = models.DateField(null=True, blank=True)
 
