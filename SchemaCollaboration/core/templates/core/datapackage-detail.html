@@ -1,4 +1,5 @@
 {% extends 'core/_base-centered.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block title %}List of datapackages{% endblock %}
@@ -8,9 +9,14 @@
     <strong>Created on:</strong> {{ datapackage.created_on }}<br>
     <strong>Modified on:</strong> {{ datapackage.modified_on }}<br>
     <p></p>
-    <div class="border p-1 bg-white rounded">
-        <pre>{{ datapackage.schema }}</pre>
-    </div>
+    <a class="btn btn-primary" href="{% url 'datapackage-ui' %}?load={{ datapackage.uuid }}">Edit</a>
     <hr>
-    <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}">Edit</a>
+    <h1>Comments</h1>
+    {% include 'comments/_list_comments.tmpl' with comments=datapackage.comment_set.all %}
+
+    {% crispy comment_form %}
+
+    {#    <div class="border p-1 bg-white rounded">#}
+    {#        <pre>{{ datapackage.schema }}</pre>#}
+    {#    </div>#}
 {% endblock %}

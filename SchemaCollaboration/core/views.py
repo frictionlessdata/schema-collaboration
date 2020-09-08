@@ -7,6 +7,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView, RedirectView
 
+from comments.forms import CommentForm
 from .models import Datapackage, Person
 
 
@@ -55,6 +56,15 @@ class DatapackageDetail(DetailView):
 
     def get_object(self, queryset=None):
         return Datapackage.objects.get(uuid=self.kwargs['uuid'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        datapackage_id = context['datapackage'].id
+
+        context['comment_form'] = CommentForm(datapackage_id=datapackage_id)
+
+        return context
 
 
 @method_decorator(csrf_exempt, name='dispatch')

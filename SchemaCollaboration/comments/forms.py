@@ -11,15 +11,22 @@ from .models import Comment
 class CommentForm(ModelForm):
     def __init__(self, *args, **kwargs):
         datapackage_id = kwargs.pop('datapackage_id')
-        person = kwargs.pop('person')
+        person = kwargs.pop('person', None)
         super().__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
 
         self.fields['text'].widget.attrs = {'rows': 3}
 
-        self.fields['author'].initial = person
-        self.fields['author'].disabled = True
+        self.fields['private'].help_text = 'Enable if this comment is going to be visible only by you'
+
+        if person:
+            self.fields['author'].initial = person
+            self.fields['author'].disabled = True
+        else:
+            self.fields['author'].queryset = Datapackage.objects.get(id=datapackage_id).\
+                collaborators.order_by('full_name')
+            self.fields['author'].help_text = 'Please select who you are'
 
         self.fields['datapackage'].initial = Datapackage.objects.get(id=datapackage_id)
         self.fields['datapackage'].disabled = True
@@ -35,10 +42,15 @@ class CommentForm(ModelForm):
             ),
             Div(
                 Div('author', css_class='col-6'),
+                css_class='row',
+                hidden=person is not None
+            ),
+            Div(
                 Div('datapackage', css_class='col-6'),
                 css_class='row',
                 hidden=True
             ),
+
             FormActions(
                 Submit('save', 'Add Comment'),
             )
