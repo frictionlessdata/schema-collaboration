@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-
 from .models import Datapackage, Person, DatapackageStatus
 
 
@@ -23,6 +22,7 @@ class PersonAdmin(admin.ModelAdmin):
 
 
 class DatapackageStatusAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_on', 'modified_on',)
     search_fields = ('name',)
 
 

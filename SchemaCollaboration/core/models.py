@@ -1,5 +1,6 @@
 import uuid as uuid_lib
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
@@ -20,6 +21,7 @@ class CreateModifyOn(models.Model):
 class Person(CreateModifyOn):
     uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, editable=False, unique=True)
     full_name = models.CharField(max_length=128, unique=True)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.PROTECT)
 
     def get_absolute_url(self):
         return reverse('management:person-detail', kwargs={'pk': self.pk})
