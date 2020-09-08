@@ -1,0 +1,4 @@
+{% for comment in comments %}
+    Next line is a comment:<br>
+    {% include 'comments/_comment.html' with comment=comment %}
+{% endfor %}

@@ -13,4 +13,8 @@
 
     <p></p>
     <a href="{% url 'management:datapackage-update' pk=datapackage.id %}" class="btn btn-primary">Edit</a>
+
+    <h1>Comments</h1>
+    {% include 'comments/_list_comments.tmpl' %}
+
 {% endblock %}

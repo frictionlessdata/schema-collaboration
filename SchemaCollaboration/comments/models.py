@@ -1,10 +1,11 @@
 from django.db import models
 
 from core.models import CreateModifyOn
-from core.models import Person
+from core.models import Person, Datapackage
 
 
 class AbstractComment(CreateModifyOn):
+    datapackage = models.ForeignKey(Datapackage, null=False, blank=False, on_delete=models.PROTECT)
     author = models.ForeignKey(Person, null=False, blank=False, on_delete=models.PROTECT)
     text = models.TextField()
     private = models.BooleanField()
