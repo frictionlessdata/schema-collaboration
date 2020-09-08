@@ -4,4 +4,6 @@
 {% block main_contents %}
     <h1>Person detail</h1>
     <strong>Name:</strong> {{ person.full_name }}
+    <p></p>
+    <a href="{% url 'management:person-update' pk=person.id %}" class="btn btn-primary">Edit</a>
 {% endblock %}

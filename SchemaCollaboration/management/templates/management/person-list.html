@@ -16,8 +16,8 @@
             <tr>
                 <td>{{ person.full_name }}</td>
                 <td>
-                    <a href="{% url 'management:person-detail' pk=person.id %}" class="btn btn-primary btn-sm active">View</a>
-                    <a href="{% url 'management:person-update' pk=person.id %}" class="btn btn-primary btn-sm active">Edit</a>
+                    <a href="{% url 'management:person-detail' pk=person.id %}" class="btn btn-primary btn-sm">View</a>
+                    <a href="{% url 'management:person-update' pk=person.id %}" class="btn btn-primary btn-sm">Edit</a>
                 </td>
             </tr>
         {% endfor %}
@@ -36,5 +36,5 @@
         });
     </script>
     <hr>
-    <a href="{% url 'management:person-add' %}" class="btn btn-primary btn-sm active">Create a Person</a>
+    <a href="{% url 'management:person-add' %}" class="btn btn-primary btn-sm">Create a Person</a>
 {% endblock %}
