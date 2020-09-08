@@ -1,0 +1,9 @@
+{% load static %}
+
+<button id="{{ id }}" class="btn btn-primary btn-sm"
+        data-clipboard-text="{{ url }}">{{ button_text }}</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('#{{ id }}');
+</script>

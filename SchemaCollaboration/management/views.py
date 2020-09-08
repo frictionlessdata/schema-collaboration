@@ -15,6 +15,10 @@ class DatapackageList(ListView):
         context = super().get_context_data(**kwargs)
         context['sidebar_active'] = 'datapackages'
         context['breadcrumb'] = [{'name': 'Datapackages'}]
+
+        for schema in context['schemas']:
+            schema.edit_link = self.request.build_absolute_uri(f'{reverse("datapackage-ui")}?load={schema.uuid}')
+
         return context
 
 

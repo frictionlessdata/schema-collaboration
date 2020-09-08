@@ -27,7 +27,9 @@
                 <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{{ schema.modified_on }}</td>
                 <td>
                     <a href="{% url 'datapackage-detail' uuid=schema.uuid %}" class="btn btn-primary btn-sm">View</a>
-                    <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{{ schema.edit_link }}" class="btn btn-primary btn-sm">Edit</a>
+                    {% include 'core/_clipboard-button.html' with url=schema.edit_link id='copy_edit_link' button_text='Copy Edit Link' %}
+                    &nbsp;
                     <a href="{% url 'management:datapackage-detail' pk=schema.pk %}"
                        class="btn btn-primary btn-sm">View Manage</a>
                     <a href="{% url 'management:datapackage-update' pk=schema.pk %}"
