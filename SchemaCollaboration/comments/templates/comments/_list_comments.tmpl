@@ -1,4 +1,10 @@
 {% for comment in comments %}
-    Next line is a comment:<br>
-    {% include 'comments/_comment.html' with comment=comment %}
+    <div class="row">
+        <div class="col-6">
+            {% include 'comments/_comment.html' with comment=comment %}
+            <br>
+        </div>
+    </div>
+{% empty %}
+    Currently there are no comments in this datapackage.
 {% endfor %}

@@ -2,6 +2,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
+from comments.forms import CommentForm
 from core.models import Datapackage, Person
 from management.forms import PersonModelForm, DatapackageModelForm
 
@@ -102,6 +103,10 @@ class DatapackageDetail(DatapackageMixin, DetailView):
 
         context['breadcrumb'] = [{'name': 'Datapackage', 'url': reverse('management:list-schemas')},
                                  {'name': 'Detail'}]
+
+        person = Person.objects.get(user=self.request.user)
+
+        context['comment_form'] = CommentForm(person=person, datapackage_id=self.object.id)
 
         return context
 
