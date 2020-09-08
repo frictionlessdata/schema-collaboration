@@ -37,6 +37,12 @@ class PersonList(PersonMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['breadcrumb'] = [{'name': 'People'}]
+
+        for person in context['people']:
+            person.list_datapackages_url = self.request.build_absolute_uri(
+                reverse('datapackage-list', kwargs={'collaborator_uuid': person.uuid}
+                        ))
+
         return context
 
 

@@ -13,6 +13,7 @@
         <tr>
             <th>Name</th>
             <th>Collaborators</th>
+            <th>Status</th>
             <th>Created on</th>
             <th>Modified on</th>
             <th>Actions</th>
@@ -23,6 +24,7 @@
             <tr>
                 <td>{% include 'core/_value-or-dash.tmpl' with value=schema.name %}</td>
                 <td>{% include 'core/_value-or-dash.tmpl' with value=schema.collaborators_str %}</td>
+                <td>{% include 'core/_value-or-dash.tmpl' with value=schema.status %}</td>
                 <td data-sort="{{ schema.created_on|date:"Y-m-d H:i:s" }}">{{ schema.created_on }}</td>
                 <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{{ schema.modified_on }}</td>
                 <td>
