@@ -6,4 +6,7 @@
     <strong>Name:</strong> {% include 'core/_value-or-dash.tmpl' with value=datapackage.name %}<br>
     <strong>Created on:</strong> {% include 'core/_value-or-dash.tmpl' with value=datapackage.created_on %}<br>
     <strong>Modified on:</strong> {% include 'core/_value-or-dash.tmpl' with value=datapackage.modified_on %}<br>
+
+    <p></p>
+    <a href="{% url 'management:datapackage-update' pk=datapackage.id %}" class="btn btn-primary">Edit</a>
 {% endblock %}

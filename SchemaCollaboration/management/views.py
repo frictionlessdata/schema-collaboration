@@ -79,7 +79,7 @@ class PersonDetail(PersonMixin, DetailView):
 class DatapackageMixin():
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['sidebar_active'] = 'people'
+        context['sidebar_active'] = 'datapackages'
         return context
 
 
