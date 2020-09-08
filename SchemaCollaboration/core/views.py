@@ -41,6 +41,10 @@ class DatapackageList(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['collaborator'] = self._get_collaborator()
+
+        for schema in context['schemas']:
+            schema.collaborators_excluding_self_str = schema.collaborators_excluding_str(context['collaborator'])
+
         return context
 
 

@@ -49,7 +49,19 @@ class Datapackage(CreateModifyOn):
     status = models.ForeignKey(DatapackageStatus, null=True, blank=True, on_delete=models.PROTECT)
 
     def collaborators_str(self):
-        return ', '.join([collaborator.full_name for collaborator in self.collaborators.all().order_by('full_name')])
+        return self.collaborators_excluding_str(None)
+
+    def collaborators_excluding_str(self, excluded_collaborator):
+        collaborators_list = []
+
+        for collaborator in self.collaborators.all().order_by('full_name'):
+            if collaborator != excluded_collaborator:
+                collaborators_list.append(collaborator.full_name)
+
+        if collaborators_list:
+            return ', '.join(collaborators_list)
+        else:
+            return '-'
 
     def get_absolute_url(self):
         return reverse('datapackage-detail', kwargs={'uuid': str(self.uuid)})
