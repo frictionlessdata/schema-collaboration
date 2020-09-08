@@ -7,8 +7,6 @@ from core.models import Person
 
 
 class AddComment(TemplateView):
-    template_name = 'comments/comment-added.html'
-
     def get(self, request, *args, **kwargs):
         print('here GET')
 

@@ -26,7 +26,8 @@ def create_management_logged_client():
 
 
 def create_person():
-    person, created = Person.objects.get_or_create(full_name='Sheldon Cooper')
+    person, created = Person.objects.get_or_create(full_name='Sheldon Cooper',
+                                                   user=User.objects.get(username=create_management_user()))
     return person
 
 
