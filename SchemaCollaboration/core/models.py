@@ -42,3 +42,16 @@ class Datapackage(CreateModifyOn):
 
     def get_absolute_url(self):
         return reverse('datapackage-detail', kwargs={'uuid': str(self.uuid)})
+
+    def __str__(self):
+        return self.name
+
+
+class DatapackageStatus(CreateModifyOn):
+    name = models.CharField(max_length=500, null=False, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Datapackage statuses'

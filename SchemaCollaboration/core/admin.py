@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Datapackage, Person
+from .models import Datapackage, Person, DatapackageStatus
 
 
 class SchemaAdmin(admin.ModelAdmin):
@@ -10,7 +10,7 @@ class SchemaAdmin(admin.ModelAdmin):
     readonly_fields = ('uuid', 'created_on', 'modified_on',)
 
     def collaborator_names(self, obj):
-        names = ', '.join([collaborator.name for collaborator in obj.collaborators.all()])
+        names = ', '.join([collaborator.full_name for collaborator in obj.collaborators.all()])
 
         return names
 
@@ -21,5 +21,10 @@ class PersonAdmin(admin.ModelAdmin):
     readonly_fields = ('uuid', 'created_on', 'modified_on',)
 
 
+class DatapackageStatusAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
+
+
 admin.site.register(Datapackage, SchemaAdmin)
 admin.site.register(Person, PersonAdmin)
+admin.site.register(DatapackageStatus, DatapackageStatusAdmin)
