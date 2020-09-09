@@ -6,7 +6,7 @@ from comments.forms import CommentForm
 from core.models import Person
 
 
-class AbstractAddComment(TemplateView):
+class AbstractAddCommentView(TemplateView):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._action_url = kwargs.pop('action_url')

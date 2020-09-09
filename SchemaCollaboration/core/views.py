@@ -9,11 +9,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView, RedirectView
 
 from comments.forms import CommentForm
-from comments.views import AbstractAddComment
+from comments.views import AbstractAddCommentView
 from .models import Datapackage, Person
 
 
-class Homepage(TemplateView):
+class HomepageView(TemplateView):
     template_name = 'core/homepage.html'
 
     def get_context_data(self, **kwargs):
@@ -29,7 +29,7 @@ class Homepage(TemplateView):
         return context
 
 
-class DatapackageList(ListView):
+class DatapackageListView(ListView):
     template_name = 'core/datapackage-list.html'
     model = Datapackage
     context_object_name = 'schemas'
@@ -51,7 +51,7 @@ class DatapackageList(ListView):
         return context
 
 
-class DatapackageDetail(DetailView):
+class DatapackageDetailView(DetailView):
     template_name = 'core/datapackage-detail.html'
     model = Datapackage
     context_object_name = 'datapackage'
@@ -98,7 +98,7 @@ class ApiSchemaView(View):
         return JsonResponse(data, status=200)
 
 
-class DatapackageUi(RedirectView):
+class DatapackageUiView(RedirectView):
     permanent = False
     query_string = True
 
@@ -114,7 +114,7 @@ class DatapackageUi(RedirectView):
         return static('datapackage-ui/index.html') + get_query_params
 
 
-class DatapackageAddComment(AbstractAddComment):
+class DatapackageAddCommentView(AbstractAddCommentView):
     def __init__(self, *args, **kwargs):
         action_url = reverse('datapackage-add-comment', kwargs={'datapackage_id': 'datapackage_id'})
         super().__init__(*args, **kwargs, action_url=action_url)

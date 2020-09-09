@@ -3,12 +3,12 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from comments.forms import CommentForm
-from comments.views import AbstractAddComment
+from comments.views import AbstractAddCommentView
 from core.models import Datapackage, Person
 from management.forms import PersonModelForm, DatapackageModelForm
 
 
-class DatapackageList(ListView):
+class DatapackageListView(ListView):
     template_name = 'management/schema-list.html'
     model = Datapackage
     context_object_name = 'schemas'
@@ -31,7 +31,7 @@ class PersonMixin():
         return context
 
 
-class PersonList(PersonMixin, ListView):
+class PersonListView(PersonMixin, ListView):
     template_name = 'management/person-list.html'
     model = Person
     context_object_name = 'people'
@@ -48,7 +48,7 @@ class PersonList(PersonMixin, ListView):
         return context
 
 
-class PersonCreate(PersonMixin, CreateView):
+class PersonCreateView(PersonMixin, CreateView):
     model = Person
     form_class = PersonModelForm
     template_name = 'management/person-form.html'
@@ -60,7 +60,7 @@ class PersonCreate(PersonMixin, CreateView):
         return context
 
 
-class PersonUpdate(PersonMixin, UpdateView):
+class PersonUpdateView(PersonMixin, UpdateView):
     model = Person
     form_class = PersonModelForm
     template_name = 'management/person-form.html'
@@ -72,12 +72,12 @@ class PersonUpdate(PersonMixin, UpdateView):
         return context
 
 
-class PersonDelete(DeleteView):
+class PersonDeleteView(DeleteView):
     model = Person
     success_url = reverse_lazy('management-list-people')
 
 
-class PersonDetail(PersonMixin, DetailView):
+class PersonDetailView(PersonMixin, DetailView):
     model = Person
     template_name = 'management/person-detail.html'
 
@@ -95,7 +95,7 @@ class DatapackageMixin():
         return context
 
 
-class DatapackageDetail(DatapackageMixin, DetailView):
+class DatapackageDetailView(DatapackageMixin, DetailView):
     model = Datapackage
     template_name = 'management/datapackage-detail.html'
 
@@ -114,7 +114,7 @@ class DatapackageDetail(DatapackageMixin, DetailView):
         return context
 
 
-class DatapackageUpdate(DatapackageMixin, UpdateView):
+class DatapackageUpdateView(DatapackageMixin, UpdateView):
     model = Datapackage
     form_class = DatapackageModelForm
     template_name = 'management/datapackage-form.html'
@@ -129,4 +129,4 @@ class DatapackageUpdate(DatapackageMixin, UpdateView):
         return context
 
 
-class DatapackageAddComment(AbstractAddComment):
+class DatapackageAddCommentView(AbstractAddCommentView):

@@ -5,16 +5,16 @@ from . import views
 app_name = 'management'
 
 urlpatterns = [
-    path('', views.DatapackageList.as_view(), name='list-schemas'),
-    path('person/list/', views.PersonList.as_view(), name='list-people'),
+    path('', views.DatapackageListView.as_view(), name='list-schemas'),
+    path('person/list/', views.PersonListView.as_view(), name='list-people'),
 
-    path('person/add/', views.PersonCreate.as_view(), name='person-add'),
-    path('person/<int:pk>/edit/', views.PersonUpdate.as_view(), name='person-update'),
-    path('person/<int:pk>/delete/', views.PersonDelete.as_view(), name='person-delete'),
+    path('person/add/', views.PersonCreateView.as_view(), name='person-add'),
+    path('person/<int:pk>/edit/', views.PersonUpdateView.as_view(), name='person-update'),
+    path('person/<int:pk>/delete/', views.PersonDeleteView.as_view(), name='person-delete'),
 
-    path('person/<int:pk>/', views.PersonDetail.as_view(), name='person-detail'),
+    path('person/<int:pk>/', views.PersonDetailView.as_view(), name='person-detail'),
 
-    path('datapackage/<int:pk>/', views.DatapackageDetail.as_view(), name='datapackage-detail'),
-    path('datapackage/<int:pk>/edit/', views.DatapackageUpdate.as_view(), name='datapackage-update'),
-    path('datapackage/<int:pk>/add_comment/', views.DatapackageAddComment.as_view(), name='datapackage-add-comment'),
+    path('datapackage/<int:pk>/', views.DatapackageDetailView.as_view(), name='datapackage-detail'),
+    path('datapackage/<int:pk>/edit/', views.DatapackageUpdateView.as_view(), name='datapackage-update'),
+    path('datapackage/<int:pk>/add_comment/', views.DatapackageAddCommentView.as_view(), name='datapackage-add-comment'),
 ]
