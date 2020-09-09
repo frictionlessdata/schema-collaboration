@@ -29,7 +29,6 @@
                 <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{{ schema.modified_on }}</td>
                 <td>
                     <a href="{% url 'datapackage-detail'  uuid=schema.uuid %}" class="btn btn-primary btn-sm">View</a>
-                    <a href="{% url 'datapackage-ui' %}?load={{ schema.uuid }}" class="btn btn-primary btn-sm">Edit</a>
                 </td>
             </tr>
         {% endfor %}
