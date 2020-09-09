@@ -121,6 +121,8 @@ class DatapackageUpdateView(DatapackageMixin, UpdateView):
     model = Datapackage
     form_class = DatapackageModelForm
     template_name = 'management/datapackage-form.html'
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'
 
     def get_success_url(self):
         return reverse('management:datapackage-detail', kwargs={'datapackage_uuid': self.object.uuid})

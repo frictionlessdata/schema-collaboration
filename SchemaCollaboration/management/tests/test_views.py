@@ -41,7 +41,7 @@ class ViewsTest(TestCase):
 
     def test_datapackage_detail(self):
         response = self._management_client.get(
-            reverse('management:datapackage-detail', kwargs={'datapackage_uuid': self._datapackage.uuid}))
+            reverse('management:datapackage-detail', kwargs={'uuid': self._datapackage.uuid}))
 
         self.assertEqual(response.status_code, 200)
 
