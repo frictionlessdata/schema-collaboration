@@ -117,4 +117,4 @@ class DatapackageUiView(RedirectView):
 class DatapackageAddCommentView(AbstractAddCommentView):
     def __init__(self, *args, **kwargs):
         action_url = reverse('datapackage-add-comment', kwargs={'datapackage_id': 'datapackage_id'})
-        super().__init__(*args, **kwargs, action_url=action_url)
+        super().__init__(*args, **kwargs, success_url=success_url)

@@ -16,5 +16,6 @@ urlpatterns = [
 
     path('datapackage/<int:pk>/', views.DatapackageDetailView.as_view(), name='datapackage-detail'),
     path('datapackage/<int:pk>/edit/', views.DatapackageUpdateView.as_view(), name='datapackage-update'),
-    path('datapackage/<int:pk>/add_comment/', views.DatapackageAddCommentView.as_view(), name='datapackage-add-comment'),
+    path('datapackage/<int:datapackage_id>/add_comment/', views.DatapackageAddCommentView.as_view(),
+         name='datapackage-add-comment'),
 ]

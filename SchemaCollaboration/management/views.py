@@ -109,7 +109,8 @@ class DatapackageDetailView(DatapackageMixin, DetailView):
 
         context['comment_form'] = CommentForm(person=person,
                                               datapackage_id=self.object.id,
-                                              action_url=reverse())
+                                              form_action_url=reverse('management:datapackage-add-comment',
+                                                                      kwargs={'datapackage_id': self.object.id}))
 
         return context
 
@@ -130,3 +131,9 @@ class DatapackageUpdateView(DatapackageMixin, UpdateView):
 
 
 class DatapackageAddCommentView(AbstractAddCommentView):
+    def __init__(self, *args, **kwargs):
+        success_url = None
+        failure_url = None  # Unused
+
+        super().__init__(*args, success_url=reverse('management:datapackage-detail', kwargs={'pk': 1}),
+                         failure_url=None, **kwargs)

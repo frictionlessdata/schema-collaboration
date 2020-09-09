@@ -2,17 +2,15 @@ from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit
 from django.forms import ModelForm
-from django.urls import reverse
 
 from core.models import Datapackage
 from .models import Comment
 
 
 class CommentForm(ModelForm):
-    def __init__(self, *args, **kwargs):
-        datapackage_id = kwargs.pop('datapackage_id')
-        action_url = kwargs.pop('action_url')
-        person = kwargs.pop('person', None)
+    def __init__(self, *args, datapackage_id, person, **kwargs):
+        form_action_url = kwargs.pop('form_action_url', None)
+
         super().__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
@@ -25,7 +23,7 @@ class CommentForm(ModelForm):
             self.fields['author'].initial = person
             self.fields['author'].disabled = True
         else:
-            self.fields['author'].queryset = Datapackage.objects.get(id=datapackage_id).\
+            self.fields['author'].queryset = Datapackage.objects.get(id=datapackage_id). \
                 collaborators.order_by('full_name')
             self.fields['author'].help_text = 'Please select who you are'
 
@@ -57,6 +55,8 @@ class CommentForm(ModelForm):
             )
         )
 
+        if form_action_url:
+            self.helper.form_action = form_action_url
 
     class Meta:
         model = Comment
