@@ -16,7 +16,7 @@
     <a href="{% url 'management:datapackage-update' uuid=datapackage.uuid %}" class="btn btn-primary">Edit</a>
 
     <h1>Comments</h1>
-    {% include 'comments/_list_comments.tmpl' with comments=datapackage.comment_set.all %}
+    {% include 'comments/_list_comments.tmpl' with comments=comments %}
     <p></p>
     <strong>New comment</strong>
     {% crispy comment_form %}

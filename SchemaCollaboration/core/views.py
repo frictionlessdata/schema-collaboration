@@ -62,12 +62,12 @@ class DatapackageDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        datapackage_id = context['datapackage'].id
-
         context['comment_form'] = CommentForm(person=None,
                                               datapackage_id=self.object.id,
                                               form_action_url=reverse('datapackage-add-comment',
                                                                       kwargs={'uuid': str(self.object.uuid)}))
+
+        context['comments'] = self.object.comments_for_collaborators()
 
         return context
 

@@ -65,6 +65,12 @@ class Datapackage(CreateModifyOn):
         else:
             return '-'
 
+    def comments_for_management(self):
+        return self.comment_set.order_by('created_on')
+
+    def comments_for_collaborators(self):
+        return self.comment_set.filter(private=False).order_by('created_on')
+
     def get_absolute_url(self):
         return reverse('datapackage-detail', kwargs={'uuid': str(self.uuid)})
 

@@ -114,6 +114,8 @@ class DatapackageDetailView(DatapackageMixin, DetailView):
                                               form_action_url=reverse('management:datapackage-add-comment',
                                                                       kwargs={'uuid': self.object.uuid}))
 
+        context['comments'] = self.object.comments_for_management()
+
         return context
 
 

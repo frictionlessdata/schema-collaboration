@@ -12,7 +12,7 @@
     <a class="btn btn-primary" href="{% url 'datapackage-ui' %}?load={{ datapackage.uuid }}">Edit</a>
     <hr>
     <h1>Comments</h1>
-    {% include 'comments/_list_comments.tmpl' with comments=datapackage.comment_set.all %}
+    {% include 'comments/_list_comments.tmpl' with comments=comments %}
 
     <strong>New comment</strong>
     {% crispy comment_form %}
