@@ -2,6 +2,7 @@ from django.test import Client
 from django.test import TestCase
 from django.urls import reverse
 
+from comments.models import Comment
 from . import database_population
 from ..models import Datapackage
 
@@ -96,6 +97,7 @@ class ViewsTest(TestCase):
 
         datapackage.collaborators.add(collaborator)
 
+        self.assertEqual(Comment.objects.count(), 0)
         c = Client()
         response = c.post(reverse('datapackage-add-comment', kwargs={'uuid': datapackage.uuid}),
                           data={'text': 'This is a comment',
@@ -104,3 +106,10 @@ class ViewsTest(TestCase):
                           )
 
         self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse('datapackage-detail', kwargs={'uuid': datapackage.uuid}))
+        self.assertEqual(Comment.objects.count(), 1)
+
+        comment = Comment.objects.all()[0]
+
+        self.assertEqual(comment.text, 'This is a comment')
+        self.assertEqual(comment.author, collaborator)
