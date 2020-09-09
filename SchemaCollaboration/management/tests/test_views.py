@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from comments.models import Comment
 from core.tests import database_population
 
 
@@ -54,3 +55,24 @@ class ViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         self.assertContains(response, self._datapackage.name)
+
+    def test_add_comment(self):
+        datapackage = database_population.create_datapackage()
+        collaborator = database_population.create_person()
+
+        datapackage.collaborators.add(collaborator)
+
+        self.assertEqual(Comment.objects.count(), 0)
+        response = self._management_client.post(
+            reverse('management:datapackage-add-comment', kwargs={'uuid': datapackage.uuid}),
+            data={'text': 'This is a comment',
+                  'save': 'Add Comment'}
+            )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse('management:datapackage-detail', kwargs={'uuid': datapackage.uuid}))
+        self.assertEqual(Comment.objects.count(), 1)
+
+        comment = Comment.objects.all()[0]
+
+        self.assertEqual(comment.text, 'This is a comment')

@@ -15,9 +15,6 @@ class AbstractAddCommentView(TemplateView):
 
         super().__init__(*args, **kwargs)
 
-    def get(self, request, *args, **kwargs):
-        assert False
-
     def post(self, request, *args, **kwargs):
         datapackage = Datapackage.objects.get(uuid=kwargs['uuid'])
 
