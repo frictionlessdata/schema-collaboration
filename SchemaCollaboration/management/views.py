@@ -23,6 +23,7 @@ class DatapackageListView(ListView):
         for schema in context['schemas']:
             schema.collaborator_view_link = self.request.build_absolute_uri(
                 reverse('datapackage-detail', kwargs={'uuid': schema.uuid}))
+            schema.edit_link = f'{reverse("datapackage-ui")}?load={schema.uuid}'
 
         return context
 
