@@ -112,6 +112,7 @@ class DatapackageDetailView(DatapackageMixin, DetailView):
 
         context['comment_form'] = CommentForm(person=person,
                                               datapackage_id=self.object.id,
+                                              allow_private=True,
                                               form_action_url=reverse('management:datapackage-add-comment',
                                                                       kwargs={'uuid': self.object.uuid}))
 

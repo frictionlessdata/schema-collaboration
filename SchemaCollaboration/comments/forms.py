@@ -10,6 +10,7 @@ from .models import Comment
 class CommentForm(ModelForm):
     def __init__(self, *args, datapackage_id, person, **kwargs):
         form_action_url = kwargs.pop('form_action_url', None)
+        allow_private = kwargs.pop('allow_private', False)
 
         super().__init__(*args, **kwargs)
 
@@ -27,6 +28,8 @@ class CommentForm(ModelForm):
                 collaborators.order_by('full_name')
             self.fields['author'].help_text = 'Please select who you are'
 
+        self.fields['private'].disabled = not allow_private
+
         self.fields['datapackage'].initial = Datapackage.objects.get(id=datapackage_id)
         self.fields['datapackage'].disabled = True
 
@@ -37,7 +40,8 @@ class CommentForm(ModelForm):
             ),
             Div(
                 Div('private', css_class='col-6'),
-                css_class='row'
+                css_class='row',
+                hidden=not allow_private
             ),
             Div(
                 Div('author', css_class='col-6'),
