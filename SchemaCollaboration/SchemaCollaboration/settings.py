@@ -14,6 +14,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.contrib import messages
+
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -131,6 +133,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Makes message tags compatible with Bootstrap4 alert messages
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 # If set the content of this file will be added just before </body> in the _base.html
 # (all the pages but the datapackage-ui)

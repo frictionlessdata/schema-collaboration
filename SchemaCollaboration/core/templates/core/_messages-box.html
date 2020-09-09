@@ -1,0 +1,8 @@
+{% for message in messages %}
+    {% if forloop.first %}
+        <br>
+    {% endif %}
+    <div class="alert {{ message.tags }}" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
