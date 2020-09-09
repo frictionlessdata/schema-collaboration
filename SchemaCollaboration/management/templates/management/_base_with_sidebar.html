@@ -27,8 +27,8 @@
 
         <main role="main" class="col-11">
             <br>
-            {% include 'core/_breadcrumb.tmpl' %}
-            {% include 'core/_messages-box.html' %}
+            {% include 'core/_breadcrumb.tmpl' with breadcrumb=breadcrumb only %}
+            {% include 'core/_messages-box.html' with messages=messages only %}
             {% block main_contents %}{% endblock %}
         </main>
     </div>

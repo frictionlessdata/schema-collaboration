@@ -4,7 +4,7 @@
 {% block body_contents %}
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            {% include 'core/_messages-box.html' %}
+            {% include 'core/_messages-box.html' with messages=messages only %}
             {% block main %}{% endblock %}
         </div>
     </main>

@@ -19,7 +19,8 @@ class DatapackageListView(ListView):
         context['breadcrumb'] = [{'name': 'Datapackages'}]
 
         for schema in context['schemas']:
-            schema.edit_link = self.request.build_absolute_uri(f'{reverse("datapackage-ui")}?load={schema.uuid}')
+            schema.collaborator_view_link = self.request.build_absolute_uri(
+                reverse('datapackage-detail', kwargs={'uuid': schema.uuid}))
 
         return context
 
@@ -115,7 +116,7 @@ class DatapackageDetailView(DatapackageMixin, DetailView):
                                                                       kwargs={'uuid': self.object.uuid}))
 
         context['comments'] = self.object.comments_for_management()
-
+        context['show_private_field'] = True
         return context
 
 
@@ -138,7 +139,6 @@ class DatapackageUpdateView(DatapackageMixin, UpdateView):
 
 class DatapackageAddCommentView(AbstractAddCommentView):
     def __init__(self, *args, **kwargs):
-
         super().__init__(*args, force_anonymous_user=False,
                          success_view_name='management:datapackage-detail',
                          failure_url=None, **kwargs)

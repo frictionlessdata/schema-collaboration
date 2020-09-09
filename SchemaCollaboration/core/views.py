@@ -69,6 +69,8 @@ class DatapackageDetailView(DetailView):
 
         context['comments'] = self.object.comments_for_collaborators()
 
+        context['show_private_field'] = False
+
         return context
 
 

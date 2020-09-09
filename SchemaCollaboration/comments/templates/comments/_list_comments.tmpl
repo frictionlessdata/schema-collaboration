@@ -1,7 +1,7 @@
 {% for comment in comments %}
     <div class="row">
         <div class="col-6">
-            {% include 'comments/_comment.html' with comment=comment %}
+            {% include 'comments/_comment.html' with comment=comment show_private_field=show_private_field only %}
             <br>
         </div>
     </div>

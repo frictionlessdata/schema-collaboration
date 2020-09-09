@@ -24,7 +24,7 @@
             <tr>
                 <td>{{ schema.name }}</td>
                 <td>{{ schema.collaborators_excluding_self_str }}</td>
-                <td>{% include 'core/_value-or-dash.tmpl' with value=schema.status %}</td>
+                <td>{% include 'core/_value-or-dash.tmpl' with value=schema.status only %}</td>
                 <td data-sort="{{ schema.created_on|date:"Y-m-d H:i:s" }}">{{ schema.created_on }}</td>
                 <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{{ schema.modified_on }}</td>
                 <td>

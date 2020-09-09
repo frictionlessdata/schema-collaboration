@@ -9,10 +9,12 @@
     <strong>Created on:</strong> {{ datapackage.created_on }}<br>
     <strong>Modified on:</strong> {{ datapackage.modified_on }}<br>
     <p></p>
+    Please read the comments below and then click on "Edit" to enter the data.
+    <p></p>
     <a class="btn btn-primary" href="{% url 'datapackage-ui' %}?load={{ datapackage.uuid }}">Edit</a>
     <hr>
     <h1>Comments</h1>
-    {% include 'comments/_list_comments.tmpl' with comments=comments %}
+    {% include 'comments/_list_comments.tmpl' with comments=comments show_private_field=show_private_field only %}
 
     <strong>New comment</strong>
     {% crispy comment_form %}
