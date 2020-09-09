@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView, RedirectView
 
 from comments.forms import CommentForm
-from comments.views import AbstractAddCommentView
+from comments.views import process_post_add_comment
 from .models import Datapackage, Person
 
 
@@ -51,6 +51,20 @@ class DatapackageListView(ListView):
         return context
 
 
+def datapackage_detail_context(datapackage):
+    context = {}
+    context['comment_form'] = CommentForm(person=None,
+                                          datapackage_id=datapackage.id,
+                                          form_action_url=reverse('datapackage-add-comment',
+                                                                  kwargs={'uuid': str(datapackage.uuid)}))
+
+    context['comments'] = datapackage.comments_for_collaborators()
+
+    context['show_private_field'] = False
+
+    return context
+
+
 class DatapackageDetailView(DetailView):
     template_name = 'core/datapackage-detail.html'
     model = Datapackage
@@ -62,14 +76,8 @@ class DatapackageDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['comment_form'] = CommentForm(person=None,
-                                              datapackage_id=self.object.id,
-                                              form_action_url=reverse('datapackage-add-comment',
-                                                                      kwargs={'uuid': str(self.object.uuid)}))
-
-        context['comments'] = self.object.comments_for_collaborators()
-
-        context['show_private_field'] = False
+        datapackage = kwargs['object']
+        context.update(datapackage_detail_context(datapackage))
 
         return context
 
@@ -117,8 +125,17 @@ class DatapackageUiView(RedirectView):
         return static('datapackage-ui/index.html') + get_query_params
 
 
-class DatapackageAddCommentView(AbstractAddCommentView):
+class DatapackageAddCommentView(View):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, force_anonymous_user=True,
-                         success_view_name='datapackage-detail',
-                         failure_url=None, **kwargs)
+        super().__init__(*args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        datapackage = Datapackage.objects.get(uuid=kwargs['uuid'])
+        context = datapackage_detail_context(datapackage)
+
+        return process_post_add_comment(request,
+                                        context,
+                                        datapackage=datapackage,
+                                        force_anonymous_user=True,
+                                        success_view_name='datapackage-detail',
+                                        failure_template_name='core/datapackage-detail.html')

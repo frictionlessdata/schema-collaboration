@@ -1,10 +1,12 @@
 from django.urls import reverse_lazy, reverse
+from django.views import View
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from comments.forms import CommentForm
-from comments.views import AbstractAddCommentView
+from comments.views import process_post_add_comment
 from core.models import Datapackage, Person
+from core.views import datapackage_detail_context
 from management.forms import PersonModelForm, DatapackageModelForm
 
 
@@ -138,8 +140,17 @@ class DatapackageUpdateView(DatapackageMixin, UpdateView):
         return context
 
 
-class DatapackageAddCommentView(AbstractAddCommentView):
+class DatapackageAddCommentView(View):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, force_anonymous_user=False,
-                         success_view_name='management:datapackage-detail',
-                         failure_url=None, **kwargs)
+        super().__init__(*args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        datapackage = Datapackage.objects.get(uuid=kwargs['uuid'])
+        context = datapackage_detail_context(datapackage)
+
+        return process_post_add_comment(request,
+                                        context,
+                                        datapackage=datapackage,
+                                        force_anonymous_user=False,
+                                        success_view_name='management:datapackage-detail',
+                                        failure_template_name='core/datapackage-detail.html')
