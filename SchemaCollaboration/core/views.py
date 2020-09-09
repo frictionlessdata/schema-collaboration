@@ -64,9 +64,10 @@ class DatapackageDetailView(DetailView):
 
         datapackage_id = context['datapackage'].id
 
-        action_url = self.request.path
-
-        context['comment_form'] = CommentForm(datapackage_id=datapackage_id, action_url=action_url)
+        context['comment_form'] = CommentForm(person=None,
+                                              datapackage_id=self.object.id,
+                                              form_action_url=reverse('datapackage-add-comment',
+                                                                      kwargs={'uuid': str(self.object.uuid)}))
 
         return context
 
@@ -116,5 +117,9 @@ class DatapackageUiView(RedirectView):
 
 class DatapackageAddCommentView(AbstractAddCommentView):
     def __init__(self, *args, **kwargs):
-        action_url = reverse('datapackage-add-comment', kwargs={'datapackage_id': 'datapackage_id'})
-        super().__init__(*args, **kwargs, success_url=success_url)
+        success_url = None
+        failure_url = None  # Unused
+
+        super().__init__(*args, user=None,
+                         success_view_name='datapackage-detail',
+                         failure_url=None, **kwargs)

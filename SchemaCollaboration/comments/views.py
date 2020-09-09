@@ -7,26 +7,21 @@ from core.models import Person, Datapackage
 
 
 class AbstractAddCommentView(TemplateView):
-    def __init__(self, success_url, failure_url, *args, **kwargs):
-        self._success_url = success_url
+    def __init__(self, user, success_view_name, failure_url, *args, **kwargs):
+        self._user = user
+        self._success_view_name = success_view_name
         self._failure_url = failure_url
 
         super().__init__(*args, **kwargs)
-        print('test')
 
     def get(self, request, *args, **kwargs):
         assert False
 
     def post(self, request, *args, **kwargs):
-        if 'datapackage_id' in kwargs:
-            datapackage = Datapackage.objects.get(id=kwargs['datapackage_id'])
-        elif 'datapackage_uuid' in kwargs:
-            datapackage = Datapackage.objects.get(uuid=kwargs['datapackage_uuid'])
-        else:
-            assert False
+        datapackage = Datapackage.objects.get(uuid=kwargs['uuid'])
 
-        if self.request.user:
-            person = Person.objects.get(user=self.request.user)
+        if self._user:
+            person = Person.objects.get(user=self._user)
         else:
             person = None
 
@@ -34,9 +29,8 @@ class AbstractAddCommentView(TemplateView):
 
         if comment_form.is_valid():
             comment_form.save()
+            return redirect(reverse(self._success_view_name, kwargs={'uuid': datapackage.uuid}))
 
-            # return redirect(reverse('management:datapackage-detail', kwargs={'pk': datapackage_id}))
-            return redirect(self._success_url)
         else:
             # TODO handle this
             assert False

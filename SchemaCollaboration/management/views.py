@@ -98,6 +98,8 @@ class DatapackageMixin():
 class DatapackageDetailView(DatapackageMixin, DetailView):
     model = Datapackage
     template_name = 'management/datapackage-detail.html'
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -110,7 +112,7 @@ class DatapackageDetailView(DatapackageMixin, DetailView):
         context['comment_form'] = CommentForm(person=person,
                                               datapackage_id=self.object.id,
                                               form_action_url=reverse('management:datapackage-add-comment',
-                                                                      kwargs={'datapackage_id': self.object.id}))
+                                                                      kwargs={'uuid': self.object.uuid}))
 
         return context
 
@@ -121,7 +123,7 @@ class DatapackageUpdateView(DatapackageMixin, UpdateView):
     template_name = 'management/datapackage-form.html'
 
     def get_success_url(self):
-        return reverse('management:datapackage-detail', kwargs={'pk': self.object.pk})
+        return reverse('management:datapackage-detail', kwargs={'datapackage_uuid': self.object.uuid})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -135,5 +137,6 @@ class DatapackageAddCommentView(AbstractAddCommentView):
         success_url = None
         failure_url = None  # Unused
 
-        super().__init__(*args, success_url=reverse('management:datapackage-detail', kwargs={'pk': 1}),
+        super().__init__(*args, user=self.request.user,
+                         success_view_name='management:datapackage-detail',
                          failure_url=None, **kwargs)

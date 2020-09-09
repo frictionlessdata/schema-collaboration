@@ -13,7 +13,7 @@
     <strong>Modified on:</strong> {% include 'core/_value-or-dash.tmpl' with value=datapackage.modified_on %}<br>
 
     <p></p>
-    <a href="{% url 'management:datapackage-update' pk=datapackage.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'management:datapackage-update' uuid=datapackage.uuid %}" class="btn btn-primary">Edit</a>
 
     <h1>Comments</h1>
     {% include 'comments/_list_comments.tmpl' with comments=datapackage.comment_set.all %}
