@@ -117,9 +117,6 @@ class DatapackageUiView(RedirectView):
 
 class DatapackageAddCommentView(AbstractAddCommentView):
     def __init__(self, *args, **kwargs):
-        success_url = None
-        failure_url = None  # Unused
-
         super().__init__(*args, user=None,
                          success_view_name='datapackage-detail',
                          failure_url=None, **kwargs)

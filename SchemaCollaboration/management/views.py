@@ -136,8 +136,6 @@ class DatapackageUpdateView(DatapackageMixin, UpdateView):
 
 class DatapackageAddCommentView(AbstractAddCommentView):
     def __init__(self, *args, **kwargs):
-        success_url = None
-        failure_url = None  # Unused
 
         super().__init__(*args, user=self.request.user,
                          success_view_name='management:datapackage-detail',
