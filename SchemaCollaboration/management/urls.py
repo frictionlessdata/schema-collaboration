@@ -16,4 +16,5 @@ urlpatterns = [
 
     path('datapackage/<int:pk>/', views.DatapackageDetail.as_view(), name='datapackage-detail'),
     path('datapackage/<int:pk>/edit/', views.DatapackageUpdate.as_view(), name='datapackage-update'),
+    path('datapackage/<int:pk>/add_comment/', views.DatapackageAddComment.as_view(), name='datapackage-add-comment'),
 ]

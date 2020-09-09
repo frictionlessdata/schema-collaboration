@@ -14,6 +14,7 @@
     <h1>Comments</h1>
     {% include 'comments/_list_comments.tmpl' with comments=datapackage.comment_set.all %}
 
+    <strong>New comment</strong>
     {% crispy comment_form %}
 
     {#    <div class="border p-1 bg-white rounded">#}

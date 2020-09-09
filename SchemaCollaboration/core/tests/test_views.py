@@ -75,7 +75,7 @@ class ViewsTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         # This view had contained the full schema. Currently not
-        # TODO: add more verification tests
+        # TODO: add more verification    tests
         # self.assertContains(response, schema_text)
 
     def test_datapackage_list(self):

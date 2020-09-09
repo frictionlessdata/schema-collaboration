@@ -6,14 +6,18 @@ from comments.forms import CommentForm
 from core.models import Person
 
 
-class AddComment(TemplateView):
+class AbstractAddComment(TemplateView):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._action_url = kwargs.pop('action_url')
+
     def get(self, request, *args, **kwargs):
-        print('here GET')
+        assert False
 
     def post(self, request, *args, **kwargs):
         datapackage_id = self.kwargs['datapackage_id']
         person = Person.objects.get(user=self.request.user)
-        comment_form = CommentForm(request.POST, person=person, datapackage_id=datapackage_id)
+        comment_form = CommentForm(request.POST, person=person, datapackage_id=datapackage_id, action_url=self._action_url)
 
         if comment_form.is_valid():
             comment_form.save()

@@ -11,6 +11,7 @@ from .models import Comment
 class CommentForm(ModelForm):
     def __init__(self, *args, **kwargs):
         datapackage_id = kwargs.pop('datapackage_id')
+        action_url = kwargs.pop('action_url')
         person = kwargs.pop('person', None)
         super().__init__(*args, **kwargs)
 
@@ -56,7 +57,6 @@ class CommentForm(ModelForm):
             )
         )
 
-        self.helper.form_action = reverse('comments:add', kwargs={'datapackage_id': datapackage_id})
 
     class Meta:
         model = Comment

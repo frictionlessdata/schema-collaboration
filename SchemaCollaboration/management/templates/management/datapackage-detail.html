@@ -18,5 +18,6 @@
     <h1>Comments</h1>
     {% include 'comments/_list_comments.tmpl' with comments=datapackage.comment_set.all %}
     <p></p>
+    <strong>New comment</strong>
     {% crispy comment_form %}
 {% endblock %}

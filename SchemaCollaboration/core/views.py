@@ -2,12 +2,14 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.templatetags.static import static
+from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView, RedirectView
 
 from comments.forms import CommentForm
+from comments.views import AbstractAddComment
 from .models import Datapackage, Person
 
 
@@ -62,7 +64,9 @@ class DatapackageDetail(DetailView):
 
         datapackage_id = context['datapackage'].id
 
-        context['comment_form'] = CommentForm(datapackage_id=datapackage_id)
+        action_url = self.request.path
+
+        context['comment_form'] = CommentForm(datapackage_id=datapackage_id, action_url=action_url)
 
         return context
 
@@ -108,3 +112,9 @@ class DatapackageUi(RedirectView):
             get_query_params = ''
 
         return static('datapackage-ui/index.html') + get_query_params
+
+
+class DatapackageAddComment(AbstractAddComment):
+    def __init__(self, *args, **kwargs):
+        action_url = reverse('datapackage-add-comment', kwargs={'datapackage_id': 'datapackage_id'})
+        super().__init__(*args, **kwargs, action_url=action_url)

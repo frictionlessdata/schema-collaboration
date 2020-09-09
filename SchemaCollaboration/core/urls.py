@@ -10,5 +10,7 @@ urlpatterns = [
     path('api/datapackage/<uuid:uuid>/', views.ApiSchemaView.as_view(), name='api-datapackage'),
     path('datapackage-ui/', views.DatapackageUi.as_view(), name='datapackage-ui'),
 
+    path('datapackage/<uuid:uuid>/add_comment/', views.DatapackageAddComment.as_view(), name='datapackage-add-comment'),
+
     path('accounts/', include('django.contrib.auth.urls')),
 ]
