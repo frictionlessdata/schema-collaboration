@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from . import database_population
-from ..models import Datapackage, Person
+from ..models import Datapackage
 
 
 class ViewsTest(TestCase):
@@ -89,3 +89,18 @@ class ViewsTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, collaborator.full_name)
+
+    def test_add_comment(self):
+        datapackage = database_population.create_datapackage()
+        collaborator = database_population.create_person()
+
+        datapackage.collaborators.add(collaborator)
+
+        c = Client()
+        response = c.post(reverse('datapackage-add-comment', kwargs={'uuid': datapackage.uuid}),
+                          data={'text': 'This is a comment',
+                                'author': collaborator.id,
+                                'save': 'Add Comment'}
+                          )
+
+        self.assertEqual(response.status_code, 302)
