@@ -36,8 +36,7 @@
                        class="btn btn-primary btn-sm">View Manage</a>
                     <a href="{% url 'management:datapackage-update' uuid=schema.uuid %}"
                        class="btn btn-primary btn-sm">Edit Manage</a>
-                    <a href="{% url 'api-datapackage'  uuid=schema.uuid %}?dl=1"
-                       class="btn btn-primary btn-sm"><i class="fas fa-download"></i></a>
+                    {% include 'core/_download-schema-button.html' with uuid=schema.uuid button_size='btn-sm' only %}
                 </td>
             </tr>
         {% endfor %}

@@ -132,7 +132,7 @@ class DatapackageUpdateView(DatapackageMixin, UpdateView):
     slug_url_kwarg = 'uuid'
 
     def get_success_url(self):
-        return reverse('management:datapackage-detail', kwargs={'datapackage_uuid': self.object.uuid})
+        return reverse('management:datapackage-detail', kwargs={'uuid': self.object.uuid})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

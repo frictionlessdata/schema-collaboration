@@ -16,6 +16,7 @@
         the server" in the Data Package creator
     </div>
     <a class="btn btn-primary" href="{% url 'datapackage-ui' %}?load={{ datapackage.uuid }}">Edit</a>
+    {% include 'core/_download-schema-button.html' with uuid=datapackage.uuid only %}
     <hr>
     <h1>Comments</h1>
     {% include 'comments/_list_comments.tmpl' with comments=comments show_private_field=show_private_field only %}
