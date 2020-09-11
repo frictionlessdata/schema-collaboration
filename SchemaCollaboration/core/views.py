@@ -85,9 +85,16 @@ class DatapackageDetailView(DetailView):
 @method_decorator(csrf_exempt, name='dispatch')
 class ApiSchemaView(View):
     def get(self, request, *args, **kwargs):
+        download = self.request.GET.get('dl', False)
         schema = Datapackage.objects.get(uuid=self.kwargs['uuid'])
         response = HttpResponse(status=200, content=schema.schema)
+
         response['Content-Type'] = 'application/json'
+
+        if download:
+            date = f'{schema.modified_on:%Y%m%d-%H%M}'
+            name = f'{schema.name.replace(" ", "_")}-{date}.json'
+            response['Content-Disposition'] = f'attachment; filename="{name}"'
         return response
 
     def put(self, request, *args, **kwargs):
