@@ -1,3 +1,7 @@
+import json
+import subprocess
+from tempfile import NamedTemporaryFile
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
@@ -12,6 +16,7 @@ from comments.forms import CommentForm
 from comments.views import process_post_add_comment
 from .models import Datapackage, Person
 
+from datapackage_to_markdown.main import datapackage_to_markdown
 
 class HomepageView(TemplateView):
     template_name = 'core/homepage.html'
@@ -112,8 +117,46 @@ class ApiSchemaView(View):
         body = request.body.decode('utf-8')
         schema = Datapackage.objects.create(schema=body)
 
-        data = {'uuid': str(schema.uuid)}
-        return JsonResponse(data, status=200)
+        response = HttpResponse(status=200, content='hello test carles')
+        return response
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class ApiSchemaMarkdownView(View):
+    def get(self, request, *args, **kwargs):
+        schema = Datapackage.objects.get(uuid=self.kwargs['uuid'])
+
+        markdown = datapackage_to_markdown(json.loads(schema.schema))
+
+        response = HttpResponse(status=200, content=markdown)
+        response['Content-Type'] = 'text/plain; charset=UTF-8'
+
+        return response
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class ApiSchemaPdfView(View):
+    def get(self, request, *args, **kwargs):
+        schema = Datapackage.objects.get(uuid=self.kwargs['uuid'])
+
+        markdown = datapackage_to_markdown(json.loads(schema.schema))
+
+        # This is a draft and needs to be done differently (at least streaming the file? catching exceptions and
+        # deleting the file? control errors if no pandoc/LaTeX, etc.)
+
+        f = NamedTemporaryFile(suffix='.pdf', delete=False)
+        f.close()
+
+        process = subprocess.run(['pandoc', '-t', 'latex', '-o', f.name],
+                                 input=markdown.encode('utf-8'))
+
+        output = open(f.name, 'rb').read()
+
+        response = HttpResponse(status=200, content=output)
+        response['Content-Type'] = 'application/pdf'
+
+        return response
+
 
 
 class DatapackageUiView(RedirectView):
