@@ -8,14 +8,30 @@ from jinja2 import Template
 def datapackage_to_markdown(datapackage):
     template = Template(template_to_md)
     rendered = template.render(datapackage)
-    print(rendered)
+
+    return rendered
 
 
 template_to_md = '''
 NAME: {{ name }}
+
 TITLE: {{ title }}
 
-{% for contributor in contributors %}
-    {{ contributor.title }}
+Contributors: {% for contributor in contributors %}{{ contributor.title }} ({{ contributor.role }}){% endfor %}
+
+# Resources
+{% for resource in resources %}
+## {{ resource.name }}
+### Fields
+{% for field in resource.schema.fields %}
+#### {{ field.name }}
+
+Type: {{ field.type }}
+
+Format: {{ field.format }}
+
+Description: {{ field.description }}
+
+{% endfor %} 
 {% endfor %}
 '''
