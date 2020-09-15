@@ -1,6 +1,4 @@
 import json
-import subprocess
-from tempfile import NamedTemporaryFile
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, JsonResponse
@@ -97,12 +95,7 @@ class ApiSchemaView(View):
         response['Content-Type'] = 'application/json'
 
         if download:
-            date = f'{schema.modified_on:%Y%m%d-%H%M}'
-            if schema.name:
-                name = f'{schema.name.replace(" ", "_")}-{date}.json'
-            else:
-                name = f'unnamed-{date}.json'
-
+            name = schema.file_name(extension='json')
             response['Content-Disposition'] = f'attachment; filename="{name}"'
         return response
 
@@ -133,6 +126,8 @@ class ApiSchemaMarkdownView(View):
 
         response = HttpResponse(status=200, content=markdown)
         response['Content-Type'] = 'text/plain; charset=UTF-8'
+        name = schema.file_name(extension='md')
+        response['Content-Disposition'] = f'attachment; filename="{name}"'
 
         return response
 
@@ -145,6 +140,8 @@ class ApiSchemaPdfView(View):
 
         response = HttpResponse(status=200, content=pdf)
         response['Content-Type'] = 'application/pdf'
+        name = schema.file_name(extension='pdf')
+        response['Content-Disposition'] = f'attachment; filename="{name}"'
 
         return response
 

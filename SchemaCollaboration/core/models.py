@@ -74,6 +74,15 @@ class Datapackage(CreateModifyOn):
     def get_absolute_url(self):
         return reverse('datapackage-detail', kwargs={'uuid': str(self.uuid)})
 
+    def file_name(self, *, extension):
+        date = f'{self.modified_on:%Y%m%d-%H%M}'
+        if self.name:
+            name = f'{self.name.replace(" ", "_")}-{date}.json'
+        else:
+            name = f'unnamed-{date}.{extension}'
+
+        return name
+
     def __str__(self):
         if self.name:
             return self.name
