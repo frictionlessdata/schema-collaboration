@@ -16,8 +16,8 @@ class SchemaAdmin(admin.ModelAdmin):
 
 
 class PersonAdmin(admin.ModelAdmin):
-    search_fields = ('uuid', 'full_name',)
-    list_display = ('uuid', 'full_name', 'created_on', 'modified_on',)
+    search_fields = ('uuid', 'full_name', 'user__username', )
+    list_display = ('uuid', 'full_name', 'user', 'created_on', 'modified_on',)
     readonly_fields = ('uuid', 'created_on', 'modified_on',)
 
 
