@@ -3,7 +3,7 @@
 {% block title %}Person detail{% endblock %}
 {% block main_contents %}
     <h1>Person detail</h1>
-    <strong>Name:</strong> {{ person.full_name }}
+    <strong>Name:</strong> {% include 'core/_value-or-dash.tmpl' with value=person.full_name only %}
 
     <p></p>
     <strong>Created on:</strong> {% include 'core/_value-or-dash.tmpl' with value=person.created_on only %}<br>

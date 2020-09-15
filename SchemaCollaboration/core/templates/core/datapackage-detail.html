@@ -5,7 +5,7 @@
 {% block title %}Datapackage detail{% endblock %}
 {% block main %}
     <h1>Datapackage detail</h1>
-    <strong>Name:</strong> {{ datapackage.name }}<br>
+    <strong>Name:</strong> {% include 'core/_value-or-dash.tmpl' with value=datapackage.name only %}<br>
     <strong>Created on:</strong> {{ datapackage.created_on }}<br>
     <strong>Modified on:</strong> {{ datapackage.modified_on }}<br>
     <p></p>
