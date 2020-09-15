@@ -10,7 +10,7 @@ urlpatterns = [
     path('api/datapackage/', views.ApiSchemaView.as_view(), name='api-datapackage'),
     path('api/datapackage/<uuid:uuid>/', views.ApiSchemaView.as_view(), name='api-datapackage'),
     path('api/datapackage/<uuid:uuid>/markdown', views.ApiSchemaMarkdownView.as_view(), name='api-datapackage-markdown'),
-    path('api/datapackage/<uuid:uuid>/pdf', views.ApiSchemaPdfView.as_view(), name='api-datapackage-markdown'),
+    path('api/datapackage/<uuid:uuid>/pdf', views.ApiSchemaPdfView.as_view(), name='api-datapackage-pdf'),
     path('datapackage-ui/', views.DatapackageUiView.as_view(), name='datapackage-ui'),
 
     path('datapackage/<uuid:uuid>/add_comment/', views.DatapackageAddCommentView.as_view(),
