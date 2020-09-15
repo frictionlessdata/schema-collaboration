@@ -77,7 +77,7 @@ class Datapackage(CreateModifyOn):
     def file_name(self, *, extension):
         date = f'{self.modified_on:%Y%m%d-%H%M}'
         if self.name:
-            name = f'{self.name.replace(" ", "_")}-{date}.json'
+            name = f'{self.name.replace(" ", "_")}-{date}.{extension}'
         else:
             name = f'unnamed-{date}.{extension}'
 
