@@ -108,7 +108,7 @@ class DatapackageDetailView(DatapackageMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['breadcrumb'] = [{'name': 'Datapackage', 'url': reverse('management:list-schemas')},
+        context['breadcrumb'] = [{'name': 'Datapackages', 'url': reverse('management:list-schemas')},
                                  {'name': 'Detail'}]
 
         person = Person.objects.get(user=self.request.user)
@@ -136,7 +136,7 @@ class DatapackageUpdateView(DatapackageMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['breadcrumb'] = [{'name': 'Datapackage', 'url': reverse('management:list-people')},
+        context['breadcrumb'] = [{'name': 'Datapackages', 'url': reverse('management:list-people')},
                                  {'name': 'Edit'}]
         return context
 

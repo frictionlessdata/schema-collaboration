@@ -4,6 +4,13 @@
 {% block title %}List of datapackages{% endblock %}
 {% block main %}
     <h1>List of datapackages for {{ collaborator.full_name }}</h1>
+    <style>
+        /** The buttons "Edit" and "View" in the Actions column should always be in the same line */
+        #schema-table td:nth-child(6) {
+            white-space: nowrap;
+        }
+    </style>
+
     <table id="schema-table" class="table table-striped table-sm table-hover display">
         <thead>
         <tr>
@@ -24,7 +31,8 @@
                 <td data-sort="{{ schema.created_on|date:"Y-m-d H:i:s" }}">{{ schema.created_on }}</td>
                 <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{{ schema.modified_on }}</td>
                 <td>
-                    <a href="{% url 'datapackage-detail'  uuid=schema.uuid %}" class="btn btn-primary btn-sm">View</a>&nbsp;{% include 'core/_download-schema-button.html' with uuid=schema.uuid button_size='btn-sm' %}
+                    <a href="{% url 'datapackage-detail'  uuid=schema.uuid %}" class="btn btn-primary btn-sm">View</a>
+                    {% include 'core/_download-schema-button.html' with uuid=schema.uuid button_size='btn-sm' %}
                 </td>
             </tr>
         {% endfor %}
