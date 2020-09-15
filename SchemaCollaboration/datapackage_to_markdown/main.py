@@ -1,6 +1,6 @@
+import os
 import subprocess
 from tempfile import NamedTemporaryFile
-import os
 
 from jinja2 import Template
 
@@ -33,27 +33,44 @@ def datapackage_to_pdf(datapackage):
     return pdf_content
 
 
-template_to_md = '''
-# NAME
-{{ name }}
+template_to_md = '''# {{ title }}
 
-# TITLE
-{{ title }}
+## Dataset description
+{{ description }}
+{% if contributors|length == 1 %}
+## Contributor
+{% else %}
+## Contributors
+{% endif %}{% for contributor in contributors %} * {{ contributor.title }} ({{ contributor.role }})
+{% endfor %}{% if keywords|length == 1 %}
+## Keyword
+{% else %}## Keywords
+{% endif %}{% for keyword in keywords %} * {{ keyword }}
+{% endfor %}
+## Version
+{{ version }}
 
-Contributors: {% for contributor in contributors %}{{ contributor.title }} ({{ contributor.role }}){% endfor %}
+## Homepage
+[{{ homepage }}]({{ homepage }})
 
-# Resources
+## Data processing
+TODO
+
+## Quality checking
+TODO
+{% if licenses|length == 1 %}
+## Dataset license
+{% else %}
+## Dataset license
+{% endif %}{% for license in licenses %} * {{ license.title }} ([{{ license.name }}]({{ license.path }}))
+{% endfor %}
+## Dataset citation
+TODO
+
+## Resources
 {% for resource in resources %}
-## {{ resource.name }}
-### Fields
-{% for field in resource.schema.fields %}
-#### {{ field.name }}
-
-Type: {{ field.type }}
-
-Format: {{ field.format }}
-
-Description: {{ field.description }}
+### {{ resource.path }}
+{% for field in resource.schema.fields %} * **{{ field.name }}** ({{ field.type }}): {{ field.description }}
 
 {% endfor %} 
 {% endfor %}
