@@ -13,9 +13,11 @@ def datapackage_to_markdown(datapackage):
 
 
 template_to_md = '''
-NAME: {{ name }}
+# NAME
+{{ name }}
 
-TITLE: {{ title }}
+# TITLE
+{{ title }}
 
 Contributors: {% for contributor in contributors %}{{ contributor.title }} ({{ contributor.role }}){% endfor %}
 

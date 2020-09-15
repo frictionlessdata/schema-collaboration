@@ -125,7 +125,6 @@ class ApiSchemaView(View):
         return response
 
 
-@method_decorator(csrf_exempt, name='dispatch')
 class ApiSchemaMarkdownView(View):
     def get(self, request, *args, **kwargs):
         schema = Datapackage.objects.get(uuid=self.kwargs['uuid'])
@@ -138,7 +137,6 @@ class ApiSchemaMarkdownView(View):
         return response
 
 
-@method_decorator(csrf_exempt, name='dispatch')
 class ApiSchemaPdfView(View):
     def get(self, request, *args, **kwargs):
         schema = Datapackage.objects.get(uuid=self.kwargs['uuid'])
@@ -154,9 +152,9 @@ class ApiSchemaPdfView(View):
         process = subprocess.run(['pandoc', '-t', 'latex', '-o', f.name],
                                  input=markdown.encode('utf-8'))
 
-        output = open(f.name, 'rb').read()
+        pdf_content = open(f.name, 'rb').read()
 
-        response = HttpResponse(status=200, content=output)
+        response = HttpResponse(status=200, content=pdf_content)
         response['Content-Type'] = 'application/pdf'
 
         return response
