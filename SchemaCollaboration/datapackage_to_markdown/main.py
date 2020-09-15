@@ -1,3 +1,7 @@
+import subprocess
+from tempfile import NamedTemporaryFile
+import os
+
 from jinja2 import Template
 
 
@@ -10,6 +14,23 @@ def datapackage_to_markdown(datapackage):
     rendered = template.render(datapackage)
 
     return rendered
+
+
+def datapackage_to_pdf(datapackage):
+    markdown = datapackage_to_markdown(datapackage)
+
+    f = NamedTemporaryFile(suffix='.pdf', delete=False)
+    f.close()
+
+    subprocess.run(['pandoc', '-t', 'latex', '-o', f.name],
+                   input=markdown.encode('utf-8'))
+
+    pdf_file = open(f.name, 'rb')
+
+    pdf_content = pdf_file.read()
+    os.unlink(f.name)
+
+    return pdf_content
 
 
 template_to_md = '''
