@@ -93,7 +93,11 @@ class ApiSchemaView(View):
 
         if download:
             date = f'{schema.modified_on:%Y%m%d-%H%M}'
-            name = f'{schema.name.replace(" ", "_")}-{date}.json'
+            if schema.name:
+                name = f'{schema.name.replace(" ", "_")}-{date}.json'
+            else:
+                name = f'unnamed-{date}.json'
+
             response['Content-Disposition'] = f'attachment; filename="{name}"'
         return response
 
