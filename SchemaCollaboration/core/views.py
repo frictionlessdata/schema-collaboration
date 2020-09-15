@@ -14,9 +14,9 @@ from django.views.generic import TemplateView, ListView, DetailView, RedirectVie
 
 from comments.forms import CommentForm
 from comments.views import process_post_add_comment
+from datapackage_to_markdown.main import datapackage_to_markdown, datapackage_to_pdf
 from .models import Datapackage, Person
 
-from datapackage_to_markdown.main import datapackage_to_markdown
 
 class HomepageView(TemplateView):
     template_name = 'core/homepage.html'
@@ -137,24 +137,12 @@ class ApiSchemaPdfView(View):
     def get(self, request, *args, **kwargs):
         schema = Datapackage.objects.get(uuid=self.kwargs['uuid'])
 
-        markdown = datapackage_to_markdown(json.loads(schema.schema))
+        pdf = datapackage_to_pdf(json.loads(schema.schema))
 
-        # This is a draft and needs to be done differently (at least streaming the file? catching exceptions and
-        # deleting the file? control errors if no pandoc/LaTeX, etc.)
-
-        f = NamedTemporaryFile(suffix='.pdf', delete=False)
-        f.close()
-
-        process = subprocess.run(['pandoc', '-t', 'latex', '-o', f.name],
-                                 input=markdown.encode('utf-8'))
-
-        pdf_content = open(f.name, 'rb').read()
-
-        response = HttpResponse(status=200, content=pdf_content)
+        response = HttpResponse(status=200, content=pdf)
         response['Content-Type'] = 'application/pdf'
 
         return response
-
 
 
 class DatapackageUiView(RedirectView):
