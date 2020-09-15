@@ -126,6 +126,7 @@ class ApiSchemaMarkdownView(View):
 
         response = HttpResponse(status=200, content=markdown)
         response['Content-Type'] = 'text/plain; charset=UTF-8'
+
         name = schema.file_name(extension='md')
         response['Content-Disposition'] = f'attachment; filename="{name}"'
 
