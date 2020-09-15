@@ -20,7 +20,7 @@
                     <a href="{% url 'management:person-update' pk=person.id %}" class="btn btn-primary btn-sm">Edit</a>
                     &nbsp;
                     <a href="{{ person.list_datapackages_url }}" class="btn btn-primary btn-sm">List Datapackages</a>
-                    {% include 'core/_clipboard-button.html' with url=person.list_datapackages_url id='copy_edit_link' button_text='Copy List Datapacakges' only %}
+                    {% include 'core/_clipboard-button.html' with url=person.list_datapackages_url id='copy_edit_link' button_text='Copy List Datapackages' only %}
                 </td>
             </tr>
         {% endfor %}

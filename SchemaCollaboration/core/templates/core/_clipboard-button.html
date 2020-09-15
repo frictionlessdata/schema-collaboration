@@ -3,7 +3,26 @@
 <button id="{{ id }}" class="btn btn-primary btn-sm"
         data-clipboard-text="{{ url }}">{{ button_text }}</button>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
 <script>
-    let clipboard = new ClipboardJS('#{{ id }}');
+    function setTooltip(button, message) {
+        $(button).tooltip('hide')
+            .attr('data-original-title', message)
+            .tooltip('show');
+    }
+
+    function hideTooltip(button) {
+        setTimeout(function () {
+            $(button).tooltip('hide');
+            $(button).attr('data-original-title', '');
+        }, 1000);
+    }
+
+    var clipboardJS = new ClipboardJS('#{{ id }}');
+
+    clipboardJS.on('success', function (e) {
+        setTooltip(e.trigger, 'Copied!');
+        hideTooltip(e.trigger);
+    });
 </script>
