@@ -32,7 +32,7 @@ def datapackage_to_pdf(datapackage):
     f = NamedTemporaryFile(suffix='.pdf', delete=False)
     f.close()
 
-    command_line = ['panxxdoc', '--to=latex', f'--output={f.name}']
+    command_line = ['pandoc', '--to=latex', f'--output={f.name}']
 
     try:
         pandoc_process = subprocess.run(command_line,
