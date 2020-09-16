@@ -5,25 +5,48 @@ from tempfile import NamedTemporaryFile
 from jinja2 import Template
 
 
-# This is designed in a way that is independent of Django
+# This file designed in a way that is independent of Django
 # in order to be easy (but changes are required) to be used
 # outside Django in the future
+# That's why is using jinja2 as a template language instead of
+# Django's template language.
 
 def datapackage_to_markdown(datapackage):
+    """
+    datapackage: datapackage schema as a dictionary
+    returns: str with the Markdown documentation
+    """
     template = Template(template_to_md)
     rendered = template.render(datapackage)
 
-    return rendered
+    return rendered.encode('utf-8')
 
 
 def datapackage_to_pdf(datapackage):
+    """
+    datapackage: datapackage schema as a dictionary
+    returns: binary content with the PDF or None if the conversion failed.
+    """
     markdown = datapackage_to_markdown(datapackage)
 
     f = NamedTemporaryFile(suffix='.pdf', delete=False)
     f.close()
 
-    subprocess.run(['pandoc', '-t', 'latex', '-o', f.name],
-                   input=markdown.encode('utf-8'))
+    command_line = ['panxxdoc', '--to=latex', f'--output={f.name}']
+
+    try:
+        pandoc_process = subprocess.run(command_line,
+                                        input=markdown)
+    except FileNotFoundError:
+        os.unlink(f.name)
+        raise OSError(f'FileNotFoundError trying to execute: {command_line}')
+    except subprocess.CalledProcessError:
+        os.unlink(f.name)
+        raise RuntimeError(f'CalledProcessError trying to execute: {command_line}')
+
+    if pandoc_process.returncode != 0:
+        os.unlink(f.name)
+        raise RuntimeError(f'Command {command_line} returned a PDF file of size 0')
 
     pdf_file = open(f.name, 'rb')
 

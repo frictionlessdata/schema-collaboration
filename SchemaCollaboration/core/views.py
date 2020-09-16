@@ -12,7 +12,7 @@ from django.views.generic import TemplateView, ListView, DetailView, RedirectVie
 
 from comments.forms import CommentForm
 from comments.views import process_post_add_comment
-from datapackage_to_markdown.main import datapackage_to_markdown, datapackage_to_pdf
+from datapackage_to_documentation.main import datapackage_to_markdown, datapackage_to_pdf
 from .models import Datapackage, Person
 
 
@@ -137,7 +137,12 @@ class ApiSchemaPdfView(View):
     def get(self, request, *args, **kwargs):
         schema = Datapackage.objects.get(uuid=self.kwargs['uuid'])
 
-        pdf = datapackage_to_pdf(json.loads(schema.schema))
+        try:
+            pdf = datapackage_to_pdf(json.loads(schema.schema))
+        except (RuntimeError, OSError) as e:
+            response = HttpResponse(status=500,
+                                    content=f'Cannot generate PDF: {e.args[0]}. Content the system administrator')
+            return response
 
         response = HttpResponse(status=200, content=pdf)
         response['Content-Type'] = 'application/pdf'
