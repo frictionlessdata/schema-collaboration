@@ -49,6 +49,5 @@ Visit http://127.0.0.1:8000/admin and you can login using the `admin` user recen
  * Click on `Log out` (top-right hand side)
  * Optional: click on `Datapackage statuses` and add Data Package Status. Suggested status: `Draft`, `In Progress` and `Completed`. Feel free to create status that suits your institution
  * Visit http://127.0.0.1:8000/accounts/login/ and login as a datamanger
- * 
 
- At this point the system is usable for the datamanger. 
+At this point the system is usable for the datamanger to login, create people and datapackages.
