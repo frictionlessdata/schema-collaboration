@@ -12,8 +12,8 @@ jobs:
     steps:
     - name: Install system dependencies
       run: |
-        apt-get update
-        apt-get install pandoc texlive-xetex
+        sudo apt-get update
+        sudo apt-get install pandoc texlive-xetex
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v1
