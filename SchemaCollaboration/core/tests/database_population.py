@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import Client
@@ -34,5 +36,43 @@ def create_person():
 def create_datapackage():
     datapackage, created = Datapackage.objects.get_or_create(name='For the unit test',
                                                              schema='''This should contain a datapackage''')
+
+    return datapackage
+
+
+def datapackage_schema():
+    datapackage = json.loads('''{
+  "profile": "tabular-data-package",
+  "resources": [
+    {
+      "name": "resource1",
+      "profile": "tabular-data-resource",
+      "schema": {}
+    }
+  ],
+  "keywords": [
+    "a",
+    "b",
+    "c"
+  ],
+  "name": "This is the name of the dataset",
+  "title": "This is the title of a dataset",
+  "description": "A very interesting dataset",
+  "homepage": "https://google.com",
+  "version": "1.0.2",
+  "contributors": [
+    {
+      "title": "marie bloe",
+      "role": "author"
+    }
+  ],
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "title": "Creative Commons Attribution 4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ]
+}''')
 
     return datapackage
