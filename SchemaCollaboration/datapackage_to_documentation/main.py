@@ -65,7 +65,8 @@ template_to_md = '''# {{ title }}
 {% else %}
 ## Contributors
 {% endif %}{% for contributor in contributors %} * {{ contributor.title }} ({{ contributor.role }})
-{% endfor %}{% if keywords|length == 1 %}
+{% endfor %}
+{% if keywords|length == 1 %}
 ## Keyword
 {% else %}## Keywords
 {% endif %}{% for keyword in keywords %} * {{ keyword }}
