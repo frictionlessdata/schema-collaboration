@@ -12,4 +12,4 @@ services:
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
     ports:
-      - 8000:8000
+      - "8000:80"

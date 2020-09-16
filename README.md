@@ -32,6 +32,23 @@ export FORCE_SQLITE3_DATABASE=1	# otherwise it would use Mysql/Mariadb and you n
 python3 manage.py migrate
 
 python3 manage.py runserver
+
+python3 manage.py createsuperuser --username admin
 ```
 
-Then visit http://127.0.0.1:8000/
+Then visit http://127.0.0.1:8000/ to see the Welcome page.
+
+## Setup the system: create the data manager user
+
+Visit http://127.0.0.1:8000/admin and you can login using the `admin` user recently created. Then please create the datamanger user (this might be automated in the future):
+ * Click on the left hand side panel on `Users`
+ * Click on the top-right option "Add User"
+ * Fill-in the Username and Password (e.g. `datamanager` or the name of the datamanager and a password). Click on `Save`
+ * Click on the left hand side panel on `People`
+ * Click on `Add Person`: in `Full name` enter the datamanger's full name. In `User` select the datamanger's User. Click on `Save`
+ * Click on `Log out` (top-right hand side)
+ * Optional: click on `Datapackage statuses` and add Data Package Status. Suggested status: `Draft`, `In Progress` and `Completed`. Feel free to create status that suits your institution
+ * Visit http://127.0.0.1:8000/accounts/login/ and login as a datamanger
+ * 
+
+ At this point the system is usable for the datamanger. 
