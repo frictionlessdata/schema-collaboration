@@ -42,7 +42,7 @@ Then visit http://127.0.0.1:8000/ to see the Welcome page.
 
 Visit http://127.0.0.1:8000/admin and you can login using the `admin` user recently created. Then please create the datamanger user (this might be automated in the future):
  * Click on the left hand side panel on `Users`
- * Click on the top-right option "Add User"
+ * Click on the top-right option `Add User`
  * Fill-in the Username and Password (e.g. `datamanager` or the name of the datamanager and a password). Click on `Save`
  * Click on the left hand side panel on `People`
  * Click on `Add Person`: in `Full name` enter the datamanger's full name. In `User` select the datamanger's User. Click on `Save`
