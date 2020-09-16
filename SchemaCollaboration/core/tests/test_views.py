@@ -144,4 +144,17 @@ class TestApiDatapackageMarkdown(TestCase):
 
 
 class TestApiDatapackagePdf(TestCase):
-    pass
+    def test_get(self):
+        c = Client()
+
+        schema_text = json.dumps(database_population.datapackage_schema())
+        schema = Datapackage.objects.create(schema=schema_text)
+
+        response = c.get(reverse('api-datapackage-pdf', kwargs={'uuid': schema.uuid}))
+        self.assertEqual(response['content-type'], 'application/pdf')
+        self.assertEqual(response.status_code, 200)
+
+        pdf = response.content
+
+        self.assertTrue(len(pdf) > 50000)
+        self.assertTrue(pdf.startswith(b'%PDF-1.5'))
