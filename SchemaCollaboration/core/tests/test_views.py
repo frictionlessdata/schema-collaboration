@@ -7,12 +7,24 @@ from . import database_population
 from ..models import Datapackage
 
 
-class ViewsTest(TestCase):
-    def test_homepage(self):
+class HomePageViewTest(TestCase):
+    def test_get(self):
         c = Client()
         response = c.get(reverse('homepage'))
 
         self.assertEqual(response.status_code, 200)
+
+
+class TestApiSchemaView(TestCase):
+    def test_get(self):
+        c = Client()
+
+        schema_text = 'This is a schema test2'
+        schema = Datapackage.objects.create(schema=schema_text)
+
+        response = c.get(reverse('api-datapackage', kwargs={'uuid': schema.uuid}))
+
+        self.assertEqual(response.content.decode('utf-8'), schema_text)
 
     def test_post(self):
         c = Client()
@@ -40,16 +52,8 @@ class ViewsTest(TestCase):
 
         self.assertEqual(schema.schema, new_schema)
 
-    def test_get(self):
-        c = Client()
 
-        schema_text = 'This is a schema test2'
-        schema = Datapackage.objects.create(schema=schema_text)
-
-        response = c.get(reverse('api-datapackage', kwargs={'uuid': schema.uuid}))
-
-        self.assertEqual(response.content.decode('utf-8'), schema_text)
-
+class TestDatapackageUiView(TestCase):
     def test_datapackage_no_uuid(self):
         c = Client()
 
@@ -66,6 +70,8 @@ class ViewsTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/static/datapackage-ui/index.html?load=this_is_a_potential_uuid')
 
+
+class TestDatapackageDetailView(TestCase):
     def test_datapackage_detail(self):
         c = Client()
 
@@ -79,6 +85,8 @@ class ViewsTest(TestCase):
         # TODO: add more verification    tests
         # self.assertContains(response, schema_text)
 
+
+class TestDatapackageListView(TestCase):
     def test_datapackage_list(self):
         datapackage = database_population.create_datapackage()
         collaborator = database_population.create_person()
@@ -91,6 +99,8 @@ class ViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, collaborator.full_name)
 
+
+class TestDatapackageAddCommentView(TestCase):
     def test_add_comment(self):
         datapackage = database_population.create_datapackage()
         collaborator = database_population.create_person()
