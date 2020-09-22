@@ -1,7 +1,5 @@
 #!/bin/bash -e
 
-echo "SECRET_KEY: $SECRET_KEY"
-
 if [ "x$SECRET_KEY" == "x" ]
 then
   export SECRET_KEY=$(tr -dc 'a-z0-9!@#$%^&*(-_=+)' < /dev/urandom | head -c60)

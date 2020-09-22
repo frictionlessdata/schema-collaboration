@@ -19,10 +19,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if options['only_if_no_people'] and Person.objects.count() > 0:
             print('There are people in the database - not creating anyone else')
-            return 1
+            return
 
         if not check_options(options):
-            return 1
+            return
 
         datamanager_username = options['datamanager_user_name']
         datamanager_full_name = options['datamanager_full_name']
@@ -35,7 +35,6 @@ class Command(BaseCommand):
 
         User.objects.create_superuser('admin', password=options['admin_password'])
         print('Done!')
-        return 0
 
 def check_options(options):
     required_options = ['datamanager_user_name', 'datamanager_full_name', 'datamanager_password', 'admin_password']

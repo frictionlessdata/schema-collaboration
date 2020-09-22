@@ -43,6 +43,7 @@ docker run \
     -e DATAMANAGER_FULL_NAME="DataName DataSurname" \
     -e DATAMANAGER_PASSWORD=dm_secret_pwd \
     -e DB_NAME=schema_collaboration \
+    -e DB_USER=schema_collaboration \
     -e DB_PASSWORD=schema-collaboration-db-password \
     -e DB_HOST=localhost \
     -e DB_PORT=3306 \
