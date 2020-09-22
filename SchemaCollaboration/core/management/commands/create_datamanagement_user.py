@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 from django.db import transaction, IntegrityError
-from django.db.transaction import set_autocommit
 
 from core.models import Person
 

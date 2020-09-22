@@ -34,7 +34,7 @@ class Person(CreateModifyOn):
 
 
 class DatapackageStatus(CreateModifyOn):
-    name = models.CharField(max_length=500, null=False, blank=True)
+    name = models.CharField(max_length=255, null=False, blank=True, unique=True)
 
     def __str__(self):
         return self.name
