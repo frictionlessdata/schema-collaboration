@@ -19,7 +19,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if options['only_if_no_people'] and Person.objects.count() > 0:
             print('There are people in the database - not creating anyone else')
-            return
+            return 1
+
+        if not check_options(options):
+            return 1
 
         datamanager_username = options['datamanager_user_name']
         datamanager_full_name = options['datamanager_full_name']
@@ -32,6 +35,19 @@ class Command(BaseCommand):
 
         User.objects.create_superuser('admin', password=options['admin_password'])
         print('Done!')
+        return 0
+
+def check_options(options):
+    required_options = ['datamanager_user_name', 'datamanager_full_name', 'datamanager_password', 'admin_password']
+
+    valid = True
+
+    for required_option in required_options:
+        if options[required_option] == '':
+            valid = False
+            print(f'{required_option} cannot be an empty string')
+
+    return valid
 
 
 @transaction.atomic

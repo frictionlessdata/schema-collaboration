@@ -1,5 +1,8 @@
 version: '3'
 
+# This is an example docker-compose.yml
+# See the Docker documentation in docker/README.md
+
 services:
   schema-collaboration:
     image: schema-collaboration
