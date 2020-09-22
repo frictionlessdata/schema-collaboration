@@ -2,7 +2,7 @@
 
 echo "SECRET_KEY: $SECRET_KEY"
 
-if [ x"$SECRET_KEY" == "x" ]
+if [ "x$SECRET_KEY" == "x" ]
 then
   export SECRET_KEY=$(tr -dc 'a-z0-9!@#$%^&*(-_=+)' < /dev/urandom | head -c60)
   echo "================================================================"
@@ -12,7 +12,7 @@ then
   echo "================================================================"
 fi
 
-if [ x"" == "" ]
+if [ "x$ALLOWED_HOSTS" == "x" ]
 then
   export ALLOWED_HOSTS="0.0.0.0"
   echo "================================================================"
