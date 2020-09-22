@@ -78,6 +78,7 @@ WSGI_APPLICATION = 'SchemaCollaboration.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 if os.getenv('FORCE_SQLITE3_DATABASE', False):
+    print('schema-collaboration will use a sqlite3 database')
     # sqlite3 is used for the unit tests on Github Actions - but it can be used for manual testing if needed
     DATABASES = {
         'default': {
@@ -86,6 +87,7 @@ if os.getenv('FORCE_SQLITE3_DATABASE', False):
         }
     }
 else:
+    print('schema-collaboration will use a Mysql backend')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',

@@ -8,10 +8,14 @@ class Command(BaseCommand):
     help = 'Creates default data package status'
 
     def add_arguments(self, parser):
-        pass
+        parser.add_argument('--only-if-no-status', action='store_true')
 
     def handle(self, *args, **options):
-        create_status(['Draft', 'In Progress', 'Completed'])
+        if options['only_if_no_status'] and DatapackageStatus.objects.count() > 0:
+            print('Database already contains status - doing nothing')
+            return
+
+        return create_status(['Draft', 'In Progress', 'Completed'])
 
 
 def create_status(status_names):
