@@ -1,13 +1,24 @@
 #!/bin/bash -e
 
+echo "SECRET_KEY: $SECRET_KEY"
+
 if [ x"$SECRET_KEY" == "x" ]
 then
-  SECRET_KEY=$(tr -dc 'a-z0-9!@#$%^&*(-_=+)' < /dev/urandom | head -c60)
-  export SECRET_KEY
+  export SECRET_KEY=$(tr -dc 'a-z0-9!@#$%^&*(-_=+)' < /dev/urandom | head -c60)
   echo "================================================================"
   echo "Warning: SECRET_KEY is empty. Please provide a Django secret key to keep the sessions valid between restarts"
   echo "A random SECRET_KEY has been generated. See this container's documentation or Django documentation for more information:"
   echo "https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECRET_KEY"
+  echo "================================================================"
+fi
+
+if [ x"" == "" ]
+then
+  export ALLOWED_HOSTS="0.0.0.0"
+  echo "================================================================"
+  echo "Warning: ALLOWED_HOSTS was empty. Using 0.0.0.0 as a wildcard. Please see Django's documentation"
+  echo "https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts"
+  echo "You can use a list like 'localhost,schema-collaboration.yourisntitution.edu'"
   echo "================================================================"
 fi
 
