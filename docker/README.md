@@ -12,9 +12,9 @@ $ docker pull cpina/schema-collaboration
 Execute it passing the environment variables to create the admin password and data manager user:
 ```
 docker run \
-    --interactive --tty
-    --name schema_collaboration
-    --publish 8000:80
+    --interactive --tty \
+    --name schema_collaboration \
+    --publish 8000:80 \
     -e FORCE_SQLITE3_DATABASE=1 \
     -e ADMIN_PASSWORD=my_secret_pw \
     -e DATAMANAGER_USERNAME=data \
@@ -66,6 +66,37 @@ docker run \
 See the sqlite3 for the URLs.
 
 ## Via `docker-compose`
+
+### sqlite3 example
+Create a file named `docker-compose.yml` with the following content:
+```
+version: '3'
+
+services:
+  schema-collaboration:
+    image: cpina/schema-collaboration
+    environment:
+      FORCE_SQLITE3_DATABASE: 1
+
+      ADMIN_PASSWORD: admin_password
+      DATAMANAGER_USERNAME: data
+      DATAMANAGER_FULL_NAME: Data Manager
+      DATAMANAGER_PASSWORD: secret_password
+    ports:
+      - "8000:80"
+```
+
+Execute:
+```
+$ docker-compose up --build
+```
+
+Visit http://localhost:8000
+
+See sqlite3 section for the list of URLs to test.
+
+### Generic example
+
 An example file to be modified. See the "Environment variable in Compose" how to pass the variables: https://docs.docker.com/compose/environment-variables/
 
 ```
@@ -93,8 +124,6 @@ services:
     ports:
       - "8000:80"
 ```
-
-See sqlite3 for the list of URLs to test.
 
 ## Production deployment notes
 When running the Docker schema-collaboration image it will execute the Django command `python3 manage.py check --deploy` and possibly show a list of warnings that can be addressed.
