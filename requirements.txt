@@ -1,10 +1,16 @@
 asgiref==3.2.10
+attrs==20.2.0
+click==7.1.2
+curlylint==0.12.0
 Django==3.1.1
 django-crispy-forms==1.9.2
 gunicorn==20.0.4
 Jinja2==2.11.2
 MarkupSafe==1.1.1
 mysqlclient==2.0.1
+parsy==1.1.0
+pathspec==0.8.0
 python-dotenv==0.14.0
 pytz==2020.1
 sqlparse==0.3.1
+toml==0.10.1
