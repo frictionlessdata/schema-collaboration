@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  schema-collaboration:
+    image: cpina/schema-collaboration
+    environment:
+      FORCE_SQLITE3_DATABASE: 1
+      DEBUG: 0
+      PRODUCTION_CHECKS: 1
+
+      ADMIN_PASSWORD: admin_password
+      DATAMANAGER_USERNAME: data
+      DATAMANAGER_FULL_NAME: Data Manager
+      DATAMANAGER_PASSWORD: secret_password
+    ports:
+      - "8000:80"

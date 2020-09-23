@@ -30,11 +30,12 @@ class Command(BaseCommand):
 
         try:
             create_datamanager(datamanager_username, datamanager_full_name, datamanager_password)
+            print('Created: datamanager user')
         except IntegrityError:
             print('Could not create the data manager')
 
         User.objects.create_superuser('admin', password=options['admin_password'])
-        print('Done!')
+        print('Created: admin user')
 
 def check_options(options):
     required_options = ['datamanager_user_name', 'datamanager_full_name', 'datamanager_password', 'admin_password']

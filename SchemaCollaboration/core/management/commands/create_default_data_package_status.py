@@ -13,7 +13,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if options['only_if_no_status'] and DatapackageStatus.objects.count() > 0:
             print('Database already contains status - doing nothing')
-            return
+            return 1
 
         return create_status(['Draft', 'In Progress', 'Completed'])
 
@@ -26,4 +26,4 @@ def create_status(status_names):
             print(f'Cannot create status name="{status_name}". Does already exist?')
             continue
 
-        print(f'Created {status_name}')
+        print(f'Created: {status_name} status')

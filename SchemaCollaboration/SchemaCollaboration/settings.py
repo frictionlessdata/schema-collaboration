@@ -18,19 +18,6 @@ from django.contrib import messages
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 1) == True
-
-ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(',')
-
-# Application definition
-
 INSTALLED_APPS = [
     'core',
     'management',
@@ -149,6 +136,23 @@ EXTRA_JS_FILE = os.environ.get('EXTRA_JS_FILE', None)
 
 LOGIN_REDIRECT_URL = '/management/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Settings for schema-collaboration
+SECRET_KEY = os.environ['SECRET_KEY']
+DEBUG = os.environ.get('DEBUG', '1') == '1'
+SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', '0') == '1'
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_REFERRER_POLICY = 'same-origin'
+
+ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(',')
+
+if os.environ.get('HSTS', '0') == '1':
+    SECURE_HSTS_PRELOAD = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+if 'SECURE_HSTS_SECONDS' in os.environ:
+    SECURE_HSTS_SECONDS = os.environ['SECURE_HSTS_SECONDS']
 
 try:
     from local_settings import *

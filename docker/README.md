@@ -145,6 +145,14 @@ Types of settings:
  * Optional: if not set the container will work (using defaults)
  * Production: relevant if deploying this container to production
 
+### PRODUCTION_CHECKS (optional, production)
+Set to 1 to enable the production checks.
+
+This executes:
+```
+$ python3 manage.py checks --deploy
+```
+
 ### `SECRET_KEY` (Django, optional, production)
 If not provided it's generated every time that the container starts. Sessions, cookies, etc. will expire on every container run.
 
@@ -179,7 +187,9 @@ Enables different Django settings at once:
  * `SECURE_HSTS_PRELOAD`. Django documentation: https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECURE_HSTS_PRELOAD
  * `SECURE_HSTS_INCLUDE_SUBDOMAINS`. Django documentation: https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECURE_HSTS_INCLUDE_SUBDOMAINS
 
-### `HSTS_SECONDS` (Django, optional, production)
+### `SECURE_HSTS_SECONDS` (Django, optional, production)
+Sets `SECURE_HSTS_SECONDS` in Django.
+
 Django documentation: https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECURE_HSTS_SECONDS
 
 ### `SECURE_PROXY_SSL_HEADER` (Django, optional, production)

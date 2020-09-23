@@ -25,7 +25,14 @@ fi
 python3 manage.py migrate
 python3 manage.py collectstatic --no-input --clear
 
-python3 manage.py check --deploy
+if [ -n "$PRODUCTION_CHECKS" -a "$PRODUCTION_CHECKS" == 1 ]
+then
+  echo "================================================================"
+  python3 manage.py check --deploy
+  echo "================================================================"
+else
+  echo "Skips production checks. Set PRODUCTION_CHECKS=1 to enable them"
+fi
 
 python3 manage.py create_datamanagement_and_admin_user --only-if-no-people \
 	"$DATAMANAGER_USERNAME" \
