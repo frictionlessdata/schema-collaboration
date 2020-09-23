@@ -16,7 +16,7 @@ then
   echo "================================================================"
   echo "Warning: ALLOWED_HOSTS was empty. For now using * as a wildcard. Please see Django's documentation"
   echo "https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts"
-  echo "You can use a list like 'localhost,schema-collaboration.yourisntitution.edu'"
+  echo "You can use a list like 'localhost,schema-collaboration.yourinstitution.edu'"
   echo "If you use an invalid parameter you can see in the Docker output or the HTTP response what"
   echo "it should have been for your request"
   echo "================================================================"
@@ -25,7 +25,7 @@ fi
 python3 manage.py migrate
 python3 manage.py collectstatic --no-input --clear
 
-if [ -n "$PRODUCTION_CHECKS" -a "$PRODUCTION_CHECKS" == 1 ]
+if [ -n "$PRODUCTION_CHECKS" ] && [ "$PRODUCTION_CHECKS" == 1 ]
 then
   echo "================================================================"
   python3 manage.py check --deploy
