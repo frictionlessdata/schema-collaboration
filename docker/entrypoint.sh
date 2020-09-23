@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-if [ "x$SECRET_KEY" == "x" ]
+if [ -z "$SECRET_KEY" ]
 then
   export SECRET_KEY=$(tr -dc 'a-z0-9!@#$%^&*(-_=+)' < /dev/urandom | head -c60)
   echo "================================================================"
@@ -10,7 +10,7 @@ then
   echo "================================================================"
 fi
 
-if [ "x$ALLOWED_HOSTS" == "x" ]
+if [ -z "$ALLOWED_HOSTS" ]
 then
   export ALLOWED_HOSTS="*"
   echo "================================================================"
@@ -48,7 +48,7 @@ unset ADMIN_PASSWORD
 
 python3 manage.py create_default_data_package_status --only-if-no-status
 
-if [ x"$FORCE_SQLITE3_DATABASE" == "x1" ]
+if [ -n "$FORCE_SQLITE3_DATABASE" ] && [ "$FORCE_SQLITE3_DATABASE" == "1" ]
 then
 	echo "================================================================"
 	echo "This instance is using sqlite3 database"

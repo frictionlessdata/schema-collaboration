@@ -65,11 +65,14 @@ WSGI_APPLICATION = 'SchemaCollaboration.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 if os.getenv('FORCE_SQLITE3_DATABASE', False):
+    # It's created in a new directory for convenience for Docker volumes
+    sqlite3_db_directory = os.path.join(BASE_DIR, 'data', )
+    os.makedirs(sqlite3_db_directory)
     # sqlite3 is used for the unit tests on Github Actions - but it can be used for manual testing if needed
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'NAME': os.path.join(sqlite3_db_directory, 'db.sqlite3'),
         }
     }
 else:
@@ -80,7 +83,7 @@ else:
             'USER': os.environ['DB_USER'],
             'PASSWORD': os.environ['DB_PASSWORD'],
             'HOST': os.environ['DB_HOST'],
-            'PORT': os.environ['DB_PORT']
+            'PORT': int(os.environ.get('DB_PORT', '3306'))
         }
     }
 
