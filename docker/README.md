@@ -1,6 +1,6 @@
 # schema-collaboration Docker
 
-The Docker image created for this project can use an internal sqlite3 database (for testing). For production it requires a MariaDB/MySQL database.
+The Docker image created for this project can use an internal sqlite3 database or a MariaDB/MySQL.
 
 ## Start a `schema-collaboration` server instance
 Download the image:
@@ -30,7 +30,7 @@ After running it:
  * Kill it with `Control+C`
  * Delete the image if you want to run again from scratch with `docker rm schema_collaboration`
 
-**Warning:** above command uses sqlite3 database. This is meant for testing and evaluating. For production use please use a MariaDB/MySQL server.
+**Warning: above command uses sqlite3 database and the sqlite3 file is not in a volume. On destroying the image the database will be destroyed.** There is an example using `docker-compose` below.
 
 ### MariaDB database
 For this you need to have a MariaDB/MySQL server with a user to access and manage the database. This user should have privileges to create and drop tables in the database. In case of doubt check your database manual. As a quick reference execute on the SQL shelL with enough privileges:
@@ -63,7 +63,7 @@ docker run \
     cpina/schema-collaboration
 ``` 
 
-See the sqlite3 for the URLs.
+See the sqlite3 for the URLs to use.
 
 ## Via `docker-compose`
 
@@ -84,6 +84,8 @@ services:
       DATAMANAGER_PASSWORD: secret_password
     ports:
       - "8000:80"
+    volumes:
+      - /home/admin/schema-collaboration-data:/code/SchemaCollaboration/data
 ```
 
 Execute:
@@ -91,13 +93,11 @@ Execute:
 $ docker-compose up --build
 ```
 
-Visit http://localhost:8000
-
-See sqlite3 section for the list of URLs to test.
+Visit http://localhost:8000. See other URLs in the first docker example.
 
 ### Generic example
 
-An example file to be modified. See the "Environment variable in Compose" how to pass the variables: https://docs.docker.com/compose/environment-variables/
+An example file to be modified. See the "Environment variable in Compose" how to pass the variables into `docker-compose`: https://docs.docker.com/compose/environment-variables/
 
 ```
 version: '3'
@@ -126,18 +126,33 @@ services:
 ```
 
 ## Production deployment notes
-When running the Docker schema-collaboration image it will execute the Django command `python3 manage.py check --deploy` and possibly show a list of warnings that can be addressed.
-
-The schema-collaboration Docker image is designed to be easy to use for evaluating/testing but also ready to be used in production. This is the reason that is executing the Django deploy check and warnings are displayed. These warnings can be ignored if used for evaluating the image and should be fixed if used in production.
-
-In certain circumstances depending on how the image is accessed some warnings might be not relevant. For example, the `SECURE_SSL_REDIRECT` might not be relevant this application is accessible only via `https`.
+Set `PRODUCTION_CHECKS` to 1 in order to run the Django command `python3 manage.py check --deploy` . This might show warnings that you can fix using other variables depending on the configuration of your server. For example, the `SECURE_SSL_REDIRECT` might not be relevant this application is accessible only via `https`.
 
 See the settings marked as *production* in the `Environment variables` section to help you to avoid warnings.
 
 ## Change other settings in `settings.py`
 The most common settings to be changed can be configured just using environment variables.
 
-You might need to tweak other settings in `settings.py`. If this is the case you can make a new At the end of the `settings.py` it includes `local_settings.py`. Make a file named `local_settings.py` available using a one file volume or building an Docker image to expose this file and any settings can be added or modified.
+You might need to tweak other settings in `settings.py`. If this is the case you can make a new At the end of the `settings.py` it includes `local_settings.py`. Prepare a new Dockerfile and add the file in the same directory as `settings.py`. It's imported at the end.
+
+For example, create a new directory and two files: `local_settings.py` with the settings that you might want to change and a Dockefile:
+```
+FROM cpina/schema-collaboration
+COPY local_settings.py /code/SchemaCollaboration
+```
+
+Then:
+```
+$ docker build -t schema-collaboration-local-settings .
+```
+
+If the `local_settings.py` contained a `print('local settings loaded')` when you run:
+```
+$ docker run -it -e FORCE_SQLITE3_DATABASE=1 schema-collaboration-local-settings:latest
+```
+You would see it.
+
+
 
 ## Environment variables
 Types of settings:
