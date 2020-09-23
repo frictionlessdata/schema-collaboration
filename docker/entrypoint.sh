@@ -12,11 +12,13 @@ fi
 
 if [ "x$ALLOWED_HOSTS" == "x" ]
 then
-  export ALLOWED_HOSTS="0.0.0.0"
+  export ALLOWED_HOSTS="*"
   echo "================================================================"
-  echo "Warning: ALLOWED_HOSTS was empty. Using 0.0.0.0 as a wildcard. Please see Django's documentation"
+  echo "Warning: ALLOWED_HOSTS was empty. For now using * as a wildcard. Please see Django's documentation"
   echo "https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts"
   echo "You can use a list like 'localhost,schema-collaboration.yourisntitution.edu'"
+  echo "If you use an invalid parameter you can see in the Docker output or the HTTP response what"
+  echo "it should have been for your request"
   echo "================================================================"
 fi
 

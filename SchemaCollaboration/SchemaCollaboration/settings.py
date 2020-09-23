@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 1) == True
 
 ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(',')
 
@@ -149,3 +149,8 @@ EXTRA_JS_FILE = os.environ.get('EXTRA_JS_FILE', None)
 
 LOGIN_REDIRECT_URL = '/management/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
