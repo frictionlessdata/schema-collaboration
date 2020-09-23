@@ -2,7 +2,7 @@
 
 # --rule 'indent: "tab"' Disabled, doesn't apply
 
-curlylint --include '\.tmpl' \
+curlylint --include '\.html' \
 	--rule 'html_has_lang: "en"' \
 	--rule 'aria_role: true' \
 	--rule 'django_forms_rendering: true' \
