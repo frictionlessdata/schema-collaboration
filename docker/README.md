@@ -1,15 +1,21 @@
 # schema-collaboration Docker
 
+Pre-requisite: Docker running in the system. See Docker documentation to install it (https://docs.docker.com/get-docker/) and optionally but recommended docker-compose (https://docs.docker.com/get-docker/). schema-collaboration can be used without Docker, please refer to the main README.md file.
+
+This guide will help you set up schema-collaboration on your own desktop machine for testing or your server if you wish.
+ 
 The Docker image created for this project can use an internal sqlite3 database or a MariaDB/MySQL.
 
-## Start a `schema-collaboration` server instance
+The schema-collaboration Docker image can use an sqlite3 database (requires no setup) or can use a MariaDB/MySQL server (requires an existing server, not bundled with schema-collaboration Docker image). In addition you can choose to use `docker run` commands (see section `Using plain Docker commands`) or create a `docker-compose.yml` (see section `Using docker-compose`).
+
+## Using plain Docker commands
 Download the Docker image:
 ```
 $ docker pull cpina/schema-collaboration
 ```
 
 ### Using an sqlite3 database
-**Warning: if you intent to persist the data of this Docker container see the section ... On destroying the container ran in this example the database will be destroyed.**
+**Warning: if you intend to persist the data of this Docker container see the section `docker-compose` in order to setup the Docker volume. On destroying the container run in this example the database will be destroyed.**
 
 Run the Docker image, passing the environment variables to create the admin password and data manager credentials:
 ```
@@ -67,7 +73,7 @@ docker run \
 
 See the sqlite3 for the URLs to use.
 
-## Via `docker-compose`
+## Using `docker-compose`
 
 ### sqlite3 example
 Create a file named `docker-compose.yml` with the following content:
