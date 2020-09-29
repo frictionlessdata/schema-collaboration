@@ -18,8 +18,8 @@ $ docker pull cpina/schema-collaboration
 **Warning: if you intend to persist the data of this Docker container see the section `docker-compose` in order to setup the Docker volume. On destroying the container run in this example the database will be destroyed.**
 
 Run the Docker image, passing the environment variables to create the admin password and data manager credentials:
-```
-docker run \
+```sh
+$ docker run \
     --interactive --tty \
     --name schema_collaboration \
     --publish 8000:80 \
@@ -42,7 +42,7 @@ If you want to run it again from scratch delete the container: `docker rm schema
 For this you need to have a MariaDB/MySQL server with a user to access and manage the database. This user should have privileges to create and drop tables in the database.
 
 With sufficient privileges, execute the following in an SQL shell:
-```
+```sql
 create database schema_collaboration;
 use schema_collaboration;
 
@@ -54,8 +54,8 @@ flush privileges;
 ```
 
 Then you can run `schema-collaboration` with the credentials for the database. E.g.:
-```
-docker run \
+```sh
+$ docker run \
     --interactive \
     --name schema-collaboration \
     --publish 8000:80 \
@@ -97,7 +97,7 @@ services:
 ```
 
 Execute:
-```
+```sh
 $ docker-compose up --build
 ```
 
@@ -146,7 +146,7 @@ Most common settings can be changed using environment variables.
 You might need to tweak other settings in `settings.py`. If this is the case create a Docker image based on the current one and create a `local_settings.py` file. This file will be imported after `settings.py` so any variables can be created or overriden.
 
 For example: create a new directory:
-```
+```sh
 mkdir schema-collaboration-local-settings
 ```
 And within this directory create a `local_settings.py` file which will contain any settings you wish to change. For example:
@@ -162,12 +162,12 @@ COPY local_settings.py /code/SchemaCollaboration
 ```
 
 Build the new image (using the new `schema-collaboration-local-settings`):
-```
+```sh
 $ docker build -t schema-collaboration-local-settings .
 ```
 
 Run the Docker image using the examples from above according to your database setup. Ensure you use the newly created image `schema-collaboration-local-settings:latest`, for example:
-```
+```sh
 $ docker run -it -e FORCE_SQLITE3_DATABASE=1 --publish 8000:80 schema-collaboration-local-settings:latest
 ```
 
@@ -184,7 +184,7 @@ Types of settings:
 Set to 1 to enable the production checks.
 
 This executes:
-```
+```sh
 $ python3 manage.py checks --deploy
 ```
 
@@ -194,7 +194,7 @@ Provides Django warnings relevant only when deploying for production.
 If not provided the secret key is generated every time that the container starts. Sessions, cookies, etc. will expire on every container run.
 
 To generate it you could do on a Linux system:
-```
+```sh
 $ tr -dc 'a-z0-9!@#$%^&*(-_=+)' < /dev/urandom | head -c60
 ```
 
