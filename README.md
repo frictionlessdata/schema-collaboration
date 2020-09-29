@@ -17,7 +17,7 @@ This application is not ready to be used yet.
 
 The application uses Django. Suggested steps:
 
-```
+```sh
 git clone git@github.com:frictionlessdata/schema-collaboration.git
 cd schema-collaboration
 python3 -m venv venv
@@ -36,7 +36,7 @@ python3 manage.py runserver
 python3 manage.py create_datamanagement_user \
 	data_username \
 	"DataManagerName DataManagerSurname" \
-	"data_manager_secret_pwd" \
+	data_manager_secret_pwd \
 	admin_secret_pwd
 
 python3 manage.py create_status # This will create default three status and can be changed at any time
