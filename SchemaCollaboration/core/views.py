@@ -16,6 +16,17 @@ from datapackage_to_documentation.main import datapackage_to_markdown, datapacka
 from .models import Datapackage, Person
 
 
+def remove_prefix(text):
+    # Python 3.9+ has removeprefix straight away
+    # https://stackoverflow.com/a/16891438/9294284
+
+    prefix = 'text/json;charset=utf-8,'
+    
+    if text.startswith(prefix):  # only modify the text if it starts with the prefix
+        text = text.replace(prefix, "", 1)  # remove one instance of prefix
+    return text
+
+
 class HomepageView(TemplateView):
     template_name = 'core/homepage.html'
 
@@ -103,6 +114,8 @@ class ApiSchemaView(View):
         uuid = kwargs['uuid']
         body = request.body.decode('utf-8')
 
+        body = remove_prefix(body)
+
         schema = Datapackage.objects.get(uuid=uuid)
         schema.schema = body
         schema.save()
@@ -112,6 +125,9 @@ class ApiSchemaView(View):
 
     def post(self, request, *args, **kwargs):
         body = request.body.decode('utf-8')
+
+        body = remove_prefix(body)
+
         schema = Datapackage.objects.create(schema=body)
 
         response = HttpResponse(status=200, content='hello test carles')

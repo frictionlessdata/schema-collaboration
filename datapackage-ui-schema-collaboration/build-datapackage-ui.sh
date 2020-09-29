@@ -2,7 +2,7 @@
 
 SCRIPT_BASE_DIRECTORY=$(dirname "${BASH_SOURCE[0]}")
 
-# rsync -arv "$SCRIPT_BASE_DIRECTORY/src" "$SCRIPT_BASE_DIRECTORY/../datapackage-ui"
+rsync -arv "$SCRIPT_BASE_DIRECTORY/src" "$SCRIPT_BASE_DIRECTORY/../datapackage-ui"
 
 cd "$SCRIPT_BASE_DIRECTORY/../datapackage-ui"
 
