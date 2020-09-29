@@ -1,8 +1,10 @@
 venv/
-SchemaCollaboration/db.sqlite3
 __pycache__/
 .env
 .idea/
+
+SchemaCollaboration/db.sqlite3
+SchemaCollaboration/data/
 
 # For runtime and where Django collects the static files
 # (see settings.STATIC_ROOT). For saving the static files use
