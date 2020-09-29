@@ -17,14 +17,36 @@ from .models import Datapackage, Person
 
 
 def remove_prefix(text):
-    # Python 3.9+ has removeprefix straight away
+    # In Python 3.9+ has removeprefix straight away
     # https://stackoverflow.com/a/16891438/9294284
 
     prefix = 'text/json;charset=utf-8,'
-    
+
     if text.startswith(prefix):  # only modify the text if it starts with the prefix
         text = text.replace(prefix, "", 1)  # remove one instance of prefix
     return text
+
+
+def get_name_from_datapackage(body):
+    """
+    Returns a name of the datapackage. It's the field name if it has it,
+    else it is a concatenation of the resources.
+    """
+    body_json = json.loads(body)
+
+    name = body_json.get('name', None)
+
+    if name is None:
+        resources = body_json.get('resources', None)
+
+        if isinstance(resources, list):
+            resource_names = []
+            for resource in resources:
+                resource_names.append(resource['name'])
+
+            name = ', '.join(resource_names)
+
+    return name
 
 
 class HomepageView(TemplateView):
@@ -128,10 +150,13 @@ class ApiSchemaView(View):
 
         body = remove_prefix(body)
 
-        schema = Datapackage.objects.create(schema=body)
+        name = get_name_from_datapackage(body)
 
-        response = HttpResponse(status=200, content='hello test carles')
-        return response
+        schema = Datapackage.objects.create(schema=body, name=name)
+
+        data = {'uuid': str(schema.uuid)}
+
+        return JsonResponse(data, status=200)
 
 
 class ApiSchemaMarkdownView(View):
