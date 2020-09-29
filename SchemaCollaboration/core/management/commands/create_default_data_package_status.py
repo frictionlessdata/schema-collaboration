@@ -15,7 +15,11 @@ class Command(BaseCommand):
             print('Database already contains status - doing nothing')
             return
 
-        return create_status(['Draft', 'In Progress', 'Completed'])
+        create_status(['Draft', 'In Progress', 'Completed'])
+
+        draft_status = DatapackageStatus.objects.get(name='Draft')
+        draft_status.behaviour = DatapackageStatus.StatusBehaviour.DEFAULT_ON_DATAPACKAGE_CREATION
+        draft_status.save()
 
 
 def create_status(status_names):

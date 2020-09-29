@@ -37,6 +37,7 @@ class Command(BaseCommand):
         User.objects.create_superuser('admin', password=options['admin_password'])
         print('Created: admin user')
 
+
 def check_options(options):
     required_options = ['datamanager_user_name', 'datamanager_full_name', 'datamanager_password', 'admin_password']
 

@@ -34,7 +34,14 @@ class Person(CreateModifyOn):
 
 
 class DatapackageStatus(CreateModifyOn):
+    class StatusBehaviour(models.TextChoices):
+        DEFAULT_ON_DATAPACKAGE_CREATION = 'CREATION', 'Default on Creation'
+
     name = models.CharField(max_length=255, null=False, blank=True, unique=True)
+    behaviour = models.CharField(max_length=9,
+                                 choices=StatusBehaviour.choices,
+                                 null=True, blank=True,
+                                 unique=True)
 
     def __str__(self):
         return self.name
