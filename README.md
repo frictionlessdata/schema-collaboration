@@ -10,12 +10,12 @@ See progress on https://github.com/frictionlessdata/schema-collaboration/wiki
 
 An installation to play with: https://carles.eu.pythonanywhere.com
 
+schema-collaboration can be tested or deployed using Docker. See the Docker instructions: https://github.com/frictionlessdata/schema-collaboration/blob/master/docker/README.md
+
 # Installation for development
 This application is not ready to be used yet.
 
-A Docker container and docker-compose.yml will exist to facilitate deployments.
-
-At the moment certain familiarity with Django and databases is still needed.
+The application uses Django. Suggested steps:
 
 ```
 git clone git@github.com:frictionlessdata/schema-collaboration.git
@@ -33,9 +33,11 @@ python3 manage.py migrate
 
 python3 manage.py runserver
 
-python3 manage.py createsuperuser --username admin
-
-python3 manage.py create_datamanagement_user John "John Doe" "a_password_for_john" # replace username, user full name and password
+python3 manage.py create_datamanagement_user \
+	data_username \
+	"DataManagerName DataManagerSurname" \
+	"data_manager_secret_pwd" \
+	admin_secret_pwd
 
 python3 manage.py create_status # This will create default three status and can be changed at any time
 ```
