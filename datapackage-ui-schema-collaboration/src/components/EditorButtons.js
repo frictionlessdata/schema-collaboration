@@ -57,7 +57,7 @@ function EditorButtonsPure({
       <button
         className="btn btn-lg btn-info"
         title="Save current schema to the server"
-	onClick={() => onSaveToServer(`${decodeURIComponent(encodedDescriptor)}`)}
+        onClick={() => onSaveToServer(`${decodeURIComponent(encodedDescriptor)}`)}
       >
         Save to server
       </button>
