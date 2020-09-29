@@ -105,7 +105,8 @@ class TestApiSchemaView(TestCase):
 
         schema_count_before_post = Datapackage.objects.all().count()
 
-        response = c.post(reverse('api-datapackage'), data='This should be a frictionless datapackage schema',
+        response = c.post(reverse('api-datapackage'),
+                          data='{ "profile": "tabular-data-package", "resources": [ { "name": "resource1", "profile": "tabular-data-resource", "schema": {} } ] }',
                           content_type='application/json')
 
         self.assertEqual(response.status_code, 200)

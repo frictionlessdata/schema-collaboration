@@ -41,7 +41,8 @@ class DatapackageStatus(CreateModifyOn):
     behaviour = models.CharField(max_length=9,
                                  choices=StatusBehaviour.choices,
                                  null=True, blank=True,
-                                 unique=True)
+                                 unique=True,
+                                 help_text='')
 
     def __str__(self):
         return self.name
