@@ -17,10 +17,10 @@ function EditorSchemaCollaborationButtonsPure({
 
   onLoadFromServer,
 }) {
-    // Horrible way to trigger a load from server on the Datapackage-UI load
-    useEffect(() =>
-        this.loadFromServerButton.click()
-        , []);
+  // Horrible way to trigger a load from server on the Datapackage-UI load
+  useEffect(() =>
+    this.loadFromServerButton.click()
+  , [])
 
   return (
     <div>
