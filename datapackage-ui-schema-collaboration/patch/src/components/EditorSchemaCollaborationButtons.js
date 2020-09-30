@@ -19,11 +19,8 @@ function EditorSchemaCollaborationButtonsPure({
 }) {
     // Horrible way to trigger a load from server on the Datapackage-UI load
     useEffect(() =>
-        setTimeout(() => {
-            this.btn.click()
-        })
-        ,[])
-    ;
+        this.loadFromServerButton.click()
+        , []);
 
   return (
     <div>
@@ -76,7 +73,7 @@ function EditorSchemaCollaborationButtonsPure({
         className="btn btn-lg btn-info"
         title="Load from the server"
         onClick={onLoadFromServer}
-        ref={(button) => { this.btn = button }}
+        ref={(button) => { this.loadFromServerButton = button }}
       >
         Load from the server
       </button>
