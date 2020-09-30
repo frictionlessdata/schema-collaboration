@@ -1,5 +1,6 @@
 const axios = require('axios')
 const React = require('react')
+const { useEffect } = require('react')
 const { connect } = require('react-redux')
 
 const onSaveToServer = require('./SchemaCollaborationSaveToServer').onSaveToServer
@@ -16,6 +17,14 @@ function EditorSchemaCollaborationButtonsPure({
 
   onLoadFromServer,
 }) {
+    // Horrible way to trigger a load from server on the Datapackage-UI load
+    useEffect(() =>
+        setTimeout(() => {
+            this.btn.click()
+        })
+        ,[])
+    ;
+
   return (
     <div>
       {/* Upload */}
@@ -67,6 +76,7 @@ function EditorSchemaCollaborationButtonsPure({
         className="btn btn-lg btn-info"
         title="Load from the server"
         onClick={onLoadFromServer}
+        ref={(button) => { this.btn = button }}
       >
         Load from the server
       </button>
