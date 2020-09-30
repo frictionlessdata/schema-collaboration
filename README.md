@@ -13,6 +13,7 @@ An installation to play with: https://carles.eu.pythonanywhere.com
 schema-collaboration can be tested or deployed using Docker. See the Docker instructions: https://github.com/frictionlessdata/schema-collaboration/blob/master/docker/README.md
 
 # Installation for development
+## Server side Django
 This application is not ready to be used yet.
 
 The application uses Django. Suggested steps:
@@ -46,3 +47,13 @@ Visit http://127.0.0.1:8000/ to see the homepage.
 
 Visit http://127.0.0.1:8000/accounts/login/ to see the management (for the data manager) section.
 
+## Changes on datapackage-ui
+Further changes might be required in datapackage-ui (add, remove or change buttons; change how the datapackage is loaded and saved from the Django API, etc.).
+
+Two directories in this repository checkout are relevant for this:
+ * `datapackage-ui/`: this is a git submodule of datapackage-ui upstream. This might need updates, use another branch, etc.
+ * `datapackage-ui-schema-collaboration`: it contains `build-datapackage-ui.sh`: it copies the files from `datapackage-ui-schema-collaboration/patch` into `datapackage-ui/`, builds datapackage-ui and copies the resulting files into the static files directory
+
+At the moment I've avoided doing a fork+changes to keep it simpler to know the changes made and keep it simple (hopefully) how to update between different datapackage-ui versions.
+
+Note that `build-datapackage-ui.sh` executes `npm run build` in `datapackage-ui/`: make sure to install the dependencies as specific in datapackage-ui repository (https://github.com/frictionlessdata/datapackage-ui)
