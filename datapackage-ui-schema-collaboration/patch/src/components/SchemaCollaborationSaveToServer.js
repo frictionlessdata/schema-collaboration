@@ -1,4 +1,6 @@
 const axios = require('axios')
+const { toast } = require('react-toastify')
+
 const getParameterFromUrlByName = require('./SchemaCollaborationUtils').getParameterFromUrlByName
 
 export function onSaveToServer(data) {
@@ -25,7 +27,7 @@ export function onSaveToServer(data) {
       console.log(res)
       // TODO: move this from here: the user of this function should do this
       // eslint-disable-next-line no-undef
-      alert('Saved. Your UUID: ' + res.data.uuid)
+      toast('Saved! UUID: ' + res.data.uuid)
       return res
     })
     .catch((err) => err)

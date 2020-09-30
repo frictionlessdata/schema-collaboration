@@ -2,6 +2,7 @@ const axios = require('axios')
 const React = require('react')
 const { useEffect } = require('react')
 const { connect } = require('react-redux')
+const { ToastContainer } = require('react-toastify')
 
 const onSaveToServer = require('./SchemaCollaborationSaveToServer').onSaveToServer
 const getParameterFromUrlByName = require('./SchemaCollaborationUtils').getParameterFromUrlByName
@@ -24,6 +25,8 @@ function EditorSchemaCollaborationButtonsPure({
 
   return (
     <div>
+      <ToastContainer />
+
       {/* Upload */}
       <label
         className="btn btn-lg btn-success"

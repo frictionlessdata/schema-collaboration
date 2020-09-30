@@ -1,4 +1,6 @@
 require('./styles/base.css')
+require('react-toastify/dist/ReactToastify.css')
+
 require('regenerator-runtime/runtime')
 const { render } = require('./render')
 const { EditorSchema } = require('./components/EditorSchema')
