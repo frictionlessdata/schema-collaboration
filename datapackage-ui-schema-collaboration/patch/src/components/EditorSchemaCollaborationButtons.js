@@ -19,11 +19,8 @@ function EditorSchemaCollaborationButtonsPure({
 }) {
     // Horrible way to trigger a load from server on the Datapackage-UI load
     useEffect(() =>
-        setTimeout(() => {
-            this.loadFromServerButton.click()
-        }, 2000)
-        ,[])
-    ;
+        this.loadFromServerButton.click()
+        , []);
 
   return (
     <div>
