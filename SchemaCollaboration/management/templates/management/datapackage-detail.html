@@ -14,10 +14,7 @@
     <strong>Created on:</strong> {% include 'core/_value-or-dash.tmpl' with value=datapackage.created_on only %}<br>
     <strong>Modified on:</strong> {% include 'core/_value-or-dash.tmpl' with value=datapackage.modified_on only %}<br>
     <p></p>
-    <div class="alert alert-warning" role="alert">
-        For now: after clicking on an <span class="btn btn-primary btn-sm">Edit</span> button click on "Load from
-        the server" in the Data Package creator
-    </div>
+
     <a href="{% url 'management:datapackage-update' uuid=datapackage.uuid %}" class="btn btn-primary">Edit Manage</a>
     <a class="btn btn-primary" href="{% url 'datapackage-ui' %}?load={{ datapackage.uuid }}">Edit</a>
     {% include 'core/_download-schema-button.html' with uuid=datapackage.uuid only %}
