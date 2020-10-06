@@ -9,7 +9,8 @@
     "datapackage-ui": "^1.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-toastify": "^6.0.9"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,5 +32,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "homepage": "/static/datapackage-ui/"
 }
