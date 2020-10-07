@@ -24,10 +24,11 @@ export function onSaveToServer(data) {
     data: data,
   })
     .then((res) => {
-      console.log(res)
       // TODO: move this from here: the user of this function should do this
       // eslint-disable-next-line no-undef
-      toast('Saved! UUID: ' + res.data.uuid)
+      toast.info('Saved! UUID: ' + res.data.uuid, {
+        className: 'toast-info'
+      })
       return res
     })
     .catch((err) => err)
