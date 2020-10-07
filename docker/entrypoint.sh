@@ -1,5 +1,11 @@
 #!/bin/bash -e
 
+if [ -z "$PORT" ]
+then
+  # This is passed to gunicorn via supervisord configuration file
+  export PORT=8000
+fi
+
 if [ -z "$SECRET_KEY" ]
 then
   export SECRET_KEY=$(tr -dc 'a-z0-9!@#$%^&*(-_=+)' < /dev/urandom | head -c60)

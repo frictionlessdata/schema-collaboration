@@ -278,3 +278,6 @@ If initializing the database it creates a datamanger password with the given pas
 
 ### `DATAMANAGER_FULL_NAME`
 If initializing the database it creates a datamanager person with the given full name.
+
+### `PORT`
+Porn where gunicorn will handle the requests. Defaults to 80. This might be needed if deploying in Heroku (where it sets it) otherwise changing the left part of the docker `--publish 8000:80` it should not be needed.
