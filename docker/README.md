@@ -219,6 +219,10 @@ Set to `1` to redirect http requests to https.
 
 Django documentation: https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECURE_SSL_REDIRECT
 
+If this is set to 1 there are two other settings that are set to True:
+ * CSRF_COOKIE_SECURE: https://docs.djangoproject.com/en/3.1/ref/settings/#csrf-cookie-secure
+ * SESSION_COOKIE_SECURE: https://docs.djangoproject.com/en/3.1/ref/settings/#session-cookie-secure
+
 ### `HSTS` (Django, production)
 Set to `1` to enable the following Django settings to True:
  * `SECURE_HSTS_PRELOAD`. Django documentation: https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECURE_HSTS_PRELOAD

@@ -145,8 +145,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = os.environ.get('DEBUG', '1') == '1'
 SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', '0') == '1'
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+
+if SECURE_SSL_REDIRECT:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+
 SECURE_REFERRER_POLICY = 'same-origin'
 
 ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(',')
