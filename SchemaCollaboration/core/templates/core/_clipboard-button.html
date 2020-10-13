@@ -3,8 +3,6 @@
 <button id="{{ id }}" class="btn btn-primary btn-sm"
         data-clipboard-text="{{ url }}">{{ button_text }}</button>
 
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
 <script>
     function setTooltip(button, message) {
         $(button).tooltip('hide')
@@ -17,6 +15,10 @@
             $(button).tooltip('hide');
             $(button).attr('data-original-title', '');
         }, 1000);
+    }
+
+    if (!window.ClipboardJS) {
+        alert('Please load ClipboardJS before trying to use it');
     }
 
     var clipboardJS = new ClipboardJS('#{{ id }}');
