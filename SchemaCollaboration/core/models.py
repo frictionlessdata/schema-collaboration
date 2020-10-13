@@ -56,7 +56,7 @@ class Datapackage(CreateModifyOn):
     schema = models.TextField(editable=True)
     name = models.CharField(max_length=500, null=True, blank=True)
     collaborators = models.ManyToManyField(Person, blank=True)
-    status = models.ForeignKey(DatapackageStatus, null=True, blank=True, on_delete=models.PROTECT)
+    status = models.ForeignKey(DatapackageStatus, null=True, blank=False, on_delete=models.PROTECT)
 
     def collaborators_str(self):
         return self.collaborators_excluding_str(None)

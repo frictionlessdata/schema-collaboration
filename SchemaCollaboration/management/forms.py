@@ -2,6 +2,7 @@ from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit
 from django import forms
+from django.forms import RadioSelect
 
 from core.models import Person, Datapackage
 
@@ -33,6 +34,11 @@ class DatapackageModelForm(forms.ModelForm):
 
         self.helper = FormHelper(self)
 
+        self.fields['status'].queryset = self.fields['status'].queryset.order_by('name')
+        self.fields['collaborators'].queryset = self.fields['collaborators'].queryset.order_by('full_name')
+        self.fields['collaborators'].help_text = 'Hold down “Control”, or “Command” on a Mac, to select more than one'
+        self.fields['collaborators'].widget.attrs = {'size': 10}
+
         self.helper.layout = Layout(
             Div(
                 Div('name', css_class='col-6'),
@@ -54,3 +60,4 @@ class DatapackageModelForm(forms.ModelForm):
     class Meta:
         model = Datapackage
         fields = ['name', 'status', 'collaborators']
+        widgets = {'status': RadioSelect}
