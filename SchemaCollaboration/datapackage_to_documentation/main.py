@@ -77,11 +77,6 @@ template_to_md = '''# {{ title }}
 ## Homepage
 [{{ homepage }}]({{ homepage }})
 
-## Data processing
-TODO
-
-## Quality checking
-TODO
 {% if licenses|length == 1 %}
 ## Dataset license
 {% else %}
@@ -93,9 +88,19 @@ TODO
 
 ## Resources
 {% for resource in resources %}
-### {{ resource.path }}
+### {{ resource.title }}
+ * Name: {{ resource.name }}
+ * Profile: {{ resource.profile }}
+ * Path: {{ resource.path }}
+{% if resource.format %} * Format: {{ resource.format }}{% endif %}
+{% if resource.encoding %} * Encoding: {{ resource.encoding }}{% endif %}
+{% if resource.description %} * Desription: {{ resource.description }}{% endif %}
+
+{% if resource.schema.fields %}
+#### Fields
 {% for field in resource.schema.fields %} * **{{ field.name }}** ({{ field.type }}): {{ field.description }}
 
 {% endfor %} 
+{% endif %}
 {% endfor %}
 '''
