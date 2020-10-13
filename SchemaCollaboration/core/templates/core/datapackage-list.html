@@ -32,7 +32,7 @@
                 <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{{ schema.modified_on }}</td>
                 <td>
                     <a href="{% url 'datapackage-detail'  uuid=schema.uuid %}" class="btn btn-primary btn-sm">View</a>
-                    {% include 'core/_download-schema-buttons.html' with uuid=schema.uuid button_size='btn-sm' %}
+                    {% include 'core/_download-schema-buttons.html' with uuid=schema.uuid extra_classes='btn-sm' %}
                 </td>
             </tr>
         {% endfor %}
