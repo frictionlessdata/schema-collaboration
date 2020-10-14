@@ -1,11 +1,11 @@
 <div class="btn-group">
-    <a class="btn btn-primary {{ extra_classes }} dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+    <a class="btn btn-primary {{ extra_classes }} dropdown-toggle" href="#" role="button" id="dropdownMenuLinkDownloads"
        data-toggle="dropdown"
        aria-haspopup="true" aria-expanded="false">
         Download
     </a>
 
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkDownloads">
         <a class="dropdown-item" href="{% url 'api-datapackage' uuid=uuid %}?dl=1">Schema</a>
         <a class="dropdown-item" href="{% url 'api-datapackage-markdown' uuid=uuid %}">Markdown</a>
         <a class="dropdown-item" href="{% url 'api-datapackage-pdf' uuid=uuid %}">PDF</a>

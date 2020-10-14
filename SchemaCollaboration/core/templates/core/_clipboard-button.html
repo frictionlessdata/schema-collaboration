@@ -1,6 +1,6 @@
 {% load static %}
 
-<button id="{{ id }}" class="btn btn-primary btn-sm"
+<button id="{{ id }}" class="{% if class %}{{ class }}{% else %}btn btn-primary btn-sm{% endif %}"
         data-clipboard-text="{{ url }}">{{ button_text }}</button>
 
 <script>

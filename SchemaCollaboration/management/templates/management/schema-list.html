@@ -25,14 +25,21 @@
                 <td data-sort="{{ schema.created_on|date:"Y-m-d H:i:s" }}">{{ schema.created_on }}</td>
                 <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{{ schema.modified_on }}</td>
                 <td>
-                    <a href="{% url 'datapackage-detail' uuid=schema.uuid %}" class="btn btn-primary btn-sm">View</a>
-                    <a href="{{ schema.edit_link }}" class="btn btn-primary btn-sm">Edit</a>
-                    {% include 'core/_clipboard-button.html' with url=schema.collaborator_view_link id='copy_view_link' button_text='Copy View Link' only %}
-                    &nbsp;
-                    <a href="{% url 'management:datapackage-detail' uuid=schema.uuid %}"
-                       class="btn btn-primary btn-sm">View Manage</a>
-                    <a href="{% url 'management:datapackage-update' uuid=schema.uuid %}"
-                       class="btn btn-primary btn-sm">Edit Manage</a>
+                    <div class="btn-group">
+                        <a class="btn btn-primary btn-sm dropdown-toggle" href="#" role="button"
+                           id="dropDownMenuLinkOptions-{{ schema.uuid }}" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">Options</a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropDownMenuLinkOptions-{{ schema.uuid }}">
+                            <a href="{{ schema.edit_link }}" class="dropdown-item">Edit Datapackage</a>
+                            <a href="{% url 'management:datapackage-detail' uuid=schema.uuid %}"
+                               class="dropdown-item">Manage Datapackage</a>
+                            <a href="{% url 'datapackage-detail' uuid=schema.uuid %}"
+                               class="dropdown-item">Collaborator View</a>
+                            {% include 'core/_clipboard-button.html' with class="dropdown-item" url=schema.collaborator_view_link id='copy_view_link' button_text='Copy View Link' only %}
+                        </div>
+                    </div>
+
                     {% include 'core/_download-schema-buttons.html' with uuid=schema.uuid extra_classes='btn-sm' only %}
                 </td>
             </tr>
