@@ -35,6 +35,12 @@ class PersonMixin():
         return context
 
 
+def add_list_datapackage_url_to_person(person, request):
+    person.list_datapackages_url = request.build_absolute_uri(
+        reverse('datapackage-list', kwargs={'collaborator_uuid': person.uuid}
+                ))
+
+
 class PersonListView(PersonMixin, ListView):
     template_name = 'management/person-list.html'
     model = Person
@@ -45,9 +51,7 @@ class PersonListView(PersonMixin, ListView):
         context['breadcrumb'] = [{'name': 'People'}]
 
         for person in context['people']:
-            person.list_datapackages_url = self.request.build_absolute_uri(
-                reverse('datapackage-list', kwargs={'collaborator_uuid': person.uuid}
-                        ))
+            add_list_datapackage_url_to_person(person, self.request)
 
         return context
 
@@ -89,6 +93,9 @@ class PersonDetailView(PersonMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['breadcrumb'] = [{'name': 'People', 'url': reverse('management:list-people')},
                                  {'name': 'Detail'}]
+
+        add_list_datapackage_url_to_person(context['person'], self.request)
+
         return context
 
 
