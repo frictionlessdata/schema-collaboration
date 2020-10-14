@@ -1,3 +1,5 @@
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView
@@ -5,7 +7,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from comments.forms import CommentForm
 from comments.views import process_post_add_comment
-from core.models import Datapackage, Person
+from core.models import Datapackage, Person, DatapackageStatus
 from core.views import datapackage_detail_context
 from management.forms import PersonModelForm, DatapackageModelForm
 
@@ -104,6 +106,23 @@ class DatapackageMixin():
         context = super().get_context_data(**kwargs)
         context['sidebar_active'] = 'datapackages'
         return context
+
+
+class DatapackageCreate(DatapackageMixin, View):
+    def get(self, request, *args, **kwargs):
+        # Create an empty package - this is called from a link at the moment
+        # it should change in the future?
+        schema = Datapackage.objects.create(schema='')
+
+        try:
+            default_status_on_creation = DatapackageStatus.objects.get(
+                behaviour=DatapackageStatus.StatusBehaviour.DEFAULT_ON_DATAPACKAGE_CREATION)
+            schema.status = default_status_on_creation
+            schema.save()
+        except ObjectDoesNotExist:
+            pass
+
+        return redirect(f'{reverse("datapackage-ui")}?load={schema.uuid}')
 
 
 class DatapackageDetailView(DatapackageMixin, DetailView):

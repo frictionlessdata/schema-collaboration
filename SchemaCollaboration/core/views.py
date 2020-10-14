@@ -13,7 +13,7 @@ from django.views.generic import TemplateView, ListView, DetailView, RedirectVie
 from comments.forms import CommentForm
 from comments.views import process_post_add_comment
 from datapackage_to_documentation.main import datapackage_to_markdown, datapackage_to_pdf
-from .models import Datapackage, Person, DatapackageStatus
+from .models import Datapackage, Person
 
 
 def remove_prefix(text):
@@ -139,31 +139,16 @@ class ApiSchemaView(View):
         body = remove_prefix(body)
 
         schema = Datapackage.objects.get(uuid=uuid)
+
+        if not schema.schema:
+            # The first time
+            name = get_name_from_datapackage(body)
+            schema.name = name
+
         schema.schema = body
         schema.save()
 
         data = {'uuid': str(schema.uuid)}
-        return JsonResponse(data, status=200)
-
-    def post(self, request, *args, **kwargs):
-        body = request.body.decode('utf-8')
-
-        body = remove_prefix(body)
-
-        name = get_name_from_datapackage(body)
-
-        schema = Datapackage.objects.create(schema=body, name=name)
-
-        try:
-            default_status_on_creation = DatapackageStatus.objects.get(
-                behaviour=DatapackageStatus.StatusBehaviour.DEFAULT_ON_DATAPACKAGE_CREATION)
-            schema.status = default_status_on_creation
-            schema.save()
-        except ObjectDoesNotExist:
-            pass
-
-        data = {'uuid': str(schema.uuid)}
-
         return JsonResponse(data, status=200)
 
 

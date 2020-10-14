@@ -100,17 +100,6 @@ class TestApiSchemaView(TestCase):
 
         self.assertEqual(response.content.decode('utf-8'), schema_text)
 
-    def test_post(self):
-        c = Client()
-
-        schema_count_before_post = Datapackage.objects.all().count()
-
-        response = c.post(reverse('api-datapackage'),
-                          data='{ "profile": "tabular-data-package", "resources": [ { "name": "resource1", "profile": "tabular-data-resource", "schema": {} } ] }',
-                          content_type='application/json')
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(Datapackage.objects.all().count(), schema_count_before_post + 1)
 
     def test_put(self):
         c = Client()

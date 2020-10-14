@@ -7,17 +7,8 @@ export function onSaveToServer(data) {
   // Example found in https://codereviewvideos.com/course/symfony-3-with-reactjs-and-angular/video/react-create-post
   const uuid = getParameterFromUrlByName('load')
 
-  let url = ''
-  let method = ''
-  // eslint-disable-next-line no-undef
-
-  if (uuid === null) {
-    url = '/api/datapackage/'
-    method = 'POST'
-  } else {
-    url = '/api/datapackage/' + uuid + '/'
-    method = 'PUT'
-  }
+  let url = '/api/datapackage/' + uuid + '/'
+  let method = 'PUT'
 
   return axios(url, {
     method: method,

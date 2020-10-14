@@ -14,6 +14,7 @@ urlpatterns = [
 
     path('person/<int:pk>/', views.PersonDetailView.as_view(), name='person-detail'),
 
+    path('datapackage/create/', views.DatapackageCreate.as_view(), name='datapackage-create'),
     path('datapackage/<uuid:uuid>/', views.DatapackageDetailView.as_view(), name='datapackage-detail'),
     path('datapackage/<uuid:uuid>/edit/', views.DatapackageUpdateView.as_view(), name='datapackage-update'),
     path('datapackage/<uuid:uuid>/add_comment/', views.DatapackageAddCommentView.as_view(),
