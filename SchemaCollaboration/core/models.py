@@ -58,6 +58,9 @@ class Datapackage(CreateModifyOn):
     collaborators = models.ManyToManyField(Person, blank=True)
     status = models.ForeignKey(DatapackageStatus, null=True, blank=False, on_delete=models.PROTECT)
 
+    def collaborators_sorted(self):
+        return self.collaborators.all().order_by('full_name')
+
     def collaborators_str(self):
         return self.collaborators_excluding_str(None)
 

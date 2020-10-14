@@ -1,0 +1,6 @@
+{% if collaborators %}
+    {% for collaborator in collaborators %}{% if not forloop.first %},{% endif %}
+        <a href="{% url 'management:person-detail' pk=collaborator.id %}">{{ collaborator.full_name }}</a>{% endfor %}
+{% else %}
+    -
+{% endif %}

@@ -9,14 +9,14 @@
     <h1>Datapackage detail</h1>
     <strong>Name:</strong> {% include 'core/_value-or-dash.tmpl' with value=datapackage.name only %}<br>
     <strong>Status</strong>: {{ datapackage.status }}<br>
-    <strong>Collaborators: </strong> {{ datapackage.collaborators_str }}
+    <strong>Collaborators: </strong> {% include 'management/_collaborators-enumeration.html' with collaborators=datapackage.collaborators_sorted only %}
     <p></p>
     <strong>Created on:</strong> {% include 'core/_value-or-dash.tmpl' with value=datapackage.created_on only %}<br>
     <strong>Modified on:</strong> {% include 'core/_value-or-dash.tmpl' with value=datapackage.modified_on only %}<br>
     <p></p>
 
     <a href="{% url 'management:datapackage-update' uuid=datapackage.uuid %}" class="btn btn-primary">Edit Manage</a>
-    <a class="btn btn-primary" href="{% url 'datapackage-ui' %}?load={{ datapackage.uuid }}">Edit</a>
+    <a class="btn btn-primary" href="{% url 'datapackage-ui' %}?load={{ datapackage.uuid }}">Edit Datapackage</a>
     {% include 'core/_download-schema-buttons.html' with uuid=datapackage.uuid only %}
     <hr>
     <h1>Comments</h1>
