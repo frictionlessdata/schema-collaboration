@@ -7,6 +7,7 @@ from django.urls import reverse
 from comments.models import Comment
 from . import database_population
 from ..models import Datapackage
+from ..views import get_name_from_datapackage
 
 
 class HomePageViewTest(TestCase):
@@ -100,7 +101,6 @@ class TestApiSchemaView(TestCase):
 
         self.assertEqual(response.content.decode('utf-8'), schema_text)
 
-
     def test_put(self):
         c = Client()
 
@@ -148,3 +148,50 @@ class TestApiDatapackagePdf(TestCase):
 
         self.assertTrue(len(pdf) > 50000)
         self.assertTrue(pdf.startswith(b'%PDF-1.5'))
+
+
+class TestGetNameFromDataPackage(TestCase):
+    def test_invalid_json_data_package(self):
+        schema = ''
+
+        name = get_name_from_datapackage(schema)
+
+        self.assertIsNone(name)
+
+    def test_name_in_data_package(self):
+        schema = '''{
+  "profile": "tabular-data-package",
+  "resources": [
+    {
+      "name": "resource1",
+      "profile": "tabular-data-resource",
+      "schema": {}
+    }
+  ],
+  "name": "Microplastics in the Antarctica"
+}'''
+
+        name = get_name_from_datapackage(schema)
+
+        self.assertEqual(name, 'Microplastics in the Antarctica')
+
+    def test_concatenation_of_resource_names(self):
+        schema = '''{
+  "profile": "tabular-data-package",
+  "resources": [
+    {
+      "name": "table-with-data",
+      "profile": "tabular-data-resource",
+      "schema": {}
+    },
+    {
+      "name": "processed-table-with-data",
+      "profile": "tabular-data-resource",
+      "schema": {}
+    }
+  ]
+}'''
+
+        name = get_name_from_datapackage(schema)
+
+        self.assertEqual(name, 'table-with-data, processed-table-with-data')

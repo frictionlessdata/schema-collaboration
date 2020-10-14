@@ -1,4 +1,5 @@
 import json
+from json import JSONDecodeError
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, JsonResponse
@@ -32,7 +33,10 @@ def get_name_from_datapackage(body):
     Returns a name of the datapackage. It's the field name if it has it,
     else it is a concatenation of the resources.
     """
-    body_json = json.loads(body)
+    try:
+        body_json = json.loads(body)
+    except JSONDecodeError:
+        return None
 
     name = body_json.get('name', None)
 
