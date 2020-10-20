@@ -140,3 +140,41 @@ The public link to a datapackage can be found in the "Options" in the List of Da
 The public link to all the datapackages for a given users can be found in the "List of People" and the name is "List Datapackages".
 
 Collaborators don not need a username/password: only the unique links.
+
+## Admin access and operations
+All the day-to-day operations can be done by the datamanagers in the management area. There also access to the standar "admin" panel to do some other operations like:
+ * Create other datapackage status. By default "Draft", "In Progress" and "Completed" are created. You can modify these ones or add other status and will appear in the "Manage datapackage". For example "Published", "Waiting for Data", "Embargo", etc.
+ * Delete datapackages is not possible yet in the management section but in the admin section it is possible
+ * Delete or modify comments
+ * Delete people
+ * Create other data manager users
+
+To access the admin panel use an URL like http://localhost:8000/admin (change http://localhost:8000 by the way to access your schema-collaboration). Then you will need to enter the "Django administration" username and password:
+
+Please refer to the `admin` user that got created when you installed schema-collaboration.
+
+If you don't have access to it anymore you can create/setup a new one using `python3 manage.py changepassword admin` (see [Django documentation for changing the password](https://docs.djangoproject.com/en/3.1/topics/auth/default/#changing-passwords) or [how to create another admin user](https://docs.djangoproject.com/en/3.1/topics/auth/default/#creating-superusers))
+
+An example of the admin section:
+![list_of_datapackages_admin](images/list_of_datapackages_admin.png)
+
+### Create more Datapackage Status
+Click on the left hand side "Datapackage status" to list the Datapackage status:
+![list_of_status](images/list_of_status.png)
+
+Then on the "Add datapackage status" to load the form:
+![add_datapackage_status](images/add_datapackage_status.png)
+
+Enter the new datastatus name (in the example "Published") and click "Save".
+
+The Behaviour: currently there is only one possible "Behaviour": "Default on creation". The Status with the "Default on creation" behaviour will be the status assigned to a newly created Datapackage. Only one Status can have the Behaviour "Default on creation".
+
+### Delete People
+Similar steps would be done to delete a Datapackage or a Comment. Click on "People" on the left hand side and fine the Person or People to be deleted. You can use the "Search" feature if needed. Select the checkboxes and then the action "Delete selected People":
+![delete_person_checkbox](images/delete_person_checkbox.png)
+
+If this person is a collaborator in some Datapackages it will be de-attached and you might need to confirm it select on "Yes, I'm sure":
+![delete_confirmation](images/delete_person_confirmation.png)
+
+### Other operations
+Other operations in the admin: just navigate on the left hand side to Comments and use it to modify, delete or add objects.
