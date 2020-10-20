@@ -144,7 +144,7 @@ Each Datapackage has a set of options:
  * Collaborator View: takes you to the page that is accessible without login/password, which can be sent to collaborators. Collaborators can read and write comments, see datapackage information, edit  and download the datapackage.
 
 ## Download button
-The "Download" button appears in different pages always with the same options:
+The "Download" button appears on different pages, always with the same options:
 
 | ![download](images/download.png) |
 |---|
@@ -160,55 +160,53 @@ An example of the PDF output:
 ![pdf_output](images/pdf_output.png)
 
 ## Collaborator access
-The collaborators can have access to the datapackages via two type of links:
+The collaborators can have access to the datapackages via two types of links:
  * Datapackage link: give access to one datapackage
- * Collaborator link: all the datapackages for the collaborator will appear and the collaborator can choose which one to work on
+ * List datapackages link: all the datapackages for the collaborator will appear and the collaborator can choose which one to work on. Find this within the list of people.
 
-The public link to a single datapackage can be found in the "Options" in the List of Datapackages.
+The public link for a collaborator to a single datapackage can be found in the "Options" in the List of Datapackages.
 
-The public link to all the datapackages for a given users can be found in the "List of People" and the name is "List Datapackages".
-
-Collaborators don not need a username/password: the unique links are enough to access there.
+Collaborators do not need a username/password: the unique links are enough to access the datapackages.
 
 ## Admin access and operations
-All the day-to-day operations can be done by the datamanagers in the management area. There available access to the Django standard "admin" panel to do some other operations like:
- * Create other datapackage status. By default "Draft", "In Progress" and "Completed" are created. You can modify these ones or add other status and will appear in the "Manage datapackage". For example "Published", "Waiting for Data", "Embargo", etc.
- * Delete datapackages (it is not possible yet in the management section but in the admin section it is possible)
+All day-to-day operations can be done by the data managers in the management area. The admin login might be needed to undertake less common operations such as:
+ * Create other datapackage statuses. By default "Draft", "In Progress" and "Completed" are created. These can be modified or other statuses such as "Published", "Embargo", can be added; they will then appear in the "Manage datapackage" area.
+ * Delete datapackages (this is not yet possible in the management section)
  * Delete or modify comments
  * Delete people
  * Create other data manager users
 
-To access the admin panel use an URL like [http://localhost:8000/admin](http://localhost:8000/admin) (change http://localhost:8000 as needed in your installation). Then you will need to enter the "Django administration" username and password. This is the `admin` user that got created when schema-collaboration was initially installed.
+To access the admin panel use a URL such as [http://localhost:8000/admin](http://localhost:8000/admin) (change http://localhost:8000 as needed in your installation). Then enter the "Django administration" username and password. This is the `admin` user that got created when schema-collaboration was initially installed.
 
-If you don't know the admin username and password anymore you can create/setup a new one using `python3 manage.py changepassword admin` (see [Django documentation for changing the password](https://docs.djangoproject.com/en/3.1/topics/auth/default/#changing-passwords) or [how to create another admin user](https://docs.djangoproject.com/en/3.1/topics/auth/default/#creating-superusers))
+If the admin username and password are no longer known, new ones can be created/setup using `python3 manage.py changepassword admin` (see [Django documentation for changing the password](https://docs.djangoproject.com/en/3.1/topics/auth/default/#changing-passwords) or [how to create another admin user](https://docs.djangoproject.com/en/3.1/topics/auth/default/#creating-superusers))
 
-The admin section list of packages looks like:
+The list of datapackages within the admin section looks like:
 
 | ![list_of_datapackages_admin](images/list_of_datapackages_admin.png) |
 |---|
 
-### Create more Datapackage Status
-On the left hand side select "Datapackage status" to list the Datapackage status:
+### Create more Datapackage Statuses
+On the left-hand side select "Datapackage status" to list the Datapackage statuses:
 
 | ![list_of_status](images/list_of_status.png) |
 |---|
 
-Then on the "Add datapackage status" to load the form:
+Then select "Add datapackage status" to load the form:
 
 | ![add_datapackage_status](images/add_datapackage_status.png) |
 |---|
 
-Enter the new data status name (in the example "Published") and select "Save".
+Enter the new status name (for example "Published") and select "Save".
 
-"The Behaviour": currently there is only one possible "Behaviour": "Default on creation". The status of a new (just created), datapackage will be the status that has "Default on creation". Only one Status can have the Behaviour "Default on creation".
+Currently there is only one possible "Behaviour" for a status: "Default on creation". The status of a newly created datapackage will be whichever one that has the behaviour "Default on creation". Only one status can have the Behaviour "Default on creation".
 
 ### Delete People
-Select on "People" on the left hand side and fine the Person or People to be deleted. You can use the "Search" feature if needed. Select the checkboxes and then the action "Delete selected People":
+Select "People" on the left-hand side and find the Person or People to be deleted. The "Search" feature can be used if needed. Select the checkboxes as required and then the action "Delete selected People":
 
 | ![delete_person_checkbox](images/delete_person_checkbox.png) |
 |---|
 
-If this person is a collaborator in some Datapackages it will be de-attached and you might need to confirm it select on "Yes, I'm sure":
+If this person is a collaborator in some Datapackages it will be de-attached and may need to be confirmed by sleecting "Yes, I'm sure":
 
 | ![delete_confirmation](images/delete_person_confirmation.png) |
 |---|
@@ -216,4 +214,4 @@ If this person is a collaborator in some Datapackages it will be de-attached and
 These steps are the same for deleting a Datapackage or a Comment.
 
 ### Other operations
-Other operations in the admin: just navigate on the left hand side to Comments and use it to modify, delete or add objects as needed.
+Other operations in the admin: navigate within the menu on the left-hand side and use it to modify, delete or add objects as needed.
