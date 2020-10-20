@@ -7,13 +7,13 @@
 # schema-collaboration
 Carles Pina Estany's 2020 Tool Fund: data managers and researchers collaborate to write the Frictionless Data packages, tabular schemas, etc. 
 
-More information: https://frictionlessdata.io/blog/2020/07/16/tool-fund-polar-institute/
+More information in the [Frictionless Data Blog](https://frictionlessdata.io/blog/2020/07/16/tool-fund-polar-institute/)
 
-See progress on https://github.com/frictionlessdata/schema-collaboration/wiki
+See progress on the [Wiki Log](https://github.com/frictionlessdata/schema-collaboration/wiki)
 
-An installation to play with: https://carles.eu.pythonanywhere.com
+For demo purposes (not for real use) see the [installed schema-collaboration.](https://carles.eu.pythonanywhere.com)
 
-schema-collaboration can be tested or deployed using Docker. See the Docker instructions: https://github.com/frictionlessdata/schema-collaboration/blob/master/docker/README.md
+There is documentation on how to [install it using Docker](https://github.com/frictionlessdata/schema-collaboration/tree/master/docker#schema-collaboration-docker) and documentation for the [data manager first steps.](https://github.com/frictionlessdata/schema-collaboration/blob/master/documentation/User.md#schema-collaboration)
 
 # Installation for development
 ## Server side Django
@@ -50,13 +50,19 @@ Visit http://127.0.0.1:8000/ to see the homepage.
 
 Visit http://127.0.0.1:8000/accounts/login/ to see the management (for the data manager) section.
 
-## Changes on datapackage-ui
-Further changes might be required in datapackage-ui (add, remove or change buttons; change how the datapackage is loaded and saved from the Django API, etc.).
+In order to use the PDF generation you need to install Pandoc with the suggested packages:
+```sh
+apt instal pandoc
+```
 
-Two directories in this repository checkout are relevant for this:
- * `datapackage-ui/`: this is a git submodule of datapackage-ui upstream. This might need updates, use another branch, etc.
- * `datapackage-ui-schema-collaboration`: it contains `build-datapackage-ui.sh`: it copies the files from `datapackage-ui-schema-collaboration/patch` into `datapackage-ui/`, builds datapackage-ui and copies the resulting files into the static files directory
+## Modification on datapackage-ui
+This section is only important if a developer intends to modify the datapackage-ui part. For example, adding buttons, change buttons/API, toaster, etc.
 
-At the moment I've avoided doing a fork+changes to keep it simpler to know the changes made and keep it simple (hopefully) how to update between different datapackage-ui versions.
+[datapackage-ui](https://github.com/frictionlessdata/datapackage-ui) is a dependency of schema-collaboration. It uses npm and React.
 
-Note that `build-datapackage-ui.sh` executes `npm run build` in `datapackage-ui/`: make sure to install the dependencies as specific in datapackage-ui repository (https://github.com/frictionlessdata/datapackage-ui)
+In the schema-repository repository there is an already built datapackage-ui in `SchemaCollaboration/core/static/datapackage-ui/`. If code changes do not affect datapackage-ui (files in `schema-collaboration-react`): no need to rebuild it.
+
+If there are code changes in `schema-collaboration-react` then the `build-datapackage-ui.sh` needs to be built. This will build the static files of `datapackage-ui` and copy them into `SchemaCollaboration/core/static/datapackage-ui/`. Then you can commit then.
+
+The reason of committing the static generated files is for convenience: it is easier to deploy and easier to modify schema-collaboration without having to install npm.
+
