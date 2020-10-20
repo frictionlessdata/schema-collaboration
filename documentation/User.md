@@ -1,13 +1,13 @@
 # schema-collaboration: documentation for data managers
 
 ## Introduction
-schema-collaboration is a tool in the form of web platform to help data managers and researchers to collaborate to create Frictionless datapackages. 
+schema-collaboration is a tool in the form of a web platform to help data managers and researchers to collaborate to create Frictionless datapackages. 
 
-In order to use this application some familiarity with Frictionless Datapackages is required. You can find information on the [Frictionless website](https://frictionlessdata.io/) or the [Data Package specification](https://specs.frictionlessdata.io/data-package/).
+In order to use this application some familiarity with Frictionless Datapackages is required. You can find information on the [Frictionless website](https://frictionlessdata.io/) or in the [Data Package specification](https://specs.frictionlessdata.io/data-package/).
 
 schema-collaboration uses [datacreator-ui](https://github.com/frictionlessdata/datapackage-ui): see the [datacreator-ui demo](https://create.frictionlessdata.io/).
 
-It was funded by Frictionless Data Tool Fund 2020. There is a [blog with the initial description](https://frictionlessdata.io/blog/2020/07/16/tool-fund-polar-institute/#meet-carles-pina-estany).
+It was funded by the Frictionless Data Tool Fund 2020. There is a [blog with the initial description of the project](https://frictionlessdata.io/blog/2020/07/16/tool-fund-polar-institute/#meet-carles-pina-estany).
 
 ## Overall steps to use schema-collaboration
 The documentation give a detailed steps with screenshots on how to use schema-collaboration. The general ideas covered are:
