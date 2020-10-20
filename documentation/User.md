@@ -10,14 +10,14 @@ schema-collaboration uses [datacreator-ui](https://github.com/frictionlessdata/d
 It was funded by the Frictionless Data Tool Fund 2020. There is a [blog with the initial description of the project](https://frictionlessdata.io/blog/2020/07/16/tool-fund-polar-institute/#meet-carles-pina-estany).
 
 ## Overall steps to use schema-collaboration
-The documentation give a detailed steps with screenshots on how to use schema-collaboration. The general ideas covered are:
- * Install the application
- * Login as a data manager
- * Create a Datapackage and add the known information (title, authors, etc.)
- * Create a Person
- * Edit the Datapackage and add the created person as a collaborator
- * Send the link to the Datapackage to the collaborators so they can work on it
- * At any time add comments to the datapackage to be seen either by you only or by the collaborators as well
+The documentation gives detailed steps with screenshots about how to use schema-collaboration. The general ideas covered are:
+ * Installing the application
+ * Logging in as a data manager
+ * Creating a Datapackage and adding the known information (title, authors, etc.)
+ * Creating a Person
+ * Editing the Datapackage and making the created person a collaborator
+ * Sending the link to the Datapackage to the collaborators so they can work on it
+ * At any time adding comments to the datapackage to be seen either by the data manager only or by the collaborators as well
 
 ## Installation
 schema-collaboration needs to be installed into a server in order to be used by the data manager and researchers. It is done in Python and Django and there are different ways to set it up:
