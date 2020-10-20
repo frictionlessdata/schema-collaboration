@@ -1,4 +1,5 @@
 # schema-collaboration
+
 ## Introduction
 schema-collaboration is a tool in the form of web platform to help data managers and researchers to collaborate to create Frictionless datapackages. 
 
@@ -46,27 +47,34 @@ After the installation of the schema-collaboration in the main page there is a l
 
 In the main page follow the link to the "management area":
 
-![management_area_link](images/homepage_link_to_management_area.png)
+| ![management_area_link](images/homepage_link_to_management_area.png) |
+|---|
 
 After this please login using your credentials:
 
-![login](images/login.png)
+| ![login](images/login.png) |
+|---| 
 
 The username and password for the datamanager were created during the installation. Please refer to the installation steps to find them.
 
 ## Navigation
 There is a left-hand side bar to navigate between "Datapackages" and "People". It also shows the user that is logged-in and allows to "Logout". See the options:
 
-![navigation_bar](images/navigation_bar.png)
+| ![navigation_bar](images/navigation_bar.png) |
+|---|
 
 ## Create the first datapackage
 The first time that a data manager logins in the system there will be no packages created. The datamanager needs to create a new data package to fill-in with the basic information.
 
 Create the button "Create a Datapackage" in order to create one:
-![list_of_datapackages_empty](images/list_of_packages_empty.png)
+
+| ![list_of_datapackages_empty](images/list_of_packages_empty.png) |
+|---|
 
 It will create a new, empty, data package and it will open the Data Package Creator:
-![data_creator_empty](images/datacreator_ui_empty.png)
+
+| ![data_creator_empty](images/datacreator_ui_empty.png) |
+|---|
 
 As a data manager fill in all the information that you might know of the data set.
 
@@ -76,21 +84,26 @@ Then select "List of datapackages" (TODO 2020-10-20: button to be added!)
 
 The list of datapackages will contain the new datapackage:
 
-![list_of_packages_one_package](images/list_of_packages_empty_one_package.png)
+| ![list_of_packages_one_package](images/list_of_packages_empty_one_package.png) |
+|---|
 
 ## Create the first Person
 In order to give access to the researchers it is needed to create "People" (TODO 2020-10-20 rename to collaborators?)
 
 Select "People" on the left hand side bar:
 
-![list_of_people_empty](images/list_of_people_empty.png)
+| ![list_of_people_empty](images/list_of_people_empty.png) |
+|---|
 
 Select "Create a Person" and enter the person's name:
 
-![create_person](images/create_person.png)
+| ![create_person](images/create_person.png) |
+|---|
 
 schema-collaboration will show the "Person detail" page:
-![person_detail](images/person_detail.png)
+
+| ![person_detail](images/person_detail.png) |
+|---|
 
 There are three buttons on above screenshot:
  * "Edit": to edit the person (change the name)
@@ -98,27 +111,37 @@ There are three buttons on above screenshot:
  * "Copy List Datapackages": copies the link to the datapackages to your clipboard.
  
  If we open the "List Datapackages" (for this user) it is empty:
-![list_of_datapackages_for_user_empty](images/list_of_datapackages_for_user_empty.png)
+
+| ![list_of_datapackages_for_user_empty](images/list_of_datapackages_for_user_empty.png) |
+|---|
 
 Note that this page doesn't have the left hand side bar. This is because the external pages (available to collaborators) do not have it and the URL can be sent to the collaborators in order to work on it.
 
 ## Assign a datapackage to a researcher
 Select "Datapackages" on the left hand side and then "Options -> Manage Datapackage":
-![manage_datapackage](images/manage_datapackage.png)
+
+| ![manage_datapackage](images/manage_datapackage.png) |
+|---|
 
 There is a brief information on the datapackage detail. Here is where you could add Comments for the researchers of for yourself (enable "Private" if the comment is only for you).
 
 Select "Edit Manage" in order to Manage the Datapackage:
-![datapackage_manage_edit](images/datapackage_manage_edit.png)
+
+| ![datapackage_manage_edit](images/datapackage_manage_edit.png) |
+|---|
 
 In this page you are able to Edit this datapackage: change its status and add collaborators. In this case we are adding the "Jane Doe" collaborator and selecting "Save".
 
 After this select "Datapackages" again you can see the "List of Datapackages" and the "Collaborators" column has "Jane Doe":
-![list_of_datapackages_with_collaborator](images/list_of_datapackages_with_collaborator.png)
+
+| ![list_of_datapackages_with_collaborator](images/list_of_datapackages_with_collaborator.png) |
+|---|
 
 ## Options in a Datapackage
 Each Datapackage has a different set of options:
-![options_for_a_datapackage](images/options_for_datapackage.png)
+
+|![options_for_a_datapackage](images/options_for_datapackage.png)|
+|---|
 
  * Edit Datapackage: takes you to the "Datapackage creator" in order to make changes to the data package
  * Manage Datapackage: place to add comments and also to edit the datapackage collaborators and status of the datapackage
@@ -126,7 +149,9 @@ Each Datapackage has a different set of options:
 
 ## Download button
 The "Download" button appears in different pages with always the same options:
-![download](images/download.png)
+
+| ![download](images/download.png) |
+|---|
 
  * Schema: downloads the JSON schema file
  * Markdown: generates a documentation file formatted on Markdown based on the Schema
@@ -135,6 +160,7 @@ The "Download" button appears in different pages with always the same options:
  All the Markdown and PDF information comes from the Schema.
  
 An example of the PDF output:
+
 ![pdf_output](images/pdf_output.png)
 
 ## Collaborator access
@@ -161,14 +187,20 @@ To access the admin panel use an URL like [http://localhost:8000/admin](http://l
 If you don't know the admin username and password anymore you can create/setup a new one using `python3 manage.py changepassword admin` (see [Django documentation for changing the password](https://docs.djangoproject.com/en/3.1/topics/auth/default/#changing-passwords) or [how to create another admin user](https://docs.djangoproject.com/en/3.1/topics/auth/default/#creating-superusers))
 
 The admin section list of packages looks like:
-![list_of_datapackages_admin](images/list_of_datapackages_admin.png)
+
+| ![list_of_datapackages_admin](images/list_of_datapackages_admin.png) |
+|---|
 
 ### Create more Datapackage Status
 On the left hand side select "Datapackage status" to list the Datapackage status:
-![list_of_status](images/list_of_status.png)
+
+| ![list_of_status](images/list_of_status.png) |
+|---|
 
 Then on the "Add datapackage status" to load the form:
-![add_datapackage_status](images/add_datapackage_status.png)
+
+| ![add_datapackage_status](images/add_datapackage_status.png) |
+|---|
 
 Enter the new datastatus name (in the example "Published") and select "Save".
 
@@ -176,10 +208,14 @@ Enter the new datastatus name (in the example "Published") and select "Save".
 
 ### Delete People
 Select on "People" on the left hand side and fine the Person or People to be deleted. You can use the "Search" feature if needed. Select the checkboxes and then the action "Delete selected People":
-![delete_person_checkbox](images/delete_person_checkbox.png)
+
+| ![delete_person_checkbox](images/delete_person_checkbox.png) |
+|---|
 
 If this person is a collaborator in some Datapackages it will be de-attached and you might need to confirm it select on "Yes, I'm sure":
-![delete_confirmation](images/delete_person_confirmation.png)
+
+| ![delete_confirmation](images/delete_person_confirmation.png) |
+|---|
 
 These steps are the same for deleting a Datapackage or a Comment.
 
