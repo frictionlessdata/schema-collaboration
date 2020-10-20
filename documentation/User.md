@@ -97,10 +97,10 @@ There are three buttons on above screenshot:
  * "List Datapackages": takes you to the list of datapackages assigned to this user
  * "Copy List Datapackages": copies the link to the datapackages to your clipboard.
  
- If we observe the "List Datapackages" at the moment it is empty:
+ If we open the "List Datapackages" (for this user) it is empty:
 ![list_of_datapackages_for_user_empty](images/list_of_datapackages_for_user_empty.png)
 
-Note that this page doesn't have the left hand side bar. This is an indication that this page is accessible by anyone just having the link: it can be sent to the researcher and will be able to see their datapackages.
+Note that this page doesn't have the left hand side bar. This is because the external pages (available to collaborators) do not have it and the URL can be sent to the collaborators in order to work on it.
 
 ## Assign a datapackage to a researcher
 Select "Datapackages" on the left hand side and then "Options -> Manage Datapackage":
@@ -140,33 +140,31 @@ An example of the PDF output:
 ## Collaborator access
 The collaborators can have access to the datapackages via two type of links:
  * Datapackage link: give access to one datapackage
- * Collaborator link: give access to all the datapackage that this collaborator is assigned to
+ * Collaborator link: all the datapackages for the collaborator will appear and the collaborator can choose which one to work on
 
-The public link to a datapackage can be found in the "Options" in the List of Datapackages.
+The public link to a single datapackage can be found in the "Options" in the List of Datapackages.
 
 The public link to all the datapackages for a given users can be found in the "List of People" and the name is "List Datapackages".
 
-Collaborators don not need a username/password: only the unique links.
+Collaborators don not need a username/password: the unique links are enough to access there.
 
 ## Admin access and operations
-All the day-to-day operations can be done by the datamanagers in the management area. There also access to the standar "admin" panel to do some other operations like:
+All the day-to-day operations can be done by the datamanagers in the management area. There available access to the Django standard "admin" panel to do some other operations like:
  * Create other datapackage status. By default "Draft", "In Progress" and "Completed" are created. You can modify these ones or add other status and will appear in the "Manage datapackage". For example "Published", "Waiting for Data", "Embargo", etc.
- * Delete datapackages is not possible yet in the management section but in the admin section it is possible
+ * Delete datapackages (it is not possible yet in the management section but in the admin section it is possible)
  * Delete or modify comments
  * Delete people
  * Create other data manager users
 
-To access the admin panel use an URL like http://localhost:8000/admin (change http://localhost:8000 by the way to access your schema-collaboration). Then you will need to enter the "Django administration" username and password:
+To access the admin panel use an URL like [http://localhost:8000/admin](http://localhost:8000/admin) (change http://localhost:8000 as needed in your installation). Then you will need to enter the "Django administration" username and password. This is the `admin` user that got created when schema-collaboration was initially installed.
 
-Please refer to the `admin` user that got created when you installed schema-collaboration.
+If you don't know the admin username and password anymore you can create/setup a new one using `python3 manage.py changepassword admin` (see [Django documentation for changing the password](https://docs.djangoproject.com/en/3.1/topics/auth/default/#changing-passwords) or [how to create another admin user](https://docs.djangoproject.com/en/3.1/topics/auth/default/#creating-superusers))
 
-If you don't have access to it anymore you can create/setup a new one using `python3 manage.py changepassword admin` (see [Django documentation for changing the password](https://docs.djangoproject.com/en/3.1/topics/auth/default/#changing-passwords) or [how to create another admin user](https://docs.djangoproject.com/en/3.1/topics/auth/default/#creating-superusers))
-
-An example of the admin section:
+The admin section list of packages looks like:
 ![list_of_datapackages_admin](images/list_of_datapackages_admin.png)
 
 ### Create more Datapackage Status
-Select on the left hand side "Datapackage status" to list the Datapackage status:
+On the left hand side select "Datapackage status" to list the Datapackage status:
 ![list_of_status](images/list_of_status.png)
 
 Then on the "Add datapackage status" to load the form:
@@ -174,14 +172,16 @@ Then on the "Add datapackage status" to load the form:
 
 Enter the new datastatus name (in the example "Published") and select "Save".
 
-The Behaviour: currently there is only one possible "Behaviour": "Default on creation". The Status with the "Default on creation" behaviour will be the status assigned to a newly created Datapackage. Only one Status can have the Behaviour "Default on creation".
+"The Behaviour": currently there is only one possible "Behaviour": "Default on creation". The status of a new, rjust created, datapackage will be the status that has "Default on creation". Only one Status can have the Behaviour "Default on creation".
 
 ### Delete People
-Similar steps would be done to delete a Datapackage or a Comment. Select on "People" on the left hand side and fine the Person or People to be deleted. You can use the "Search" feature if needed. Select the checkboxes and then the action "Delete selected People":
+Select on "People" on the left hand side and fine the Person or People to be deleted. You can use the "Search" feature if needed. Select the checkboxes and then the action "Delete selected People":
 ![delete_person_checkbox](images/delete_person_checkbox.png)
 
 If this person is a collaborator in some Datapackages it will be de-attached and you might need to confirm it select on "Yes, I'm sure":
 ![delete_confirmation](images/delete_person_confirmation.png)
 
+These steps are the same for deleting a Datapackage or a Comment.
+
 ### Other operations
-Other operations in the admin: just navigate on the left hand side to Comments and use it to modify, delete or add objects.
+Other operations in the admin: just navigate on the left hand side to Comments and use it to modify, delete or add objects as needed.
