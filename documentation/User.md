@@ -1,4 +1,4 @@
-# schema-collaboration
+# schema-collaboration: documentation for data managers
 
 ## Introduction
 schema-collaboration is a tool in the form of web platform to help data managers and researchers to collaborate to create Frictionless datapackages. 
