@@ -202,9 +202,9 @@ Then on the "Add datapackage status" to load the form:
 | ![add_datapackage_status](images/add_datapackage_status.png) |
 |---|
 
-Enter the new datastatus name (in the example "Published") and select "Save".
+Enter the new data status name (in the example "Published") and select "Save".
 
-"The Behaviour": currently there is only one possible "Behaviour": "Default on creation". The status of a new, rjust created, datapackage will be the status that has "Default on creation". Only one Status can have the Behaviour "Default on creation".
+"The Behaviour": currently there is only one possible "Behaviour": "Default on creation". The status of a new (just created), datapackage will be the status that has "Default on creation". Only one Status can have the Behaviour "Default on creation".
 
 ### Delete People
 Select on "People" on the left hand side and fine the Person or People to be deleted. You can use the "Search" feature if needed. Select the checkboxes and then the action "Delete selected People":
