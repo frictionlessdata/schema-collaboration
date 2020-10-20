@@ -41,20 +41,22 @@ There are three different roles in the application:
 
 ## Data manager login into schema-collaboration
 After the installation of the schema-collaboration in the main page there is a link to the management area. The URL of the schema-collaboration will vary depending on the installation methods but it will like:
- * http://localhost:8000 if it was installed in the local computer
- * https://schema-collaboration.your_institution.org (or similar) if it was installed in one of your servers
+ * [http://localhost:8000](http://localhost:8000) if it was installed in the local computer in the port 8000 (default if following the instructions)
+ * [https://schema-collaboration.yourinstitution.org](https://schema-collaboration.yourinstitution.org) (or similar) if it was installed in one of your servers
 
-In the main page there is a link to the "management area":
+In the main page follow the link to the "management area":
 
 ![management_area_link](images/homepage_link_to_management_area.png)
 
 After this please login using your credentials:
+
 ![login](images/login.png)
 
-The username and password for the datamanager where created during the installation. Please refer to the installation steps to find them.
+The username and password for the datamanager were created during the installation. Please refer to the installation steps to find them.
 
 ## Navigation
 There is a left-hand side bar to navigate between "Datapackages" and "People". It also shows the user that is logged-in and allows to "Logout". See the options:
+
 ![navigation_bar](images/navigation_bar.png)
 
 ## Create the first datapackage
@@ -68,20 +70,23 @@ It will create a new, empty, data package and it will open the Data Package Crea
 
 As a data manager fill in all the information that you might know of the data set.
 
-At any time or when finished click on "Save to server".
+At any time or when finished select "Save to server".
 
-Then click on "List of datapackages" (TODO 2020-10-20: button to be added!) 
+Then select "List of datapackages" (TODO 2020-10-20: button to be added!) 
 
-The list of datapackages will contain a new datapackage:
+The list of datapackages will contain the new datapackage:
+
 ![list_of_packages_one_package](images/list_of_packages_empty_one_package.png)
 
 ## Create the first Person
 In order to give access to the researchers it is needed to create "People" (TODO 2020-10-20 rename to collaborators?)
 
-Click on the "People" option on the left hand side bar:
+Select "People" on the left hand side bar:
+
 ![list_of_people_empty](images/list_of_people_empty.png)
 
-Click on "Create a Person" and enter the person's name:
+Select "Create a Person" and enter the person's name:
+
 ![create_person](images/create_person.png)
 
 schema-collaboration will show the "Person detail" page:
@@ -98,17 +103,17 @@ There are three buttons on above screenshot:
 Note that this page doesn't have the left hand side bar. This is an indication that this page is accessible by anyone just having the link: it can be sent to the researcher and will be able to see their datapackages.
 
 ## Assign a datapackage to a researcher
-Let's click a the "Datapackages" on the left hand side and click on "Options -> Manage Datapackage":
+Select "Datapackages" on the left hand side and then "Options -> Manage Datapackage":
 ![manage_datapackage](images/manage_datapackage.png)
 
-There is a brief information on the datapackage detail. Here is where you could add Comments for the researchers of for yourself (click on "Private" if the comment is only for you).
+There is a brief information on the datapackage detail. Here is where you could add Comments for the researchers of for yourself (enable "Private" if the comment is only for you).
 
-Click on "Edit Manage" in order to Manage the Datapackage:
+Select "Edit Manage" in order to Manage the Datapackage:
 ![datapackage_manage_edit](images/datapackage_manage_edit.png)
 
-In this page you are able to Edit this datapackage: change its status and add collaborators. In this case we are adding the "Jane Doe" collaborator and clicking "Save".
+In this page you are able to Edit this datapackage: change its status and add collaborators. In this case we are adding the "Jane Doe" collaborator and selecting "Save".
 
-Clicking then on "Datapackages" again you can see the "List of Datapackages" and the "Collaborators" column has "Jane Doe":
+After this select "Datapackages" again you can see the "List of Datapackages" and the "Collaborators" column has "Jane Doe":
 ![list_of_datapackages_with_collaborator](images/list_of_datapackages_with_collaborator.png)
 
 ## Options in a Datapackage
@@ -161,18 +166,18 @@ An example of the admin section:
 ![list_of_datapackages_admin](images/list_of_datapackages_admin.png)
 
 ### Create more Datapackage Status
-Click on the left hand side "Datapackage status" to list the Datapackage status:
+Select on the left hand side "Datapackage status" to list the Datapackage status:
 ![list_of_status](images/list_of_status.png)
 
 Then on the "Add datapackage status" to load the form:
 ![add_datapackage_status](images/add_datapackage_status.png)
 
-Enter the new datastatus name (in the example "Published") and click "Save".
+Enter the new datastatus name (in the example "Published") and select "Save".
 
 The Behaviour: currently there is only one possible "Behaviour": "Default on creation". The Status with the "Default on creation" behaviour will be the status assigned to a newly created Datapackage. Only one Status can have the Behaviour "Default on creation".
 
 ### Delete People
-Similar steps would be done to delete a Datapackage or a Comment. Click on "People" on the left hand side and fine the Person or People to be deleted. You can use the "Search" feature if needed. Select the checkboxes and then the action "Delete selected People":
+Similar steps would be done to delete a Datapackage or a Comment. Select on "People" on the left hand side and fine the Person or People to be deleted. You can use the "Search" feature if needed. Select the checkboxes and then the action "Delete selected People":
 ![delete_person_checkbox](images/delete_person_checkbox.png)
 
 If this person is a collaborator in some Datapackages it will be de-attached and you might need to confirm it select on "Yes, I'm sure":
