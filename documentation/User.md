@@ -1,7 +1,7 @@
 # schema-collaboration: documentation for data managers
 
 ## Introduction
-schema-collaboration is a tool in the form of a web platform to help data managers and researchers to collaborate to create Frictionless datapackages. 
+schema-collaboration is a tool in the form of a web platform to help data managers and collaborators to work together to create Frictionless datapackages. A collaborator could be a researcher but in general can be anyone who is working on the dataset.
 
 In order to use this application some familiarity with Frictionless Datapackages is required. You can find information on the [Frictionless website](https://frictionlessdata.io/) or in the [Data Package specification](https://specs.frictionlessdata.io/data-package/).
 
@@ -20,30 +20,30 @@ The documentation gives detailed steps with screenshots about how to use schema-
  * At any time adding comments to the datapackage to be seen either by the data manager only or by the collaborators as well
 
 ## Installation
-schema-collaboration needs to be installed into a server in order to be used by the data manager and researchers. It is done in Python and Django and there are different ways to set it up:
+schema-collaboration needs to be installed on a server in order to be used by the data manager and collaborators. It is written in Python and Django and there are different ways to set it up:
  * Using a Python virtual environment (see the documentation in the main README file)
- * Using Docker and a sqlite3 database
- * Using Docker and a MariaDB database server (not included)
+ * Using Docker and an SQLite3 database
+ * Using Docker and a MariaDB database server (this server is not bundled within the Docker image)
 
-We have tried to make schema-collaboration easy to test without having the setup a database. Someone with certain familiarity to the shell with either Docker or Python3 installed should be able to install schema-collaboration in their computer to be used locally.
+We have tried to make schema-collaboration easy to install locally (for evaluation purposes for example) without having to setup a full server and database. Someone with certain familiarity of the shell with either Docker or Python3 installed, should be able to install schema-collaboration on their computer to be used locally. If you have any problems though, please get in touch.
 
-In order to install schema-collaboration on a server to be used in production a system administrator will need to help to integrate with existing infrastructure (DNS, existing servers, virtual hosts, backups, existing database, etc.).
+In order to install schema-collaboration on a server to be used in production, a system administrator will need to help to integrate with existing infrastructure (DNS, existing servers, virtual hosts, backups, existing database, etc.).
 
-We have tried to make schema-collaboration easy to deploy. Let us know if you need anything implemented in schema-collaboration that would make deploying it for you easier and we will consider this.
+We have tried to make schema-collaboration easy to deploy. Do not hesitate to get in touch if you need anything implemented in schema-collaboration that would make deploying it easier and we will consider how we could make improvements.
 
-schema-collaboration stores the Data package schemas but not research data. This is to keep the installation and administration of the application as easy as possible. It might be added in the future.
+schema-collaboration stores the Data package schemas but not research data, to keep the installation and administration of the application as easy as possible. This feature might be added in the future.
 
 ## User account types
-There are three different roles in the application:
+There are three different roles within the application:
  
- * *Data manager users:* they have access to the "management" area with individual login and password. All data manager users have access to the same data sets. The login link is in the main page and the username and password created during the installation
- * *Admin user:* this user, using the Django admin web section, can add or remove different status of the data packages and do other actions that are not exposed to the data managers (for example delete or modify comments, delete data packages, etc.)
- * *Researchers:* they do not need any login/password. The data managers will send unique links to them in order to access their datasets. The system is designed this way to avoid creating users, making them keep/recover password, etc.
+ * *Data manager users:* they have access to the "management" area with individual login and password. All data manager users have access to the same data sets. The login link is on the main page and the username and password are created during the installation;
+ * *Admin user:* this user, using the Django admin web section, can do other actions that are not exposed to the data managers  such as adding or removing statuses of the data packages, deleting or modifying comments and deleting data packages;
+ * *Collaborators:* they do not need any login/password. The data managers will send unique links to collaborators to give access to their datasets. The system is designed this way to avoid creating more users.
 
 ## Data manager login into schema-collaboration
-After the installation of the schema-collaboration in the main page there is a link to the management area. The URL of the schema-collaboration will vary depending on the installation methods but it will like:
- * [http://localhost:8000](http://localhost:8000) if it was installed in the local computer in the port 8000 (default if following the instructions)
- * [https://schema-collaboration.yourinstitution.org](https://schema-collaboration.yourinstitution.org) (or similar) if it was installed in one of your servers
+After the installation of the schema-collaboration, on the main page there is a link to the management area. The URL of the schema-collaboration will vary depending on the installation methods but it will look something like:
+ * [http://localhost:8000](http://localhost:8000) if it was installed on the local computer in port 8000 (default if following the instructions)
+ * [https://schema-collaboration.yourinstitution.org](https://schema-collaboration.yourinstitution.org) (or similar) if it was installed on another server.
 
 In the main page follow the link to the "management area":
 
@@ -88,7 +88,7 @@ The list of datapackages will contain the new datapackage:
 |---|
 
 ## Create the first Person
-In order to give access to the researchers it is needed to create "People" (TODO 2020-10-20 rename to collaborators?)
+In order to give access to the collaborators it is needed to create "People" (TODO 2020-10-20 rename to collaborators?)
 
 Select "People" on the left hand side bar:
 
@@ -117,13 +117,13 @@ There are three buttons on above screenshot:
 
 Note that this page doesn't have the left hand side bar. This is because the external pages (available to collaborators) do not have it and the URL can be sent to the collaborators in order to work on it.
 
-## Assign a datapackage to a researcher
+## Assign a datapackage to a collaborator
 Select "Datapackages" on the left hand side and then "Options -> Manage Datapackage":
 
 | ![manage_datapackage](images/manage_datapackage.png) |
 |---|
 
-There is a brief information on the datapackage detail. Here is where you could add Comments for the researchers of for yourself (enable "Private" if the comment is only for you).
+There is a brief information on the datapackage detail. Here is where you could add Comments for the collaborators of for yourself (enable "Private" if the comment is only for you).
 
 Select "Edit Manage" in order to Manage the Datapackage:
 
