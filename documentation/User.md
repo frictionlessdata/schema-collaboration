@@ -15,8 +15,8 @@ The documentation gives detailed steps with screenshots about how to use schema-
  * Logging in as a data manager
  * Creating a Datapackage and adding the known information (title, authors, etc.)
  * Creating a Person
- * Editing the Datapackage and making the created person a collaborator
- * Sending the link to the Datapackage to the collaborators so they can work on it
+ * Editing the Datapackage and making the created person a collaborator of a particular Datapackage
+ * Sending the Datapackage link to the collaborators so they can work on it
  * At any time adding comments to the datapackage to be seen either by the data manager only or by the collaborators as well
 
 ## Installation
@@ -45,52 +45,48 @@ After the installation of the schema-collaboration, on the main page there is a 
  * [http://localhost:8000](http://localhost:8000) if it was installed on the local computer in port 8000 (default if following the instructions)
  * [https://schema-collaboration.yourinstitution.org](https://schema-collaboration.yourinstitution.org) (or similar) if it was installed on another server.
 
-In the main page follow the link to the "management area":
+On the main page follow the link to the "management area":
 
 | ![management_area_link](images/homepage_link_to_management_area.png) |
 |---|
 
-After this please login using your credentials:
+Login using the data manager credentials:
 
 | ![login](images/login.png) |
 |---| 
 
-The username and password for the datamanager were created during the installation. Please refer to the installation steps to find them.
+The username and password for the data manager were created during the installation. Please refer to the installation steps to find them.
 
 ## Navigation
-There is a left-hand side bar to navigate between "Datapackages" and "People". It also shows the user that is logged-in and allows to "Logout". See the options:
+There is a left-hand side bar to navigate between "Datapackages" and "People". It also shows the user that is logged-in (in the image below, the user is "datamanager") and allows that user to "Logout". See the options:
 
 | ![navigation_bar](images/navigation_bar.png) |
 |---|
 
 ## Create the first datapackage
-The first time that a data manager logins in the system there will be no packages created. The datamanager needs to create a new data package to fill-in with the basic information.
+The first time that a data manager logs into the system there will be no data packages. The data manager needs to create a new data package and complete the basic information.
 
-Create the button "Create a Datapackage" in order to create one:
+Select the button "Create a Datapackage" in order to create one:
 
 | ![list_of_datapackages_empty](images/list_of_packages_empty.png) |
 |---|
 
-It will create a new, empty, data package and it will open the Data Package Creator:
+This will create a new, empty, data package and it will open the Data Package Creator:
 
 | ![data_creator_empty](images/datacreator_ui_empty.png) |
 |---|
 
-As a data manager fill in all the information that you might know of the data set.
+As a data manager, complete the information that you might already know about the data set.
 
-At any time or when finished select "Save to server".
+At any point or when finished select "Save to server".
 
-Then select "List of datapackages" (TODO 2020-10-20: button to be added!) 
-
-The list of datapackages will contain the new datapackage:
+Navigate back to data package management interface, then select "List of datapackages" (TODO 2020-10-20: button to be added!), which will contain the new datapackage:
 
 | ![list_of_packages_one_package](images/list_of_packages_empty_one_package.png) |
 |---|
 
 ## Create the first Person
-In order to give access to the collaborators it is needed to create "People" (TODO 2020-10-20 rename to collaborators?)
-
-Select "People" on the left hand side bar:
+Select "People" on the left hand side bar to create the first collaborator:(TODO 2020-10-20 rename to collaborators?)
 
 | ![list_of_people_empty](images/list_of_people_empty.png) |
 |---|
@@ -105,59 +101,59 @@ schema-collaboration will show the "Person detail" page:
 | ![person_detail](images/person_detail.png) |
 |---|
 
-There are three buttons on above screenshot:
+There are three buttons in the screenshot above:
  * "Edit": to edit the person (change the name)
- * "List Datapackages": takes you to the list of datapackages assigned to this user
- * "Copy List Datapackages": copies the link to the datapackages to your clipboard.
+ * "List Datapackages": takes you to the list of datapackages assigned to this collaborator
+ * "Copy List Datapackages": copies the link to the list of datapackages assigned to this collaborator, to your clipboard.
  
- If we open the "List Datapackages" (for this user) it is empty:
+ If we open "List Datapackages" (for this user) it is currently empty:
 
 | ![list_of_datapackages_for_user_empty](images/list_of_datapackages_for_user_empty.png) |
 |---|
 
-Note that this page doesn't have the left hand side bar. This is because the external pages (available to collaborators) do not have it and the URL can be sent to the collaborators in order to work on it.
+Note that this page doesn't have the left-hand side bar. This is because the external pages (available to collaborators) do not have these options available and the URL can be sent to the collaborators in order to work on it.
 
 ## Assign a datapackage to a collaborator
-Select "Datapackages" on the left hand side and then "Options -> Manage Datapackage":
+Select "Datapackages" on the left-hand side and next to the relevant datapackage, select "Options -> Manage Datapackage":
 
 | ![manage_datapackage](images/manage_datapackage.png) |
 |---|
 
-There is a brief information on the datapackage detail. Here is where you could add Comments for the collaborators of for yourself (enable "Private" if the comment is only for you).
+There is some brief information in the datapackage detail. Here is where you could add Comments for the collaborators or just for the data manager (enable "Private" if the comment is only for the data manager).
 
 Select "Edit Manage" in order to Manage the Datapackage:
 
 | ![datapackage_manage_edit](images/datapackage_manage_edit.png) |
 |---|
 
-In this page you are able to Edit this datapackage: change its status and add collaborators. In this case we are adding the "Jane Doe" collaborator and selecting "Save".
+On this page you are able to Edit this datapackage to change its status and add collaborators. In the example below we add the collaborator "Jane Doe" and selecting "Save".
 
-After this select "Datapackages" again you can see the "List of Datapackages" and the "Collaborators" column has "Jane Doe":
+After this step, select "Datapackages" again and in the "List of Datapackages", "Jane Doe" will appear as a "Collaborator".
 
 | ![list_of_datapackages_with_collaborator](images/list_of_datapackages_with_collaborator.png) |
 |---|
 
-## Options in a Datapackage
-Each Datapackage has a different set of options:
+## Options for a Datapackage
+Each Datapackage has a set of options:
 
 |![options_for_a_datapackage](images/options_for_datapackage.png)|
 |---|
 
  * Edit Datapackage: takes you to the "Datapackage creator" in order to make changes to the data package
  * Manage Datapackage: place to add comments and also to edit the datapackage collaborators and status of the datapackage
- * Collaborator View: takes to the accessible without login/password page: this is to be sent to the collaborators. Collaborators can read and write comments, datapackage information, Edit it and Download it
+ * Collaborator View: takes you to the page that is accessible without login/password, which can be sent to collaborators. Collaborators can read and write comments, see datapackage information, edit  and download the datapackage.
 
 ## Download button
-The "Download" button appears in different pages with always the same options:
+The "Download" button appears in different pages always with the same options:
 
 | ![download](images/download.png) |
 |---|
 
  * Schema: downloads the JSON schema file
- * Markdown: generates a documentation file formatted on Markdown based on the Schema
+ * Markdown: generates a documentation file formatted in Markdown, based on the Schema
  * PDF: generates a PDF file from the Markdown
  
- All the Markdown and PDF information comes from the Schema.
+All the Markdown and PDF information comes from the Schema.
  
 An example of the PDF output:
 
