@@ -14,8 +14,8 @@ The documentation gives detailed steps with screenshots about how to use schema-
  * Installing the application
  * Logging in as a data manager
  * Creating a Datapackage and adding the known information (title, authors, etc.)
- * Creating a Person
- * Editing the Datapackage and making the created person a collaborator of a particular Datapackage
+ * Creating a Collaborator
+ * Editing the Datapackage and assigning the newly created collaborator
  * Sending the Datapackage link to the collaborators so they can work on it
  * At any time adding comments to the datapackage to be seen either by the data manager only or by the collaborators as well
 
@@ -58,7 +58,7 @@ Login using the data manager credentials:
 The username and password for the data manager were created during the installation. Please refer to the installation steps to find them.
 
 ## Navigation
-There is a left-hand side bar to navigate between "Datapackages" and "People". It also shows the user that is logged-in (in the image below, the user is "datamanager") and allows that user to "Logout". See the options:
+There is a left-hand side bar to navigate between "Datapackages" and "Collaborators". It also shows the user that is logged-in (in the image below, the user is "datamanager") and allows that user to "Logout". See the options:
 
 | ![navigation_bar](images/navigation_bar.png) |
 |---|
@@ -85,13 +85,13 @@ Navigate back to data package management interface, then select "List of datapac
 | ![list_of_packages_one_package](images/list_of_packages_empty_one_package.png) |
 |---|
 
-## Create the first Person
-Select "People" on the left hand side bar to create the first collaborator:(TODO 2020-10-20 rename to collaborators?)
+## Create the first Collaborator
+Select "Collaborators" on the left hand side bar to create the first collaborator:
 
 | ![list_of_people_empty](images/list_of_people_empty.png) |
 |---|
 
-Select "Create a Person" and enter the person's name:
+Select "Create a Collaborator" and enter the collaborators's name:
 
 | ![create_person](images/create_person.png) |
 |---|
@@ -102,7 +102,7 @@ schema-collaboration will show the "Person detail" page:
 |---|
 
 There are three buttons in the screenshot above:
- * "Edit": to edit the person (change the name)
+ * "Edit": to edit the collaborator (change the name)
  * "List Datapackages": takes you to the list of datapackages assigned to this collaborator
  * "Copy List Datapackages": copies the link to the list of datapackages assigned to this collaborator, to your clipboard.
  
@@ -162,7 +162,7 @@ An example of the PDF output:
 ## Collaborator access
 The collaborators can have access to the datapackages via two types of links:
  * Datapackage link: give access to one datapackage
- * List datapackages link: all the datapackages for the collaborator will appear and the collaborator can choose which one to work on. Find this within the list of people.
+ * List datapackages link: all the datapackages for the collaborator will appear and the collaborator can choose which one to work on. Find this within the list of collaborators.
 
 The public link for a collaborator to a single datapackage can be found in the "Options" in the List of Datapackages.
 
@@ -173,7 +173,7 @@ All day-to-day operations can be done by the data managers in the management are
  * Create other datapackage statuses. By default "Draft", "In Progress" and "Completed" are created. These can be modified or other statuses such as "Published", "Embargo", can be added; they will then appear in the "Manage datapackage" area.
  * Delete datapackages (this is not yet possible in the management section)
  * Delete or modify comments
- * Delete people
+ * Delete collaborators
  * Create other data manager users
 
 To access the admin panel use a URL such as [http://localhost:8000/admin](http://localhost:8000/admin) (change http://localhost:8000 as needed in your installation). Then enter the "Django administration" username and password. This is the `admin` user that got created when schema-collaboration was initially installed.
@@ -200,13 +200,13 @@ Enter the new status name (for example "Published") and select "Save".
 
 Currently there is only one possible "Behaviour" for a status: "Default on creation". The status of a newly created datapackage will be whichever one that has the behaviour "Default on creation". Only one status can have the Behaviour "Default on creation".
 
-### Delete People
+### Delete Collaborators
 Select "People" on the left-hand side and find the Person or People to be deleted. The "Search" feature can be used if needed. Select the checkboxes as required and then the action "Delete selected People":
 
 | ![delete_person_checkbox](images/delete_person_checkbox.png) |
 |---|
 
-If this person is a collaborator in some Datapackages it will be de-attached and may need to be confirmed by sleecting "Yes, I'm sure":
+If this person is a collaborator in some Datapackages it will be de-attached and may need to be confirmed by selecting "Yes, I'm sure":
 
 | ![delete_confirmation](images/delete_person_confirmation.png) |
 |---|
