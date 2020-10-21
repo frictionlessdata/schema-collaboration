@@ -6,13 +6,13 @@ app_name = 'management'
 
 urlpatterns = [
     path('', views.DatapackageListView.as_view(), name='list-schemas'),
-    path('person/list/', views.PersonListView.as_view(), name='list-people'),
+    path('collaborator/list/', views.CollaboratorListView.as_view(), name='collaborator-list'),
 
-    path('person/add/', views.PersonCreateView.as_view(), name='person-add'),
-    path('person/<int:pk>/edit/', views.PersonUpdateView.as_view(), name='person-update'),
-    path('person/<int:pk>/delete/', views.PersonDeleteView.as_view(), name='person-delete'),
+    path('collaborator/add/', views.CollaboratorCreateView.as_view(), name='collaborator-add'),
+    path('collaborator/<int:pk>/edit/', views.CollaboratorUpdateView.as_view(), name='collaborator-update'),
+    path('collaborator/<int:pk>/delete/', views.CollaboratorDeleteView.as_view(), name='collaborator-delete'),
 
-    path('person/<int:pk>/', views.PersonDetailView.as_view(), name='person-detail'),
+    path('collaborator/<int:pk>/', views.CollaboratorDetailView.as_view(), name='collaborator-detail'),
 
     path('datapackage/create/', views.DatapackageCreate.as_view(), name='datapackage-create'),
     path('datapackage/<uuid:uuid>/', views.DatapackageDetailView.as_view(), name='datapackage-detail'),

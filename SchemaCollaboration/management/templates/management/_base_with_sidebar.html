@@ -12,8 +12,8 @@
                            style="padding-left: 0" href="{% url 'management:list-schemas' %}">Datapackages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if sidebar_active == 'people' %}active{% endif %}" style="padding-left: 0"
-                           href="{% url 'management:list-people' %}">People</a>
+                        <a class="nav-link {% if sidebar_active == 'collaborators' %}active{% endif %}" style="padding-left: 0"
+                           href="{% url 'management:collaborator-list' %}">Collaborators</a>
                     </li>
                     <li>
                         <hr>

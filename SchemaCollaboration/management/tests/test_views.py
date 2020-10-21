@@ -16,25 +16,25 @@ class ViewsTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
-    def test_list_people(self):
-        response = self._management_client.get(reverse('management:list-people'))
+    def test_list_collaborators(self):
+        response = self._management_client.get(reverse('management:collaborator-list'))
 
         self.assertEqual(response.status_code, 200)
 
     def test_person_create(self):
-        response = self._management_client.get(reverse('management:person-add'))
+        response = self._management_client.get(reverse('management:collaborator-add'))
 
         self.assertEqual(response.status_code, 200)
 
     def test_person_detail(self):
-        response = self._management_client.get(reverse('management:person-detail', kwargs={'pk': self._person.pk}))
+        response = self._management_client.get(reverse('management:collaborator-detail', kwargs={'pk': self._person.pk}))
 
         self.assertEqual(response.status_code, 200)
 
         self.assertContains(response, 'Sheldon Cooper')
 
     def test_person_update(self):
-        response = self._management_client.get(reverse('management:person-update', kwargs={'pk': self._person.pk}))
+        response = self._management_client.get(reverse('management:collaborator-update', kwargs={'pk': self._person.pk}))
 
         self.assertEqual(response.status_code, 200)
 

@@ -15,7 +15,7 @@ class PersonTest(TestCase):
         person.save()
 
         self.assertEqual(person.get_absolute_url(),
-                         reverse('management:person-detail', kwargs={'pk': person.pk}))
+                         reverse('management:collaborator-detail', kwargs={'pk': person.pk}))
 
 
 class DatapackageStatusTest(TestCase):

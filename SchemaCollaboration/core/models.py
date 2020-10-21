@@ -24,7 +24,7 @@ class Person(CreateModifyOn):
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.PROTECT)
 
     def get_absolute_url(self):
-        return reverse('management:person-detail', kwargs={'pk': self.pk})
+        return reverse('management:collaborator-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.full_name

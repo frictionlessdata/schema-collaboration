@@ -33,7 +33,7 @@ class DatapackageListView(ListView):
 class PersonMixin():
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['sidebar_active'] = 'people'
+        context['sidebar_active'] = 'collaborator'
         return context
 
 
@@ -43,60 +43,61 @@ def add_list_datapackage_url_to_person(person, request):
                 ))
 
 
-class PersonListView(PersonMixin, ListView):
+class CollaboratorListView(PersonMixin, ListView):
     template_name = 'management/person-list.html'
     model = Person
-    context_object_name = 'people'
+    context_object_name = 'collaborators'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['breadcrumb'] = [{'name': 'People'}]
+        context['breadcrumb'] = [{'name': 'Collaborator'}]
 
-        for person in context['people']:
-            add_list_datapackage_url_to_person(person, self.request)
+        for collaborator in context['collaborators']:
+            add_list_datapackage_url_to_person(collaborator, self.request)
 
         return context
 
 
-class PersonCreateView(PersonMixin, CreateView):
+class CollaboratorCreateView(PersonMixin, CreateView):
     model = Person
     form_class = PersonModelForm
     template_name = 'management/person-form.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['breadcrumb'] = [{'name': 'People', 'url': reverse('management:list-people')},
+        context['breadcrumb'] = [{'name': 'Collaborators', 'url': reverse('management:collaborator-list')},
                                  {'name': 'Create'}]
         return context
 
 
-class PersonUpdateView(PersonMixin, UpdateView):
+class CollaboratorUpdateView(PersonMixin, UpdateView):
     model = Person
     form_class = PersonModelForm
     template_name = 'management/person-form.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['breadcrumb'] = [{'name': 'People', 'url': reverse('management:list-people')},
+        context['breadcrumb'] = [{'name': 'Collaborators', 'url': reverse('management:collaborator-list')},
                                  {'name': 'Edit'}]
         return context
 
 
-class PersonDeleteView(DeleteView):
+class CollaboratorDeleteView(DeleteView):
     model = Person
-    success_url = reverse_lazy('management-list-people')
+    success_url = reverse_lazy('management-list-collaborators')
 
 
-class PersonDetailView(PersonMixin, DetailView):
+class CollaboratorDetailView(PersonMixin, DetailView):
     model = Person
     template_name = 'management/person-detail.html'
+    context_object_name = 'collaborator'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['breadcrumb'] = [{'name': 'People', 'url': reverse('management:list-people')},
+        context['breadcrumb'] = [{'name': 'Collaborators', 'url': reverse('management:collaborator-list')},
                                  {'name': 'Detail'}]
 
-        add_list_datapackage_url_to_person(context['person'], self.request)
+        add_list_datapackage_url_to_person(context['collaborator'], self.request)
 
         return context
 
@@ -162,7 +163,7 @@ class DatapackageUpdateView(DatapackageMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['breadcrumb'] = [{'name': 'Datapackages', 'url': reverse('management:list-people')},
+        context['breadcrumb'] = [{'name': 'Datapackages', 'url': reverse('management:collaborator-list')},
                                  {'name': 'Edit'}]
         return context
 

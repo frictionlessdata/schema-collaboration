@@ -1,10 +1,10 @@
 {% extends 'management/_base_with_sidebar.html' %}
 {% load static %}
 
-{% block title %}List of people{% endblock %}
+{% block title %}List of collaborators{% endblock %}
 {% block main_contents %}
-    <h1>List of people</h1>
-    <table id="person-table" class="table table-striped table-sm table-hover display">
+    <h1>List of collaborators</h1>
+    <table id="collaborator-table" class="table table-striped table-sm table-hover display">
         <thead>
         <tr>
             <th>Name</th>
@@ -12,15 +12,15 @@
         </tr>
         </thead>
         <tbody>
-        {% for person in people %}
+        {% for collaborator in collaborators %}
             <tr>
-                <td>{{ person.full_name }}</td>
+                <td>{{ collaborator.full_name }}</td>
                 <td>
-                    <a href="{% url 'management:person-detail' pk=person.id %}" class="btn btn-primary btn-sm">View</a>
-                    <a href="{% url 'management:person-update' pk=person.id %}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{% url 'management:collaborator-detail' pk=collaborator.id %}" class="btn btn-primary btn-sm">View</a>
+                    <a href="{% url 'management:collaborator-update' pk=collaborator.id %}" class="btn btn-primary btn-sm">Edit</a>
                     &nbsp;
-                    <a href="{{ person.list_datapackages_url }}" class="btn btn-primary btn-sm">List Datapackages</a>
-                    {% include 'core/_clipboard-button.html' with url=person.list_datapackages_url id='copy_edit_link' button_text='Copy List Datapackages' only %}
+                    <a href="{{ collaborator.list_datapackages_url }}" class="btn btn-primary btn-sm">List Datapackages</a>
+                    {% include 'core/_clipboard-button.html' with url=collaborator.list_datapackages_url id='copy_edit_link' button_text='Copy List Datapackages' only %}
                 </td>
             </tr>
         {% endfor %}
@@ -29,16 +29,16 @@
 
     <script type="text/javascript" class="init">
         $(document).ready(function () {
-            $('#person-table').DataTable({
+            $('#collaborator-table').DataTable({
                 searchHighlight: true,
                 order: [[0, "asc"]],
                 language: {
-                    zeroRecords: "No people have been created. <a href=\"{% url 'management:person-add' %}\">Create a Person</a>"
+                    zeroRecords: "No collaborators have been created. <a href=\"{% url 'management:collaborator-add' %}\">Create a Collaborator</a>"
                 },
                 pageLength: 50,
             });
         });
     </script>
     <hr>
-    <a href="{% url 'management:person-add' %}" class="btn btn-primary">Create a Person</a>
+    <a href="{% url 'management:collaborator-add' %}" class="btn btn-primary">Create a Collaborator</a>
 {% endblock %}
