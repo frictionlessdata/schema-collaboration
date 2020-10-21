@@ -35,13 +35,13 @@ export FORCE_SQLITE3_DATABASE=1	# otherwise it would use Mysql/Mariadb and you n
 
 python3 manage.py migrate
 
-python3 manage.py create_datamanagement_user \
+python3 manage.py create_datamanagement_and_admin_user \
 	data_username \
 	"DataManagerName DataManagerSurname" \
 	data_manager_secret_pwd \
 	admin_secret_pwd
 
-python3 manage.py create_status # This will create default three status and can be changed at any time
+python3 manage.py create_default_data_package_status # This will create default three status and can be changed at any time
 
 python3 manage.py runserver
 ```
