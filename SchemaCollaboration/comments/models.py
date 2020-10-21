@@ -10,13 +10,20 @@ class AbstractComment(CreateModifyOn):
     text = models.TextField()
     private = models.BooleanField()
 
+    def __str__(self):
+        if self.text is None:
+            text = ''
+        else:
+            text = f'{self.text[:20]}...'
+
+        return f'Author:{self.author}-{text}'
+
     class Meta:
         abstract = True
 
 
 class Comment(AbstractComment):
     pass
-
 
 # TODO (a comment that would be displayed with a checkbox to be done) were never implemented
 # The model was written: for now I'll leave it here in case that I get to do it at some point
