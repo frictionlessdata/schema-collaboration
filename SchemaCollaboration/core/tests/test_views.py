@@ -22,10 +22,10 @@ class TestDatapackageUiView(TestCase):
     def test_datapackage_no_uuid(self):
         c = Client()
 
-        response = c.get(reverse('datapackage-ui'))
+        response = c.get(reverse('datapackage-ui')+'?uuid=some_uuid&origin=/some-origin/')
 
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, '/static/datapackage-ui/index.html')
+        self.assertEqual(response.url, '/static/datapackage-ui/index.html?uuid=some_uuid&origin=/some-origin/')
 
     def test_datapackage_uuid(self):
         c = Client()
