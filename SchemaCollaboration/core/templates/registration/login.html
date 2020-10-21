@@ -28,10 +28,13 @@
             </tr>
         </table>
         <p></p>
-        <p>For this demo version try:<br>
-            <strong>Username:</strong> datamanager<br>
-            <strong>Password:</strong> frictionless
-        </p>
+
+        {% if demo_username and demo_password %}
+            <p>For this demo version try:<br>
+                <strong>Username:</strong> {{ demo_username }}<br>
+                <strong>Password:</strong> {{ demo_password }}
+            </p>
+        {% endif %}
         <input type="submit" value="Login"/>
         <input type="hidden" name="next" value="{{ next }}"/>
         <p></p>

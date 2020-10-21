@@ -1,5 +1,7 @@
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 
+from SchemaCollaboration import settings
 from . import views
 
 urlpatterns = [
@@ -15,6 +17,12 @@ urlpatterns = [
 
     path('datapackage/<uuid:uuid>/add_comment/', views.DatapackageAddCommentView.as_view(),
          name='datapackage-add-comment'),
+
+    path('accounts/login/',
+         auth_views.LoginView.as_view(template_name='registration/login.html',
+                                      extra_context={'demo_username': settings.DEMO_USERNAME,
+                                                     'demo_password': settings.DEMO_PASSWORD}),
+         name='login'),
 
     path('accounts/', include('django.contrib.auth.urls')),
 ]

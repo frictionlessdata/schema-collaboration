@@ -161,6 +161,11 @@ if os.environ.get('HSTS', '0') == '1':
 if 'SECURE_HSTS_SECONDS' in os.environ:
     SECURE_HSTS_SECONDS = os.environ['SECURE_HSTS_SECONDS']
 
+# Next two variables are used in the login page (/accounts/login/) to give a default username/password
+# This is meant to be used for demo schema-collaboration websites
+DEMO_USERNAME = os.environ.get('DEMO_USERNAME', None)
+DEMO_PASSWORD = os.environ.get('DEMO_PASSWORD', None)
+
 try:
     from local_settings import *
 except ImportError:
