@@ -94,6 +94,9 @@ class Datapackage(CreateModifyOn):
 
         return name
 
+    def generate_edit_link(self, path):
+        return f'{reverse("datapackage-ui")}?load={self.uuid}&source={path}'
+
     def __str__(self):
         if self.name:
             return self.name

@@ -117,6 +117,8 @@ class DatapackageDetailView(DetailView):
         context = super().get_context_data(**kwargs)
 
         datapackage = kwargs['object']
+        datapackage.edit_link = datapackage.generate_edit_link(self.request.path)
+
         context.update(datapackage_detail_context(datapackage))
 
         return context

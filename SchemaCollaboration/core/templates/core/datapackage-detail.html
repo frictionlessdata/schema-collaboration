@@ -15,7 +15,7 @@
     Please read the comments below and then click on "Edit" to enter the data.
     <p></p>
 
-    <a class="btn btn-primary" href="{% url 'datapackage-ui' %}?load={{ datapackage.uuid }}">Edit</a>
+    <a class="btn btn-primary" href="{{ datapackage.edit_link }}">Edit</a>
     {% include 'core/_download-schema-buttons.html' with uuid=datapackage.uuid only %}
     <hr>
     <h1>Comments</h1>
