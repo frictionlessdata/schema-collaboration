@@ -195,15 +195,14 @@ class DatapackageUiView(RedirectView):
     query_string = True
 
     def get_redirect_url(self, *args, **kwargs):
-        # TODO: Generalise this? to allow any number of parameters and not only uuid
-        uuid = self.request.GET.get('load')
+        get_query_params = ''
+        for url_param, url_value in self.request.GET.items():
+            if get_query_params:
+                get_query_params += '&'
 
-        if uuid:
-            get_query_params = f'?load={uuid}'
-        else:
-            get_query_params = ''
+            get_query_params += f'{url_param}={url_value}'
 
-        return static('datapackage-ui/index.html') + get_query_params
+        return static('datapackage-ui/index.html') + '?' + get_query_params
 
 
 class DatapackageAddCommentView(View):

@@ -6,7 +6,7 @@ const { ToastContainer } = require('react-toastify')
 
 const onSaveToServer = require('./SchemaCollaborationSaveToServer').onSaveToServer
 const getParameterFromUrlByName = require('./SchemaCollaborationUtils').getParameterFromUrlByName
-
+const onExitApplication = require('./SchemaCollaborationUtils').onExitApplication
 // Pure components
 
 function EditorSchemaCollaborationButtonsPure({
@@ -87,6 +87,16 @@ function EditorSchemaCollaborationButtonsPure({
         ref={(button) => { this.loadFromServerButton = button }}
       >
         Load from the server
+      </button>
+
+
+      {/* Exit package creator */}
+      <button
+        className="btn btn-lg btn-info"
+        title="Exit package creator"
+        onClick={() => onExitApplication()}
+      >
+        Exit package creator
       </button>
     </div>
   )

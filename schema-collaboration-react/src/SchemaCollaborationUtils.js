@@ -10,3 +10,7 @@ export function getParameterFromUrlByName(name, url) {
   if (!results[2]) return ''
   return decodeURIComponent(results[2].replace(/\+/g, ' '))
 }
+
+export function onExitApplication() {
+  window.location.href = getParameterFromUrlByName('source', window.location)
+}

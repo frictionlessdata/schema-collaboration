@@ -25,9 +25,13 @@ class DatapackageListView(ListView):
         for schema in context['schemas']:
             schema.collaborator_view_link = self.request.build_absolute_uri(
                 reverse('datapackage-detail', kwargs={'uuid': schema.uuid}))
-            schema.edit_link = f'{reverse("datapackage-ui")}?load={schema.uuid}'
+            schema.edit_link = edit_link(schema.uuid, self.request.path)
 
         return context
+
+
+def edit_link(uuid, source):
+    return f'{reverse("datapackage-ui")}?load={uuid}&source={source}'
 
 
 class PersonMixin():
@@ -122,8 +126,8 @@ class DatapackageCreate(DatapackageMixin, View):
             schema.save()
         except ObjectDoesNotExist:
             pass
-
-        return redirect(f'{reverse("datapackage-ui")}?load={schema.uuid}')
+        
+        return redirect(edit_link(schema.uuid, '/management/'))
 
 
 class DatapackageDetailView(DatapackageMixin, DetailView):
