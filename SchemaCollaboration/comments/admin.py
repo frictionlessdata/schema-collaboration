@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from comments.models import Comment, ToDo
+from comments.models import Comment
 
 
 class CommentAdmin(admin.ModelAdmin):
@@ -8,10 +8,10 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('author', 'text',)
 
 
-class ToDoAdmin(admin.ModelAdmin):
-    list_display = ('author', 'text', 'private', 'done', 'done_by', 'done_on', 'created_on', 'modified_on',)
-    search_fields = ('author', 'text',)
+# class ToDoAdmin(admin.ModelAdmin):
+#     list_display = ('author', 'text', 'private', 'done', 'done_by', 'done_on', 'created_on', 'modified_on',)
+#     search_fields = ('author', 'text',)
 
 
 admin.site.register(Comment, CommentAdmin)
-admin.site.register(ToDo, ToDoAdmin)
+# admin.site.register(ToDo, ToDoAdmin)
