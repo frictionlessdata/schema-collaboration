@@ -4,5 +4,12 @@
 {% block title %}Datapackage{% endblock %}
 {% block main_contents %}
     <h1>Datapackage</h1>
+    Name:<br>
+    <div class="row">
+        <div class="col-6">
+            <div class="border">{{ datapackage.name }}</div>
+        </div>
+    </div>
+    <br>
     {% crispy form %}
 {% endblock %}

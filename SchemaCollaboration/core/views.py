@@ -146,11 +146,9 @@ class ApiSchemaView(View):
 
         schema = Datapackage.objects.get(uuid=uuid)
 
-        if not schema.schema:
-            # The first time
-            name = get_name_from_datapackage(body)
-            schema.name = name
+        name = get_name_from_datapackage(body)
 
+        schema.name = name
         schema.schema = body
         schema.save()
 

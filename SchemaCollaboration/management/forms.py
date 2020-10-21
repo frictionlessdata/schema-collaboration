@@ -41,10 +41,6 @@ class DatapackageModelForm(forms.ModelForm):
 
         self.helper.layout = Layout(
             Div(
-                Div('name', css_class='col-6'),
-                css_class='row'
-            ),
-            Div(
                 Div('status', css_class='col-6'),
                 css_class='row'
             ),
@@ -59,5 +55,5 @@ class DatapackageModelForm(forms.ModelForm):
 
     class Meta:
         model = Datapackage
-        fields = ['name', 'status', 'collaborators']
+        fields = ['status', 'collaborators']
         widgets = {'status': RadioSelect}
