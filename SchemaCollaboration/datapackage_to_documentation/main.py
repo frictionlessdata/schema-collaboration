@@ -83,8 +83,6 @@ template_to_md = '''# {{ title }}
 ## Dataset license
 {% endif %}{% for license in licenses %} * {{ license.title }} ([{{ license.name }}]({{ license.path }}))
 {% endfor %}
-## Dataset citation
-TODO
 
 ## Resources
 {% for resource in resources %}
