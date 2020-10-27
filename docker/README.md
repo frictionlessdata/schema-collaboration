@@ -33,8 +33,8 @@ $ docker run \
 
 When the Docker container is running you can:
  * Visit http://localhost:8000 to open schema-collaboration
- * Visit http://localhost:8000/admin and login with User: admin Password: admin_secret_pwd
- * Visit http://localhost:8000/accounts/login/ and login with Username: data Password: dm_secret_pwd
+ * Visit http://localhost:8000/admin and login with *Username:* `admin` *Password:* `admin_secret_pwd`
+ * Visit http://localhost:8000/accounts/login/ and login with *Username:* `data` *Password:* `dm_secret_pwd`
 
 If you want to run it again from scratch delete the container: `docker rm schema_collaboration` **This deletes the database**
 
