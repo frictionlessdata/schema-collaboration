@@ -2,3 +2,8 @@
 .sidebar .nav-link.active {
     color: #333;
 }
+
+.authentication_error {
+    color: #ff0000;
+    font-weight: bold;
+}
