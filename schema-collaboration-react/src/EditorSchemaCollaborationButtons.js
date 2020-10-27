@@ -94,7 +94,7 @@ function EditorSchemaCollaborationButtonsPure({
       <button
         className="btn btn-lg btn-info"
         title="Exit package creator"
-        onClick={() => onExitApplication()}
+        onClick={() => onExitApplication(`${decodeURIComponent(encodedDescriptor)}`)}
       >
         Exit package creator
       </button>
@@ -125,7 +125,6 @@ const mapDispatchToProps = (dispatch) => ({
   onLoadFromServer: () => {
     const uuid = getParameterFromUrlByName('load')
     axios.get('/api/datapackage/' + uuid + '/').then((resp) => {
-      console.log(resp.data)
       dispatch({
         type: 'UPLOAD_PACKAGE',
         payload: resp.data,

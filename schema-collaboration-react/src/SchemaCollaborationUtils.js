@@ -11,6 +11,17 @@ export function getParameterFromUrlByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '))
 }
 
-export function onExitApplication() {
-  window.location.href = getParameterFromUrlByName('source', window.location)
+export function onExitApplication(data) {
+  let destinationUrl = getParameterFromUrlByName('source', window.location)
+
+  if (window.last_saved_schema === undefined || // it has not been saved yet... we don't know if there are changes but just in case
+    data !== window.last_saved_schema)          // data now is different to the last saved data
+  {
+      if (window.confirm('If you continue you will lose the changes in this session')) {
+          window.location.href = destinationUrl
+      }
+  }
+  else {
+      window.location.href = destinationUrl
+  }
 }

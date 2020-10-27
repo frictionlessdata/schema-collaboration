@@ -20,6 +20,7 @@ export function onSaveToServer(data) {
       toast.info('Saved! UUID: ' + res.data.uuid, {
         className: 'toast-info'
       })
+      window.last_saved_schema = data
       return res
     })
     .catch((err) => err)
