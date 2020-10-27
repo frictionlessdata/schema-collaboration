@@ -80,7 +80,7 @@ As a data manager, complete the information that you might already know about th
 
 At any point or when finished select "Save to server".
 
-Navigate back to data package management interface, then select "List of datapackages" (TODO 2020-10-20: button to be added!), which will contain the new datapackage:
+The button "Exit package creator" can be used to leave to the list of datapackages. The new datapackage will be visible.
 
 | ![list_of_packages_one_package](images/list_of_packages_empty_one_package.png) |
 |---|
