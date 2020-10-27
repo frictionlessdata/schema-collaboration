@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install --no-install-recommends --yes \
 	libmariadbclient-dev libmariadb-dev-compat libmariadb3 mariadb-client \
 	python3-wheel libpython3.7-dev \
 	gcc-7 gcc git \
+	pandoc texlive-latex-base texlive-fonts-recommended lmodern \
 	nginx supervisor
 COPY requirements.txt docker/entrypoint.sh /code/
 RUN pip3 install -r /code/requirements.txt
