@@ -9,9 +9,9 @@ Carles Pina Estany's 2020 Tool Fund: data managers and researchers collaborate t
 
 Current state: last features for the initial functional release are being finished. Feedback is welcomed (via [Github Issues](https://github.com/frictionlessdata/schema-collaboration/issues), [email](carles@pina.cat) or [Frictionless data Discord](https://discord.com/invite/Sewv6av).
 
-More information about this tool fund in the [Frictionless Data Blog](https://frictionlessdata.io/blog/2020/07/16/tool-fund-polar-institute/)
+More information about this tool fund in the [Frictionless Data Blog](https://frictionlessdata.io/blog/2020/07/16/tool-fund-polar-institute/).
 
-See progress on the [log](https://github.com/frictionlessdata/schema-collaboration/wiki)
+See progress on the [log](https://github.com/frictionlessdata/schema-collaboration/wiki).
 
 For demo purposes (not for real use) see the [installed schema-collaboration.](https://carles.eu.pythonanywhere.com). You also read the [data manager first steps](https://github.com/frictionlessdata/schema-collaboration/blob/master/documentation/User.md#schema-collaboration) documentation for an initial guidance.
 
