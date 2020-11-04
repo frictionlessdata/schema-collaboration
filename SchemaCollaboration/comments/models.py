@@ -5,10 +5,13 @@ from core.models import Person, Datapackage
 
 
 class AbstractComment(CreateModifyOn):
-    datapackage = models.ForeignKey(Datapackage, null=False, blank=False, on_delete=models.PROTECT)
-    author = models.ForeignKey(Person, null=False, blank=False, on_delete=models.PROTECT)
+    datapackage = models.ForeignKey(Datapackage, on_delete=models.PROTECT)
+    author = models.ForeignKey(Person, on_delete=models.PROTECT)
     text = models.TextField()
     private = models.BooleanField()
+
+    class Meta:
+        abstract = True
 
     def __str__(self):
         if self.text is None:
@@ -17,9 +20,6 @@ class AbstractComment(CreateModifyOn):
             text = f'{self.text[:20]}...'
 
         return f'Author:{self.author}-{text}'
-
-    class Meta:
-        abstract = True
 
 
 class Comment(AbstractComment):

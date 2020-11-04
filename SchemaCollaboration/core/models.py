@@ -9,8 +9,7 @@ class CreateModifyOn(models.Model):
     """Details of data creation and modification: including date, time and user."""
     objects = models.Manager()  # Helps Pycharm CE auto-completion
 
-    created_on = models.DateTimeField(help_text='Date and time at which the entry was created', auto_now_add=True,
-                                      blank=False, null=False)
+    created_on = models.DateTimeField(help_text='Date and time at which the entry was created', auto_now_add=True)
     modified_on = models.DateTimeField(help_text='Date and time at which the entry was modified', auto_now=True,
                                        blank=True, null=True)
 
@@ -37,12 +36,11 @@ class DatapackageStatus(CreateModifyOn):
     class StatusBehaviour(models.TextChoices):
         DEFAULT_ON_DATAPACKAGE_CREATION = 'CREATION', 'Default on Creation'
 
-    name = models.CharField(max_length=255, null=False, blank=True, unique=True)
+    name = models.CharField(max_length=255, blank=True, unique=True)
     behaviour = models.CharField(max_length=9,
                                  choices=StatusBehaviour.choices,
                                  null=True, blank=True,
-                                 unique=True,
-                                 help_text='')
+                                 unique=True)
 
     def __str__(self):
         return self.name
@@ -52,11 +50,11 @@ class DatapackageStatus(CreateModifyOn):
 
 
 class Datapackage(CreateModifyOn):
-    uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, unique=True)
     schema = models.TextField(editable=True)
     name = models.CharField(max_length=500, null=True, blank=True)
     collaborators = models.ManyToManyField(Person, blank=True)
-    status = models.ForeignKey(DatapackageStatus, null=True, blank=False, on_delete=models.PROTECT)
+    status = models.ForeignKey(DatapackageStatus, null=True, default='', on_delete=models.PROTECT)
 
     def collaborators_sorted(self):
         return self.collaborators.all().order_by('full_name')
