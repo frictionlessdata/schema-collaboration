@@ -42,19 +42,25 @@ class DatapackageStatus(CreateModifyOn):
                                  null=True, blank=True,
                                  unique=True)
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name_plural = 'Datapackage statuses'
+
+    def __str__(self):
+        return self.name
 
 
 class Datapackage(CreateModifyOn):
     uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, unique=True)
-    schema = models.TextField(editable=True)
-    name = models.CharField(max_length=500, null=True, blank=True)
+    schema = models.TextField()
+    name = models.CharField(max_length=500, default='', blank=True)
     collaborators = models.ManyToManyField(Person, blank=True)
     status = models.ForeignKey(DatapackageStatus, null=True, default='', on_delete=models.PROTECT)
+
+    def __str__(self):
+        if self.name:
+            return self.name
+        else:
+            return '-'
 
     def collaborators_sorted(self):
         return self.collaborators.all().order_by('full_name')
@@ -80,9 +86,6 @@ class Datapackage(CreateModifyOn):
     def comments_for_collaborators(self):
         return self.comment_set.filter(private=False).order_by('created_on')
 
-    def get_absolute_url(self):
-        return reverse('datapackage-detail', kwargs={'uuid': str(self.uuid)})
-
     def file_name(self, *, extension):
         date = f'{self.modified_on:%Y%m%d-%H%M}'
         if self.name:
@@ -95,8 +98,5 @@ class Datapackage(CreateModifyOn):
     def generate_edit_link(self, path):
         return f'{reverse("datapackage-ui")}?load={self.uuid}&source={path}'
 
-    def __str__(self):
-        if self.name:
-            return self.name
-        else:
-            return '-'
+    def get_absolute_url(self):
+        return reverse('datapackage-detail', kwargs={'uuid': str(self.uuid)})
