@@ -205,7 +205,7 @@ If not provided it uses the wildcard `*`.
 
 List separated by commas for the `ALLOWED_HOSTS` Django setting.
 
-Tip: if set to something invalid and `DEBUG=1` when you try to use the applicatio, a Django error will appear and will show what this environment variable should contain to handle the request.
+Tip: if set to something invalid and `DEBUG=1` when you try to use the application, a Django error will appear and will show what this environment variable should contain to handle the request.
 
 Django documentation: https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts
 
