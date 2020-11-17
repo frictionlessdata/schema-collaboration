@@ -17,8 +17,7 @@ For demo purposes (not for real use) see the [installed schema-collaboration.](h
 
 Find below some basic documentation and also how to [install it using Docker](https://github.com/frictionlessdata/schema-collaboration/tree/master/docker#schema-collaboration-docker).
 
-# Installation for development
-## Server side Django
+# Installation
 The application is implemented in Django. Steps to download, create the basic users and execute the server:
 
 ```sh
@@ -55,7 +54,7 @@ In order to use the PDF generation you need to install Pandoc with the suggested
 apt install pandoc
 ```
 
-## Modification on datapackage-ui
+# Modification on datapackage-ui
 This section is only important if a developer intends to modify the integration with datapackage-ui or update datapackage-ui. For example, adding buttons, change buttons/API, toaster, change the API communication between datapackage-ui and Django server, etc.
 
 [datapackage-ui](https://github.com/frictionlessdata/datapackage-ui) is a dependency of schema-collaboration. It uses npm and React.
