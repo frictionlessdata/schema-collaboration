@@ -36,8 +36,8 @@
                                class="dropdown-item">Manage Datapackage</a>
                             <hr>
                             <a href="{% url 'datapackage-detail' uuid=schema.uuid %}"
-                               target="_blank" class="dropdown-item">Collaborator View <i class="fas fa-external-link-alt"></i></a>
-                            {% include 'core/_clipboard-button.html' with class="dropdown-item" url=schema.collaborator_view_link id='copy_view_link' button_text='Copy Collaborator View <i class="far fa-clipboard"></i>' only %}
+                               target="_blank" class="dropdown-item">Preview <i class="fas fa-external-link-alt"></i></a>
+                            {% include 'core/_clipboard-button.html' with class="dropdown-item" url=schema.collaborator_view_link id='copy_view_link' button_text='Copy Link <i class="far fa-clipboard"></i>' only %}
                         </div>
                     </div>
 

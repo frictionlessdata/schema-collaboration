@@ -25,12 +25,11 @@
     <div class="btn-group">
         <a class="btn btn-primary dropdown-toggle" href="#" role="button"
            id="dropDownMenuLinkOptions-{{ schema.uuid }}" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">Collaborator</a>
+           aria-haspopup="true" aria-expanded="false">Collaborator View</a>
 
         <div class="dropdown-menu" aria-labelledby="dropDownMenuCollaboratorOptions">
-            <a target="_blank" class="dropdown-item" href="{% url 'datapackage-detail' uuid=datapackage.uuid %}">Collaborator
-                View <i class="fas fa-external-link-alt"></i></a>
-            {% include 'core/_clipboard-button.html' with class="dropdown-item" url=datapackage.collaborator_view_link id='copy_view_link' button_text='Copy Collaborator View <i class="far fa-clipboard"></i>' only %}
+            <a target="_blank" class="dropdown-item" href="{% url 'datapackage-detail' uuid=datapackage.uuid %}">Preview <i class="fas fa-external-link-alt"></i></a>
+            {% include 'core/_clipboard-button.html' with class="dropdown-item" url=datapackage.collaborator_view_link id='copy_view_link' button_text='Copy Link <i class="far fa-clipboard"></i>' only %}
         </div>
     </div>
 
