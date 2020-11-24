@@ -15,7 +15,7 @@ def process_post_add_comment(request, context,
     else:
         person = Person.objects.get(user=request.user)
 
-    comment_form = CommentForm(request.POST, datapackage_id=datapackage.id, person=person)
+    comment_form = CommentForm(request.POST, datapackage_id=datapackage.id, person=person, allow_private=True)
 
     if comment_form.is_valid():
         comment_form.save()
