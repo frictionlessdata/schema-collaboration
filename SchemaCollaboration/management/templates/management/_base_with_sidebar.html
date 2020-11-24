@@ -18,9 +18,9 @@
                     <li>
                         <hr>
                     </li>
-                    <li>{{ user }}<br>
-                        <a href="{% url 'logout' %}?next={% url 'login' %}">Logout</a>
-                    </li>
+                    <li>User:<br>{{ user }}</li>
+                    <li><hr></li>
+                    <li><a href="{% url 'logout' %}?next={% url 'login' %}">Logout</a></li>
                 </ul>
             </div>
         </nav>
