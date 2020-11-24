@@ -18,7 +18,7 @@ class CommentForm(ModelForm):
 
         self.fields['text'].widget.attrs = {'rows': 3}
 
-        self.fields['private'].help_text = 'Enable if this comment is going to be visible only by you'
+        self.fields['private'].help_text = 'Enable if this comment should only be visible to you'
 
         if person:
             self.fields['author'].initial = person
