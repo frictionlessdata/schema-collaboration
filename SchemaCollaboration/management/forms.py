@@ -15,6 +15,11 @@ class PersonModelForm(forms.ModelForm):
 
         self.helper = FormHelper(self)
 
+        if self.instance.pk:
+            cancel_url = reverse('management:collaborator-detail', kwargs={'pk': self.instance.pk})
+        else:
+            cancel_url = reverse('management:collaborator-list')
+
         self.helper.layout = Layout(
             Div(
                 Div('full_name', css_class='col-6'),
@@ -22,7 +27,7 @@ class PersonModelForm(forms.ModelForm):
             ),
             FormActions(
                 Submit('save', 'Save'),
-                cancel_button(reverse('management:collaborator-detail', kwargs={'pk': self.instance.pk}))
+                cancel_button(cancel_url)
             )
         )
 
