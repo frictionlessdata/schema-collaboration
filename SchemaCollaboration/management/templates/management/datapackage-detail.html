@@ -1,4 +1,5 @@
 {% extends 'management/_base_with_sidebar.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {#TODO: this can be merged with core/datapackage-detail.html... unless some time soon they diverge too much?#}
@@ -15,8 +16,9 @@
     <strong>Modified on:</strong> {% include 'core/_datetime-or-dash.html' with datetime=datapackage.modified_on only %}<br>
     <p></p>
 
+    <a class="btn btn-primary" href="{% url 'datapackage-ui' %}?load={{ datapackage.uuid }}">Edit Datapackage <img alt="Logo of Frictionless" height=25 src="{% static 'images/data-package-logo.png' %}"></a>
     <a href="{% url 'management:datapackage-update' uuid=datapackage.uuid %}" class="btn btn-primary">Edit Manage</a>
-    <a class="btn btn-primary" href="{% url 'datapackage-ui' %}?load={{ datapackage.uuid }}">Edit Datapackage</a>
+    <a target="_blank" class="btn btn-primary" href="{% url 'datapackage-detail' uuid=datapackage.uuid %}">Collaborator View <i class="fas fa-external-link-alt"></i></a>
     {% include 'core/_download-schema-buttons.html' with uuid=datapackage.uuid only %}
     <hr>
     <h1>Comments</h1>
