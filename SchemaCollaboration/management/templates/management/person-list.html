@@ -19,8 +19,8 @@
                     <a href="{% url 'management:collaborator-detail' pk=collaborator.id %}" class="btn btn-primary btn-sm">View</a>
                     <a href="{% url 'management:collaborator-update' pk=collaborator.id %}" class="btn btn-primary btn-sm">Edit</a>
                     &nbsp;
-                    <a href="{{ collaborator.list_datapackages_url }}" class="btn btn-primary btn-sm">List Datapackages</a>
-                    {% include 'core/_clipboard-button.html' with url=collaborator.list_datapackages_url id='copy_edit_link' button_text='Copy List Datapackages' only %}
+                    <a target="_blank" href="{{ collaborator.list_datapackages_url }}" class="btn btn-primary btn-sm">List Datapackages <i class="fas fa-external-link-alt"></i></a>
+                    {% include 'core/_clipboard-button.html' with url=collaborator.list_datapackages_url id='copy_edit_link' button_text='Copy List Datapackages <i class="far fa-clipboard"></i>' only %}
                 </td>
             </tr>
         {% endfor %}
