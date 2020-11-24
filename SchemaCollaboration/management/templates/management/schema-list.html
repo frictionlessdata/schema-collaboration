@@ -19,11 +19,11 @@
         <tbody>
         {% for schema in schemas %}
             <tr>
-                <td>{% include 'core/_value-or-dash.tmpl' with value=schema.name only %}</td>
-                <td>{% include 'core/_value-or-dash.tmpl' with value=schema.collaborators_str only %}</td>
-                <td>{% include 'core/_value-or-dash.tmpl' with value=schema.status only %}</td>
-                <td data-sort="{{ schema.created_on|date:"Y-m-d H:i:s" }}">{{ schema.created_on }}</td>
-                <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{{ schema.modified_on }}</td>
+                <td>{% include 'core/_value-or-dash.html' with value=schema.name only %}</td>
+                <td>{% include 'core/_value-or-dash.html' with value=schema.collaborators_str only %}</td>
+                <td>{% include 'core/_value-or-dash.html' with value=schema.status only %}</td>
+                <td data-sort="{{ schema.created_on|date:"Y-m-d H:i:s" }}">{% include 'core/_datetime-or-dash.html' with datetime=schema.created_on only %}</td>
+                <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{% include 'core/_datetime-or-dash.html' with datetime=schema.modified_on %}</td>
                 <td>
                     <div class="btn-group">
                         <a class="btn btn-primary btn-sm dropdown-toggle" href="#" role="button"

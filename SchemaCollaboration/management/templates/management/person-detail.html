@@ -3,11 +3,11 @@
 {% block title %}Collaborator detail{% endblock %}
 {% block main_contents %}
     <h1>Collaborator detail</h1>
-    <strong>Name:</strong> {% include 'core/_value-or-dash.tmpl' with value=collaborator.full_name only %}
+    <strong>Name:</strong> {% include 'core/_value-or-dash.html' with value=collaborator.full_name only %}
     <p></p>
 
-    <strong>Created on:</strong> {% include 'core/_value-or-dash.tmpl' with value=collaborator.created_on only %}<br>
-    <strong>Modified on:</strong> {% include 'core/_value-or-dash.tmpl' with value=collaborator.modified_on only %}<br>
+    <strong>Created on:</strong> {% include 'core/_datetime-or-dash.html' with datetime=collaborator.created_on only %}<br>
+    <strong>Modified on:</strong> {% include 'core/_datetime-or-dash.html' with datetime=collaborator.modified_on only %}<br>
     <p></p>
 
     <a href="{% url 'management:collaborator-update' pk=collaborator.id %}" class="btn btn-primary">Edit</a>

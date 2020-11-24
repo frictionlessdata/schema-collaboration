@@ -27,9 +27,9 @@
             <tr>
                 <td>{{ schema.name }}</td>
                 <td>{{ schema.collaborators_excluding_self_str }}</td>
-                <td>{% include 'core/_value-or-dash.tmpl' with value=schema.status only %}</td>
-                <td data-sort="{{ schema.created_on|date:"Y-m-d H:i:s" }}">{{ schema.created_on }}</td>
-                <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{{ schema.modified_on }}</td>
+                <td>{% include 'core/_value-or-dash.html' with value=schema.status only %}</td>
+                <td data-sort="{{ schema.created_on|date:"Y-m-d H:i:s" }}">{% include 'core/_datetime-or-dash.html' with datetime=schema.created_on only %}</td>
+                <td data-sort="{{ schema.modified_on|date:"Y-m-d H:i:s" }}">{% include 'core/_datetime-or-dash.html' with datetime=schema.modified_on only %}</td>
                 <td>
                     <a href="{% url 'datapackage-detail'  uuid=schema.uuid %}" class="btn btn-primary btn-sm">View</a>
                     {% include 'core/_download-schema-buttons.html' with uuid=schema.uuid extra_classes='btn-sm' %}

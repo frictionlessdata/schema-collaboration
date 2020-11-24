@@ -1,6 +1,6 @@
 <div class="border">
     <strong>Author:</strong> {{ comment.author }}<br>
-    <strong>Created on:</strong> {{ comment.created_on }}<br>
+    <strong>Created on:</strong> {% include 'core/_datetime-or-dash.html' with datetime=comment.created_on %}<br>
     {% if show_private_field %}
         <strong>Private:</strong> {% include 'core/_tick_or_cross.html' with value=comment.private only %}<br>
     {% endif %}
