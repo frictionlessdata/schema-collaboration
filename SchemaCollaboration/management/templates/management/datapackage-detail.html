@@ -10,15 +10,30 @@
     <h1>Datapackage detail</h1>
     <strong>Name:</strong> {% include 'core/_value-or-dash.html' with value=datapackage.name only %}<br>
     <strong>Status</strong>: {{ datapackage.status }}<br>
-    <strong>Collaborators: </strong> {% include 'management/_collaborators-enumeration.html' with collaborators=datapackage.collaborators_sorted only %}
+    <strong>Collaborators: </strong>
+    {% include 'management/_collaborators-enumeration.html' with collaborators=datapackage.collaborators_sorted only %}
     <p></p>
-    <strong>Created on:</strong> {% include 'core/_datetime-or-dash.html' with datetime=datapackage.created_on only %}<br>
-    <strong>Modified on:</strong> {% include 'core/_datetime-or-dash.html' with datetime=datapackage.modified_on only %}<br>
+    <strong>Created on:</strong> {% include 'core/_datetime-or-dash.html' with datetime=datapackage.created_on only %}
+    <br>
+    <strong>Modified on:</strong> {% include 'core/_datetime-or-dash.html' with datetime=datapackage.modified_on only %}
+    <br>
     <p></p>
 
-    <a class="btn btn-primary" href="{% url 'datapackage-ui' %}?load={{ datapackage.uuid }}">Edit Datapackage <img alt="Logo of Frictionless" height=25 src="{% static 'images/data-package-logo.png' %}"></a>
+    <a class="btn btn-primary" href="{% url 'datapackage-ui' %}?load={{ datapackage.uuid }}">Edit Datapackage <img
+            alt="Logo of Frictionless" height=25 src="{% static 'images/data-package-logo.png' %}"></a>
     <a href="{% url 'management:datapackage-update' uuid=datapackage.uuid %}" class="btn btn-primary">Edit Manage</a>
-    <a target="_blank" class="btn btn-primary" href="{% url 'datapackage-detail' uuid=datapackage.uuid %}">Collaborator View <i class="fas fa-external-link-alt"></i></a>
+    <div class="btn-group">
+        <a class="btn btn-primary dropdown-toggle" href="#" role="button"
+           id="dropDownMenuLinkOptions-{{ schema.uuid }}" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">Collaborator</a>
+
+        <div class="dropdown-menu" aria-labelledby="dropDownMenuCollaboratorOptions">
+            <a target="_blank" class="dropdown-item" href="{% url 'datapackage-detail' uuid=datapackage.uuid %}">Collaborator
+                View <i class="fas fa-external-link-alt"></i></a>
+            {% include 'core/_clipboard-button.html' with class="dropdown-item" url=datapackage.collaborator_view_link id='copy_view_link' button_text='Copy Collaborator View <i class="far fa-clipboard"></i>' only %}
+        </div>
+    </div>
+
     {% include 'core/_download-schema-buttons.html' with uuid=datapackage.uuid only %}
     <hr>
     <h1>Comments</h1>

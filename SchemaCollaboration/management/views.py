@@ -156,6 +156,10 @@ class DatapackageDetailView(DatapackageMixin, DetailView):
 
         context['comments'] = self.object.comments_for_management()
         context['show_private_field'] = True
+
+        context['datapackage'].collaborator_view_link = self.request.build_absolute_uri(
+            reverse('datapackage-detail', kwargs={'uuid': context['datapackage'].uuid}))
+
         return context
 
 

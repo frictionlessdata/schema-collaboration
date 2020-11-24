@@ -111,7 +111,9 @@ class DatapackageDetailView(DetailView):
     context_object_name = 'datapackage'
 
     def get_object(self, queryset=None):
-        return Datapackage.objects.get(uuid=self.kwargs['uuid'])
+        schema = Datapackage.objects.get(uuid=self.kwargs['uuid'])
+
+        return schema
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
