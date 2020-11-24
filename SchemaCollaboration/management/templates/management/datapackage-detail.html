@@ -9,7 +9,7 @@
 {% block main_contents %}
     <h1>Datapackage detail</h1>
     <strong>Name:</strong> {% include 'core/_value-or-dash.html' with value=datapackage.name only %}<br>
-    <strong>Status</strong>: {{ datapackage.status }}<br>
+    <strong>Status:</strong> {{ datapackage.status }}<br>
     <strong>Collaborators: </strong>
     {% include 'management/_collaborators-enumeration.html' with collaborators=datapackage.collaborators_sorted only %}
     <p></p>
