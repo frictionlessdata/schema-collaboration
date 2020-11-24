@@ -135,6 +135,39 @@ services:
       - "8000:80"
 ```
 
+## How to change the homepage?
+The homepage will display a standard schema-collaboration message. This can be changed easily for your institution.
+
+When schema-collaboration starts will read the environment variable `HOMEPAGE_FILE` and insert its contents into the homepage. An example using `docker-compose.yml`:
+```
+version: '3'
+
+services:
+  schema-collaboration:
+    image: cpina/schema-collaboration
+    environment:
+      FORCE_SQLITE3_DATABASE: 1
+
+      ADMIN_PASSWORD: admin_secret_pwd
+      DATAMANAGER_USERNAME: data
+      DATAMANAGER_FULL_NAME: Data Manager
+      DATAMANAGER_PASSWORD: dm_secret_pwd
+      HOMEPAGE_FILE: /homepage.html
+    ports:
+      - "8000:80"
+    volumes:
+      - /home/admin/schema-collaboration-data:/code/SchemaCollaboration/data
+      - ./homepage.html:/homepage.html
+```
+
+There are two new lines:
+ * `HOMEPAGE_FILE: /homepage.html`: path to a file that will contain what's in the <body> </body> in the homepage
+ * `- ./homepage.html:/homepage.html`: a volume from a file outside Docker (in this case in the current directory) to inside Docker in `/test.html`
+
+Basically: create a file `homepage.html` and make it available to schema-collaboration via a Docker volume.
+
+If you don't do this: schema-collaboration uses a generic homepage message.
+
 ## Production deployment notes
 Set `PRODUCTION_CHECKS` to 1 in order to run the Django command `python3 manage.py check --deploy` . This might show warnings that you can fix using other variables depending on the configuration of your server. For example, the `SECURE_SSL_REDIRECT` might not be relevant if the application is accessible only via `https`.
 
