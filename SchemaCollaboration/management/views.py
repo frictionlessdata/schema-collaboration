@@ -50,7 +50,9 @@ class CollaboratorListView(PersonMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['breadcrumb'] = [{'name': 'Collaborator'}]
+        context['breadcrumb'] = [{'name': 'Collaborators'}]
+        context['sidebar_active'] = 'collaborators'
+
 
         for collaborator in context['collaborators']:
             add_list_datapackage_url_to_person(collaborator, self.request)
@@ -67,6 +69,8 @@ class CollaboratorCreateView(PersonMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['breadcrumb'] = [{'name': 'Collaborators', 'url': reverse('management:collaborator-list')},
                                  {'name': 'Create'}]
+        context['sidebar_active'] = 'collaborators'
+
         return context
 
 
@@ -79,6 +83,8 @@ class CollaboratorUpdateView(PersonMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['breadcrumb'] = [{'name': 'Collaborators', 'url': reverse('management:collaborator-list')},
                                  {'name': 'Edit'}]
+        context['sidebar_active'] = 'collaborators'
+
         return context
 
 
@@ -96,6 +102,8 @@ class CollaboratorDetailView(PersonMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['breadcrumb'] = [{'name': 'Collaborators', 'url': reverse('management:collaborator-list')},
                                  {'name': 'Detail'}]
+        context['sidebar_active'] = 'collaborators'
+
 
         add_list_datapackage_url_to_person(context['collaborator'], self.request)
 
