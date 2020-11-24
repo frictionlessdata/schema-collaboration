@@ -3,8 +3,10 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit
 from django import forms
 from django.forms import RadioSelect
+from django.urls import reverse
 
 from core.models import Person, Datapackage
+from core.utils import cancel_button
 
 
 class PersonModelForm(forms.ModelForm):
@@ -20,6 +22,7 @@ class PersonModelForm(forms.ModelForm):
             ),
             FormActions(
                 Submit('save', 'Save'),
+                cancel_button(reverse('management:collaborator-detail', kwargs={'pk': self.instance.pk}))
             )
         )
 
@@ -50,6 +53,7 @@ class DatapackageModelForm(forms.ModelForm):
             ),
             FormActions(
                 Submit('save', 'Save'),
+                cancel_button(reverse('management:datapackage-detail', kwargs={'uuid': self.instance.uuid})),
             )
         )
 
