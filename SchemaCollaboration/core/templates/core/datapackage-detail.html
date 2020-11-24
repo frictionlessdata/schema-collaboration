@@ -15,7 +15,7 @@
     Please read the comments below and then click on "Edit" to make changes to datapackage.
     <p></p>
 
-    <a class="btn btn-primary" href="{{ datapackage.edit_link }}">Edit</a>
+    <a class="btn btn-primary" href="{{ datapackage.edit_link }}">Edit <img height=23 src="{% static 'images/data-package-logo.png' %}"></a>
     {% include 'core/_download-schema-buttons.html' with uuid=datapackage.uuid only %}
     <hr>
     <h1>Comments</h1>
