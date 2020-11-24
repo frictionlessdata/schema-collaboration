@@ -1,34 +1,9 @@
 {% extends 'core/_base-centered.html' %}
 {% load static %}
 {% load includestatic %}
+{% load includefile %}
 
 {% block title %}Schema collaboration{% endblock %}
 {% block main %}
-    <h1>Welcome to schema-collaboration</h1>
-    <p>
-        This is a <strong>test server</strong> for the project
-        <a href="https://github.com/frictionlessdata/schema-collaboration/">schema-collaboration</a>.
-    </p>
-    <p>
-        This server might be inaccessible when deploying and testing, data might be deleted at any time. If you would
-        like more information join <a href="https://discord.com/channels/695635777199145130/695635777199145133">Frictionless
-        Data Discord</a> and contact me (Carles)
-    </p>
-    <h1>What can you do?</h1>
-    <ul>
-        <li>The datamanager can create people, datapackages and assign people to datapackages using the <a
-                href="{% url 'login' %}">management area</a> (login required available on the next page).
-        </li>
-        {% if example_collaborator_uuid %}
-            <li>Researchers can list their datapackages and edit them. For example see <a
-                    href="{% url 'datapackage-list' collaborator_uuid=example_collaborator_uuid %}">Sheldon Cooper's</a>
-                list of datapackages.
-            </li>
-        {% endif %}
-    </ul>
-    <hr>
-    <p>
-        This test server uses <a href="https://eu.pythonanywhere.com/">Python Anywhere</a> free Beginner Account.
-    </p>
-    Current deployed version: {% includestatic 'git_version.txt' 'Unknown'%}
+{% include_homepage %}
 {% endblock %}

@@ -23,7 +23,7 @@ def read_file(file_path):
 
 # Easy way to read a static file and input it in the template
 @register.simple_tag
-def includestatic(path, default):
+def include_static(path, default):
     file_path = os.path.join(settings.STATIC_ROOT, path)
 
     file_content = read_file(file_path)
@@ -35,7 +35,7 @@ def includestatic(path, default):
 
 
 @register.simple_tag
-def includestaticextrajs():
+def include_static_extra_js():
     file_content = read_file(settings.EXTRA_JS_FILE)
 
     return mark_safe(file_content) if file_content else ''

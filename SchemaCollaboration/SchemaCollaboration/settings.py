@@ -166,6 +166,8 @@ if 'SECURE_HSTS_SECONDS' in os.environ:
 DEMO_USERNAME = os.environ.get('DEMO_USERNAME', None)
 DEMO_PASSWORD = os.environ.get('DEMO_PASSWORD', None)
 
+HOMEPAGE_FILE = os.environ.get('HOMEPAGE_FILE', None)
+
 try:
     from local_settings import *
 except ImportError:
