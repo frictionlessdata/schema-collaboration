@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 
     <link rel="stylesheet" type="text/css" href="{% static '/css/css.css' %}">
-
+    <style>{% block style %}{% endblock %}</style>
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body class="{% block body_class %}{% endblock %}">

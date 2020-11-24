@@ -44,8 +44,12 @@ class DatapackageModelForm(forms.ModelForm):
 
         self.fields['status'].queryset = self.fields['status'].queryset.order_by('name')
         self.fields['collaborators'].queryset = self.fields['collaborators'].queryset.order_by('full_name')
-        self.fields['collaborators'].help_text = 'Hold down “Control”, or “Command” on a Mac, to select more than one'
+        self.fields['collaborators'].help_text = 'Refresh page to show new collaborators. Hold down “Control”, or “Command” on a Mac, to select more than one'
         self.fields['collaborators'].widget.attrs = {'size': 10}
+
+        collaborator_add_url = reverse('management:collaborator-add')
+
+        self.fields['collaborators'].label = f'Collaborators <div class="float-right"><a target="_blank" href="{collaborator_add_url}"><i class="fas fa-user-plus"></i> Add collaborator <i class="fas fa-external-link-alt"></i></a></div>'
 
         self.helper.layout = Layout(
             Div(

@@ -1,6 +1,13 @@
 {% extends 'management/_base_with_sidebar.html' %}
 {% load crispy_forms_tags %}
 
+{% block style %}
+{#Makes the label a block: we can use the float-right in the Form for "Add collaborator" #}
+#div_id_collaborators > label {
+    display: block;
+}
+{% endblock %}
+
 {% block title %}Datapackage{% endblock %}
 {% block main_contents %}
     <h1>Datapackage</h1>
