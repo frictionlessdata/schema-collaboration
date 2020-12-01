@@ -54,7 +54,9 @@
                 searchHighlight: true,
                 order: [[4, "desc"]],
                 language: {
-                    zeroRecords: "No schemas have been created. <a href=\"{% url 'management:datapackage-create' %}\">Create a Datapackage</a>"
+                    emptyTable: "No datapackages have been created. <a href=\"{% url 'management:datapackage-create' %}\">Create a Datapackage</a>",
+                    zeroRecords: "No matching datapackages.",
+                    info: "Showing _START_ to _END_ of _TOTAL_ datapackages",
                 },
                 pageLength: 50,
             });
