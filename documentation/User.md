@@ -15,8 +15,8 @@ The documentation gives detailed steps with screenshots about how to use schema-
  * Logging in as a data manager
  * Creating a datapackage and adding the known information (title, authors, etc.)
  * Creating a collaborator
- * Editing the Datapackage and assigning the newly created collaborator
- * Sending the Datapackage link to the collaborators so they can work on it
+ * Editing the datapackage and assigning the newly created collaborator
+ * Sending the datapackage link to the collaborators so they can work on it
  * At any time adding comments to the datapackage to be seen either by the data manager only or by the collaborators as well
 
 ## Installation
@@ -85,7 +85,7 @@ The button "Exit package creator" can be used to leave to the list of datapackag
 | ![list_of_packages_one_package](images/list_of_packages_empty_one_package.png) |
 |---|
 
-## Create the first Collaborator
+## Create the first collaborator
 Select "Collaborators" on the left hand side bar to create the first collaborator:
 
 | ![list_of_people_empty](images/list_of_people_empty.png) |
@@ -128,20 +128,21 @@ Select "Edit Manage" in order to Manage the Datapackage:
 
 On this page you are able to Edit this datapackage to change its status and add collaborators. In the example below we add the collaborator "Jane Doe" and selecting "Save".
 
-After this step, select "Datapackages" again and in the "List of Datapackages", "Jane Doe" will appear as a "Collaborator".
+After this step, select "Datapackages" again and in the "List of Datapackages", "Jane Doe" will appear as a "collaborator".
 
 | ![list_of_datapackages_with_collaborator](images/list_of_datapackages_with_collaborator.png) |
 |---|
 
 ## Options for a datapackage
-Each Datapackage has a set of options:
+Each datapackage has a set of options:
 
 |![options_for_a_datapackage](images/options_for_datapackage.png)|
 |---|
 
- * Edit Datapackage: takes you to the "Datapackage creator" in order to make changes to the data package
- * Manage Datapackage: place to add comments and also to edit the datapackage collaborators and status of the datapackage
- * Collaborator View: takes you to the page that is accessible without login/password, which can be sent to collaborators. Collaborators can read and write comments, see datapackage information, edit  and download the datapackage.
+ * "Edit Datapackage": takes you to the "Datapackage creator" in order to make changes to the data package
+ * "Manage Datapackage": place to add comments and also to edit the datapackage collaborators and status of the datapackage
+ * "Preview": takes you to the page that is accessible without login/password, which can be sent to collaborators. Collaborators can read and write comments, see datapackage information, edit  and download the datapackage.
+ * "Copy Link": copies the same URL as "Preview" to the clipboard. This is to make it easy to send it by email.
 
 ## Download button
 The "Download" button appears on different pages, always with the same options:
@@ -200,13 +201,13 @@ Enter the new status name (for example "Published") and select "Save".
 
 Currently there is only one possible "Behaviour" for a status: "Default on creation". The status of a newly created datapackage will be whichever one that has the behaviour "Default on creation". Only one status can have the Behaviour "Default on creation".
 
-### Delete Collaborators
+### Delete collaborators
 Select "People" on the left-hand side and find the Person or People to be deleted. The "Search" feature can be used if needed. Select the checkboxes as required and then the action "Delete selected People":
 
 | ![delete_person_checkbox](images/delete_person_checkbox.png) |
 |---|
 
-If this person is a collaborator in some Datapackages it will be de-attached and may need to be confirmed by selecting "Yes, I'm sure":
+If this person is a collaborator in some datapackages it will be de-attached and may need to be confirmed by selecting "Yes, I'm sure":
 
 | ![delete_confirmation](images/delete_person_confirmation.png) |
 |---|
