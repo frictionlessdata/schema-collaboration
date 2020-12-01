@@ -53,7 +53,6 @@ class CollaboratorListView(PersonMixin, ListView):
         context['breadcrumb'] = [{'name': 'Collaborators'}]
         context['sidebar_active'] = 'collaborators'
 
-
         for collaborator in context['collaborators']:
             add_list_datapackage_url_to_person(collaborator, self.request)
 
@@ -104,7 +103,6 @@ class CollaboratorDetailView(PersonMixin, DetailView):
                                  {'name': 'Detail'}]
         context['sidebar_active'] = 'collaborators'
 
-
         add_list_datapackage_url_to_person(context['collaborator'], self.request)
 
         return context
@@ -128,6 +126,12 @@ class DatapackageCreate(DatapackageMixin, View):
                 behaviour=DatapackageStatus.StatusBehaviour.DEFAULT_ON_DATAPACKAGE_CREATION)
             schema.status = default_status_on_creation
             schema.save()
+        except ObjectDoesNotExist:
+            pass
+
+        try:
+            collaborator = Person.objects.get(user=request.user)
+            schema.collaborators.add(collaborator)
         except ObjectDoesNotExist:
             pass
 
