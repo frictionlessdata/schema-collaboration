@@ -91,7 +91,7 @@ Select "Collaborators" on the left hand side bar to create the first collaborato
 | ![list_of_people_empty](images/list_of_people_empty.png) |
 |---|
 
-Select "Create collaborator" and enter the collaborators's name:
+Select "Create collaborator" and enter the collaborator's name:
 
 | ![create_person](images/create_person.png) |
 |---|
