@@ -304,13 +304,13 @@ Specify the database password.
 If initializing the database it creates an admin user with the given password.
 
 ### `DATAMANAGER_USERNAME`
-If initializing the database it creates a datamanager username with the given username.
+If initializing the database it creates a data manager username with the given username.
 
 ### `DATAMANAGER_PASSWORD`
-If initializing the database it creates a datamanger password with the given password.
+If initializing the database it creates a data manager password with the given password.
 
 ### `DATAMANAGER_FULL_NAME`
-If initializing the database it creates a datamanager person with the given full name.
+If initializing the database it creates a data manager person with the given full name.
 
 ### `PORT`
 Port where gunicorn will handle the requests. Defaults to 80. This might be needed if deploying in Heroku (where it sets it) otherwise changing the left part of the docker `--publish 8000:80` it should not be needed.

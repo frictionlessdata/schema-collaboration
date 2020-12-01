@@ -18,7 +18,7 @@ class CommentForm(ModelForm):
 
         self.fields['text'].widget.attrs = {'rows': 3}
 
-        self.fields['private'].help_text = 'Enable if this comment should only be visible to datamanagers'
+        self.fields['private'].help_text = 'Enable if this comment should only be visible to data managers'
 
         if person:
             self.fields['author'].initial = person

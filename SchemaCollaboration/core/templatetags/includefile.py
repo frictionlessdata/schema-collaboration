@@ -20,7 +20,7 @@ def include_homepage():
         
         <h2>What can you do?</h2>
         <ul>
-            <li>The datamanager can create people, datapackages and assign people to datapackages using the <a
+            <li>The data manager can create people, datapackages and assign people to datapackages using the <a
                     href="{reverse('login')}">management area</a> (login required available on the next page).
             </li>
         </ul>

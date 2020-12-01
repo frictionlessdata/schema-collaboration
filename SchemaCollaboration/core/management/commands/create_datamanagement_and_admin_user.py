@@ -30,7 +30,7 @@ class Command(BaseCommand):
 
         try:
             create_datamanager(datamanager_username, datamanager_full_name, datamanager_password)
-            print('Created: datamanager user')
+            print('Created: data manager user')
         except IntegrityError:
             print('Could not create the data manager')
 
