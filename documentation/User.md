@@ -1,5 +1,23 @@
 # schema-collaboration: documentation for data managers
 
+## Table of contents
+ * [Introduction](#introduction)
+ * [Overall steps to use schema-collaboration](#overall-steps-to-use-schema-collaboration)
+ * [Installation](#installation)
+ * [User account types](#user-account-types)
+ * [Data Manager Login](#data-manager-login-into-schema-collaboration)
+ * [Navigation](#navigation)
+ * [Create the first package](#create-the-first-datapackage)
+ * [Create the first collaborator](#create-the-first-collaborator)
+ * [Assign a datapackage to a collaborator](#assign-a-datapackage-to-a-collaborator)
+ * [Options for a datapackage](#options-for-a-datapackage)
+ * [Download button](#download-button)
+ * [Collaborator access](#collaborator-access)
+ * [Admin access and operations](#admin-access-and-operations)
+ * [Create more datapackage statuses](#create-more-datapackage-statuses)
+ * [Delete collaborators](#delete-collaborators)
+ * [Other operations](#other-operations)
+
 ## Introduction
 schema-collaboration is a tool in the form of a web platform to help data managers and collaborators to work together to create Frictionless datapackages. A collaborator could be a researcher but in general can be anyone who is working on the dataset.
 
