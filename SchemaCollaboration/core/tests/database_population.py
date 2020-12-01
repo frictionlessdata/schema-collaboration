@@ -35,7 +35,7 @@ def create_person():
 
 def create_datapackage():
     datapackage, created = Datapackage.objects.get_or_create(name='For the unit test',
-                                                             schema='''This should contain a datapackage''')
+                                                             schema='''This should contain datapackage''')
 
     return datapackage
 

@@ -33,7 +33,7 @@
                 searchHighlight: true,
                 order: [[0, "asc"]],
                 language: {
-                    emptyTable: "No collaborators have been created. <a href=\"{% url 'management:collaborator-add' %}\">Create a Collaborator</a>",
+                    emptyTable: "No collaborators have been created. <a href=\"{% url 'management:collaborator-add' %}\">Create collaborator</a>",
                     zeroRecords: "No matching collaborators.",
                     info: "Showing _START_ to _END_ of _TOTAL_ collaborators",
                     infoEmpty: "Showing 0 collaborators",
@@ -44,5 +44,5 @@
         });
     </script>
     <hr>
-    <a href="{% url 'management:collaborator-add' %}" class="btn btn-primary">Create a Collaborator</a>
+    <a href="{% url 'management:collaborator-add' %}" class="btn btn-primary">Create collaborator</a>
 {% endblock %}

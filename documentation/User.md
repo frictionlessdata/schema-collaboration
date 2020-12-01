@@ -13,8 +13,8 @@ It was funded by the Frictionless Data Tool Fund 2020. There is a [blog with the
 The documentation gives detailed steps with screenshots about how to use schema-collaboration. The general ideas covered are:
  * Installing the application
  * Logging in as a data manager
- * Creating a Datapackage and adding the known information (title, authors, etc.)
- * Creating a Collaborator
+ * Creating a datapackage and adding the known information (title, authors, etc.)
+ * Creating a collaborator
  * Editing the Datapackage and assigning the newly created collaborator
  * Sending the Datapackage link to the collaborators so they can work on it
  * At any time adding comments to the datapackage to be seen either by the data manager only or by the collaborators as well
@@ -66,7 +66,7 @@ There is a left-hand side bar to navigate between "Datapackages" and "Collaborat
 ## Create the first datapackage
 The first time that a data manager logs into the system there will be no data packages. The data manager needs to create a new data package and complete the basic information.
 
-Select the button "Create a Datapackage" in order to create one:
+Select the button "Create datapackage" in order to create one:
 
 | ![list_of_datapackages_empty](images/list_of_packages_empty.png) |
 |---|
@@ -91,7 +91,7 @@ Select "Collaborators" on the left hand side bar to create the first collaborato
 | ![list_of_people_empty](images/list_of_people_empty.png) |
 |---|
 
-Select "Create a Collaborator" and enter the collaborators's name:
+Select "Create collaborator" and enter the collaborators's name:
 
 | ![create_person](images/create_person.png) |
 |---|
@@ -133,7 +133,7 @@ After this step, select "Datapackages" again and in the "List of Datapackages", 
 | ![list_of_datapackages_with_collaborator](images/list_of_datapackages_with_collaborator.png) |
 |---|
 
-## Options for a Datapackage
+## Options for a datapackage
 Each Datapackage has a set of options:
 
 |![options_for_a_datapackage](images/options_for_datapackage.png)|
@@ -211,7 +211,7 @@ If this person is a collaborator in some Datapackages it will be de-attached and
 | ![delete_confirmation](images/delete_person_confirmation.png) |
 |---|
 
-These steps are the same for deleting a Datapackage or a Comment.
+These steps are the same for deleting a datapackage or a comment.
 
 ### Other operations
 Other operations in the admin: navigate within the menu on the left-hand side and use it to modify, delete or add objects as needed.

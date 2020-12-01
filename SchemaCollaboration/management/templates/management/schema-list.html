@@ -54,7 +54,7 @@
                 searchHighlight: true,
                 order: [[4, "desc"]],
                 language: {
-                    emptyTable: "No datapackages have been created. <a href=\"{% url 'management:datapackage-create' %}\">Create a Datapackage</a>",
+                    emptyTable: "No datapackages have been created. <a href=\"{% url 'management:datapackage-create' %}\">Create datapackage</a>",
                     zeroRecords: "No matching datapackages.",
                     info: "Showing _START_ to _END_ of _TOTAL_ datapackages",
                     infoEmpty: "Showing 0 datapackages",
@@ -65,6 +65,6 @@
         });
     </script>
     <hr>
-    <a href="{% url 'management:datapackage-create' %}" class="btn btn-primary">Create a Datapackage</a>
+    <a href="{% url 'management:datapackage-create' %}" class="btn btn-primary">Create datapackage</a>
     <p></p>
 {% endblock %}
