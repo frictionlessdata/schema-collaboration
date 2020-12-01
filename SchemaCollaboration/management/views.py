@@ -160,6 +160,8 @@ class DatapackageDetailView(DatapackageMixin, DetailView):
         context['datapackage'].collaborator_view_link = self.request.build_absolute_uri(
             reverse('datapackage-detail', kwargs={'uuid': context['datapackage'].uuid}))
 
+        context['edit_link'] = self.object.generate_edit_link(self.request.path)
+
         return context
 
 
