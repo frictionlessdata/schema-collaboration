@@ -20,7 +20,7 @@
     <p></p>
 
     <a class="btn btn-primary" href="{{ edit_link }}">Edit Datapackage <img
-            alt="Logo of Frictionless" height=25 src="{% static 'images/data-package-logo.png' %}"></a>
+            alt="Logo of Frictionless" style="height: 1rem;" src="{% static 'images/data-package-logo.png' %}"></a>
     <a href="{% url 'management:datapackage-update' uuid=datapackage.uuid %}" class="btn btn-primary">Edit Manage</a>
     <div class="btn-group">
         <a class="btn btn-primary dropdown-toggle" href="#" role="button"

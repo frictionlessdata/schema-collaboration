@@ -31,7 +31,7 @@
                            aria-haspopup="true" aria-expanded="false">Options</a>
 
                         <div class="dropdown-menu" aria-labelledby="dropDownMenuLinkOptions-{{ schema.uuid }}">
-                            <a href="{{ schema.edit_link }}" class="dropdown-item">Edit Datapackage <img alt="Logo of Frictionless" height=23 src="{% static 'images/data-package-logo.png' %}"></a>
+                            <a href="{{ schema.edit_link }}" class="dropdown-item">Edit Datapackage <img alt="Logo of Frictionless" style="height: 1rem;" src="{% static 'images/data-package-logo.png' %}"></a>
                             <a href="{% url 'management:datapackage-detail' uuid=schema.uuid %}"
                                class="dropdown-item">Manage Datapackage</a>
                             <hr>
