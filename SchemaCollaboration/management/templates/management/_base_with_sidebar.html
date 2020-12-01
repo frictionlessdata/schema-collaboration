@@ -12,15 +12,24 @@
                            style="padding-left: 0" href="{% url 'management:list-schemas' %}">Datapackages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if sidebar_active == 'collaborators' %}active{% endif %}" style="padding-left: 0"
+                        <a class="nav-link {% if sidebar_active == 'collaborators' %}active{% endif %}"
+                           style="padding-left: 0"
                            href="{% url 'management:collaborator-list' %}">Collaborators</a>
                     </li>
                     <li>
                         <hr>
                     </li>
                     <li>Logged in as:<br>{{ user }}</li>
-                    <li><hr></li>
+                    <li>
+                        <hr>
+                    </li>
                     <li><a href="{% url 'logout' %}?next={% url 'login' %}">Logout</a></li>
+                    <li>
+                        <hr>
+                    </li>
+                    <li><small><a target="_blank"
+                                  href="https://github.com/frictionlessdata/schema-collaboration/blob/master/documentation/User.md#schema-collaboration-documentation-for-data-managers">Documentation
+                        <i class="fas fa-external-link-alt"></i></a></small></li>
                 </ul>
             </div>
         </nav>
