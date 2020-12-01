@@ -150,7 +150,7 @@ class ApiSchemaView(View):
 
         name = get_name_from_datapackage(body)
 
-        schema.name = name
+        schema.name = name if name is not None else ''
         schema.schema = body
         schema.save()
 
