@@ -20,6 +20,6 @@ then
 else
 	echo; echo
 	echo "\"npm run build\" failed"
-	echo "You might need to install the dependencies: npm install in the echo"
+	echo "You might need to install the dependencies: npm install"
 fi
 
