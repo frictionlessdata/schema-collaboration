@@ -86,10 +86,13 @@ class CommentForm(ModelForm):
     def clean(self):
         super().clean()
 
-        if self._logged_user is None and 'author' in self.cleaned_data and self.cleaned_data['author'].user_id:
-            # User is not logged_in but tries to add a comment as a logged-in user. This is not allowed
-            # (it should not appear in the form, might be trying to inject commments as a 'data-manager'?)
-            raise forms.ValidationError({'author': 'Author not allowed'})
+        if self._logged_user is None and 'author' in self.cleaned_data:
+            if self.cleaned_data['author'].user_id:
+                # User is not logged_in but tries to add a comment as a logged-in user. This is not allowed
+                # (it should not appear in the form, might be trying to inject commments as a 'data-manager'?)
+                raise forms.ValidationError({'author': 'Author not allowed'})
+            elif not self.cleaned_data['datapackage'].collaborators.filter(id=self.cleaned_data['author'].id).exists():
+                raise forms.ValidationError({'author': 'Author not part of this dataset'})
 
     class Meta:
         model = Comment
