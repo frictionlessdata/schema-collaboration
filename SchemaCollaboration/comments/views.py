@@ -3,7 +3,6 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from comments.forms import CommentForm
-from core.models import Person
 
 
 def process_post_add_comment(request, context,
@@ -11,11 +10,11 @@ def process_post_add_comment(request, context,
                              success_view_name,
                              failure_template_name):
     if force_anonymous_user:
-        person = None
+        logged_user = None
     else:
-        person = Person.objects.get(user=request.user)
+        logged_user = request.user
 
-    comment_form = CommentForm(request.POST, datapackage_id=datapackage.id, person=person, allow_private=True)
+    comment_form = CommentForm(request.POST, datapackage_id=datapackage.id, logged_user=logged_user, allow_private=True)
 
     if comment_form.is_valid():
         comment_form.save()
@@ -25,5 +24,6 @@ def process_post_add_comment(request, context,
     else:
         messages.error(request, 'Error saving the comment. Check below for the error messages')
         context['comment_form'] = comment_form
+        context['datapackage'] = datapackage
 
         return render(request, failure_template_name, context)

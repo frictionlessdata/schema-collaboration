@@ -91,9 +91,9 @@ class DatapackageListView(ListView):
         return context
 
 
-def datapackage_detail_context(datapackage):
+def datapackage_detail_context(datapackage, logged_user):
     context = {}
-    context['comment_form'] = CommentForm(person=None,
+    context['comment_form'] = CommentForm(logged_user=logged_user,
                                           datapackage_id=datapackage.id,
                                           form_action_url=reverse('datapackage-add-comment',
                                                                   kwargs={'uuid': str(datapackage.uuid)}))
@@ -121,7 +121,7 @@ class DatapackageDetailView(DetailView):
         datapackage = kwargs['object']
         datapackage.edit_link = datapackage.generate_edit_link(self.request.path)
 
-        context.update(datapackage_detail_context(datapackage))
+        context.update(datapackage_detail_context(datapackage, self.request.user))
 
         return context
 
@@ -213,7 +213,7 @@ class DatapackageAddCommentView(View):
 
     def post(self, request, *args, **kwargs):
         datapackage = Datapackage.objects.get(uuid=kwargs['uuid'])
-        context = datapackage_detail_context(datapackage)
+        context = datapackage_detail_context(datapackage, self.request.user)
 
         return process_post_add_comment(request,
                                         context,

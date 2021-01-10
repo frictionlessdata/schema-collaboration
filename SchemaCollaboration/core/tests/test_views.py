@@ -68,7 +68,7 @@ class TestDatapackageListView(TestCase):
 class TestDatapackageAddCommentView(TestCase):
     def test_add_comment(self):
         datapackage = database_population.create_datapackage()
-        collaborator = database_population.create_person()
+        collaborator = database_population.create_external_collaborator()
 
         datapackage.collaborators.add(collaborator)
 

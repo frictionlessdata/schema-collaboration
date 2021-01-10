@@ -150,9 +150,7 @@ class DatapackageDetailView(DatapackageMixin, DetailView):
         context['breadcrumb'] = [{'name': 'Datapackages', 'url': reverse('management:list-schemas')},
                                  {'name': 'Detail'}]
 
-        person = Person.objects.get(user=self.request.user)
-
-        context['comment_form'] = CommentForm(person=person,
+        context['comment_form'] = CommentForm(logged_user=self.request.user,
                                               datapackage_id=self.object.id,
                                               allow_private=True,
                                               form_action_url=reverse('management:datapackage-add-comment',
@@ -192,7 +190,7 @@ class DatapackageAddCommentView(View):
 
     def post(self, request, *args, **kwargs):
         datapackage = Datapackage.objects.get(uuid=kwargs['uuid'])
-        context = datapackage_detail_context(datapackage)
+        context = datapackage_detail_context(datapackage, logged_user=request.user)
 
         return process_post_add_comment(request,
                                         context,
