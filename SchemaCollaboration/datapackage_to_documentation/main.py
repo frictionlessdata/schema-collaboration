@@ -10,6 +10,19 @@ from jinja2 import Template
 # outside Django in the future
 # That's why is using jinja2 as a template language instead of
 # Django's template language.
+#
+# Example of use:
+# Make sure to have jinja2 template language:
+# python3 -m venv venv
+# pip3 install jinja2
+#
+# In a Python file:
+# import json
+# import main # or the name that this file is saved as...
+#
+# datapackage = json.load(open("datapackage.json"))
+# main.datapackage_to_markdown(datapackage)
+
 
 def datapackage_to_markdown(datapackage):
     """
