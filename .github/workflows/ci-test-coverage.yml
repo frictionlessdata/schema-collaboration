@@ -36,6 +36,6 @@ jobs:
     - name: Upload coverage to Coveralls
       run: |
         cd SchemaCollaboration
-        coveralls
+        coveralls --service=github
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
