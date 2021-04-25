@@ -1,13 +1,13 @@
 curlylint==0.12.0
 django==3.1.5
-django-crispy-forms==1.10.0
-gunicorn==20.0.4
-jinja2==2.11.2
-mysqlclient==2.0.1
-pip-chill==1.0.0
-python-dotenv==0.14.0
-# asgiref==3.2.10 # Installed as dependency for django
-# attrs==20.2.0 # Installed as dependency for curlylint
+django-crispy-forms==1.11.2
+gunicorn==20.1.0
+jinja2==2.11.3
+mysqlclient==2.0.3
+pip-chill==1.0.1
+python-dotenv==0.17.0
+# asgiref==3.3.4 # Installed as dependency for django
+# attrs==20.3.0 # Installed as dependency for curlylint
 # click==7.1.2 # Installed as dependency for curlylint
 # markupsafe==1.1.1 # Installed as dependency for jinja2
 # parsy==1.1.0 # Installed as dependency for curlylint
@@ -15,3 +15,4 @@ python-dotenv==0.14.0
 # pytz==2020.1 # Installed as dependency for django
 # sqlparse==0.3.1 # Installed as dependency for django
 # toml==0.10.1 # Installed as dependency for curlylint
+# typing-extensions==3.7.4.3 # Installed as dependency for asgiref
