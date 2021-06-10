@@ -1,5 +1,5 @@
 curlylint==0.13.0
-django==3.2
+django==3.2.4
 django-crispy-forms==1.11.2
 gunicorn==20.1.0
 jinja2==2.11.3
